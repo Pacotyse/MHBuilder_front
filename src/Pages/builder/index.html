@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../styles/_reset.css">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="../homepage/header.css">
+  <title>Builder</title>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header__main">
+      <img src="../../assets/react.svg" alt="logo" class="header__logo">
+      <button class="header__button-menu">Menu</button>
+      <nav class="menu">
+        <ul>
+          <li>
+              <a href="/" class="menu-link">Home</a>
+            </li>
+            <li>
+              <a href="/builder" class="menu-link">Builder</a>
+            </li>
+            <li>
+              <a href="/loadouts" class="menu-link">Loadouts</a>
+            </li>
+            <li>
+              <a href="/profile" class="menu__link ">
+                <div class="header__profile">
+                  <img src="../../assets/react.svg" alt="img">
+                  <span>Profile</span>
+                </div>
+
+              </a>
+            </li>
+            
+          </ul>
+        </nav>
+    </div>
+  </header>
+
+<!-- Builder -->
+
+  <main class="main">
+    <section class="section-items">
+      <p class="section-items__description">Set your items</p>
+      <div class="section-items__item">
+        <button class="item__button-add">
+          <img src="../../assets/react.svg" alt="weapon icon">
+          <h3>Add Sword</h3>
+        </button>
+      </div>
+      <div class="section-items__item">
+        <button class="item__button-add">
+          <!-- icon to match type and rarity -->
+          <img src="../../assets/react.svg" alt="helmet icon">
+          <h3>Add helmet</h3>
+        </button>
+      </div>
+      <div class="section-items__item">
+        <button class="item__button-add">
+          <img src="../../assets/react.svg" alt="chestplate icon">
+          <h3>Add chestplate</h3>
+        </button>
+      </div>
+      <div class="section-items__item">
+        <button class="item__button-add">
+          <img src="../../assets/react.svg" alt="gloves icon">
+          <h3>Add gloves</h3>
+        </button>
+      </div>
+      <div class="section-items__item">
+        <button class="item__button-add">
+          <img src="../../assets/react.svg" alt="waist icon">
+          <h3>Add waist</h3>
+        </button>
+      </div>
+      <div class="section-items__item">
+        <button class="item__button-add">
+          <img src="../../assets/react.svg" alt="greaves icon">
+          <h3>Add greaves</h3>
+        </button>
+      </div>
+    </section>
+    <div class="divider"></div>
+    <section class="section-stats">
+      <!-- weapon -->
+      <div class="stats-container">
+        Weapon
+      </div>
+      <!-- armor -->
+      <div class="stats-container">Armor</div>
+      <!-- skills -->
+      <div class="stats-container">
+        <ul class="stats-content__skills">
+          <li>
+            <span>Skill name</span>
+            <div>level ***</div>
+          </li>
+          <li>
+            <span>Skill name</span>
+            <div>level ***</div>
+          </li>
+          <li>
+            <span>Skill name</span>
+            <div>level ***</div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <a href="/copyrights" class="footer-copyright">Copyrights</a>
+  </footer>
+</body>
+</html>
