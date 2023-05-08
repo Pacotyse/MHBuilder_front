@@ -114,9 +114,11 @@
   border-radius: var(--radius-m);
 
 }
+
 .modal-xl {
   height: 80%;
 }
+
 .close-modal__button {
   position: absolute;
   left: 50%;
@@ -148,16 +150,16 @@
 }
 
 
-/* modal : weapon selection */
+/* modal : item selection */
 
-.weapon-list {
+.item-list {
   height: 95%;
   width: 100%;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
 }
-.weapon-card {
+.item-card {
   width: 100%;
   padding: var(--gap-l) var(--gap-s);
   display: flex;
@@ -166,32 +168,32 @@
   border-bottom: solid 2px var(--text);
 }
 
-.weapon-card:last-child {
+.item-card:last-child {
   border: none;
 }
-.weapon-card__header {
+.item-card__header {
   display: flex;
   justify-content: space-between;
 }
 
-.weapon-card__header-identity {
+.item-card__header-identity {
   display: flex;
   width: 60%;
   gap: var(--gap-s);
   align-items: center;
 }
 
-.weapon-card__header-decorations img {
+.item-card__header-decorations img {
   max-width: 1.5rem;
 }
 
-.weapon-card__content {
+.item-card__content {
   display: flex;
-  width: 80%;
+  width: 100%;
   justify-content: space-between;
 }
 
-.weapon-stats {
+.item-stats {
   display: flex;
   gap: var(--gap-s);
 }
@@ -199,7 +201,7 @@
   font-weight: bold;
 }
 
-.weapon-card__footer {
+.item-card__footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -248,7 +250,7 @@
   width: 10px;
 }
 
-.weapon-card__button-add {
+.item-card__button-add {
   background-color: var(--blue);
   border: solid 2px var(--text);
   border-radius: var(--radius-m);
@@ -257,26 +259,26 @@
   font-weight: bold;
 }
 
-.weapon-card__extra-toggle {
-  background-color: transparent;
-  border: none;
-  width: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  color: var(--text);
-}
-.weapon-card__extra {
+
+.item-card__extra {
   width: 100%;
   height: auto;
   border-top: solid 1px var(--bg-color);
   padding: var(--gap-s);
 }
-.weapon-card__extra-toggle__arrow {
-  width: 10px;
-  border-top: var(--text) solid 5px;
-  border-left: transparent solid 8px;
-  border-right: transparent solid 8px;
 
+
+/* armor */
+
+.item-card__footer__skill-list {
+  display: flex;
+  width: 70%;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.item-card__footer__skill-tag {
+  background-color: #125376;
+  border-radius: var(--radius-l);
+  padding: 5px;
 }
