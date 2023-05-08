@@ -84,6 +84,8 @@
         </button>
       </div>
     </section>
+
+    <!-- modal : weapon type -->
     <div class="modal-backdrop is-inactive">
       
       <div class="modal">
@@ -100,11 +102,11 @@
           <img src="../../assets/react.svg" alt="">
           <span>Dual Blades</span>
         </button>
-        <button class="weapon-type">
+        <button class="weapon-type" disabled>
           <img src="../../assets/react.svg" alt="">
           <span>Bow</span>
         </button>
-        <button class="weapon-type">
+        <button class="weapon-type" disabled>
           <img src="../../assets/react.svg" alt="">
           <span>Bow Gun</span>
         </button>
@@ -112,15 +114,15 @@
           <img src="../../assets/react.svg" alt="">
         <span>Hammer</span>
         </button>
-        <button class="weapon-type">
+        <button class="weapon-type" disabled>
           <img src="../../assets/react.svg" alt="">
           <span>Charge Blade</span>
         </button>
-        <button class="weapon-type">
+        <button class="weapon-type" disabled>
           <img src="../../assets/react.svg" alt="">
           <span>Heavy Bow Gun</span>
         </button>
-        <button class="weapon-type">
+        <button class="weapon-type" disabled>
           <img src="../../assets/react.svg" alt="">
           <span>Insect Glaive</spa>
         </button>
@@ -128,7 +130,7 @@
           <img src="../../assets/react.svg" alt="">
           <span>Lance</span>
         </button>
-        <button class="weapon-type">
+        <button class="weapon-type" disabled>
           <img src="../../assets/react.svg" alt="">
           <span>Lance Gun</span>
         </button>
@@ -136,14 +138,243 @@
           <img src="../../assets/react.svg" alt="">
           <span>Sword & Shield</span>
         </button>
-        <button class="weapon-type">
+        <button class="weapon-type" disabled>
           <img src="../../assets/react.svg" alt="">
           <span>Switch Axe</span>
         </button>
-        <button class="weapon-type">
+        <button class="weapon-type" disabled>
           <img src="../../assets/react.svg" alt="">
-          <span>Lance Gun</span>
+          <span>Hunter Horn</span>
         </button>
+      </div>
+    </div>
+    <!-- modal : weapon selection -->
+    <div class="modal-backdrop is-inactiv">
+      <div class="modal modal-xl">
+        <button class="close-modal__button" type="button" aria-label="close">X</button>
+        <div class="weapon-filter">
+          <form action="GET">
+            <input type="search" placeholder="Weapon's name">
+            <select name="element" id="element-filter">
+              <option value="none" selected>None</option>
+              <option value="fire">Fire</option>
+              <option value="ice">Ice</option>
+              <option value="thunder">Thunder</option>
+              <option value="water">Water</option>
+              <option value="dragon">Dragon</option>
+              <option value="poison">Poison</option>
+              <option value="paralyzis">Paralyzis</option>
+              <option value="sleep">Sleep</option>
+            </select>
+            <input type="submit" value="Search">
+          </form>
+        </div>
+        <div class="weapon-list">
+          <div class="weapon-card">
+            <div class="weapon-card__header">
+              <div class="weapon-card__header-identity">
+                <img src="../../assets/react.svg" class="weapon-card__header-icon"/>
+                <div class="weapon-card__header-title">Weapon Title</div>
+              </div>
+              <div class="weapon-card__header-decorations">
+                <img src="../../assets/react.svg" alt="decoration spot">
+                <img src="../../assets/react.svg" alt="decoration spot">
+                <img src="../../assets/react.svg" alt="decoration spot">
+              </div>
+            </div>
+            <div class="weapon-card__content">
+              <div class="weapon-stats">
+                <img src="" alt="icon">
+                <div class="stats-value">320</div>
+              </div>
+              <div class="weapon-stats">
+                <img src="" alt="icon">
+                <div class="stats-value">20%</div>
+              </div>
+              <div class="weapon-stats">
+                <img src="" alt="icon">
+                <div class="stats-value">30</div>
+              </div>
+            </div>
+            <div class="weapon-card__footer">
+              <div class="sharpness">
+                <div class="sharpness-red"></div>
+                <div class="sharpness-orange"></div>
+                <div class="sharpness-yellow"></div>
+                <div class="sharpness-green"></div>
+                <div class="sharpness-blue"></div>
+                <div class="sharpness-white"></div>
+                <div class="sharpness-purple"></div>
+              </div>
+              <button type="button" class="weapon-card__button-add">Add</button>
+            </div>
+            <button type="button" class="weapon-card__extra-toggle">
+              <span>More</span>
+              <span class="weapon-card__extra-toggle__arrow"></span>
+            </button>
+            <div class="weapon-card__extra ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis blanditiis mollitia repellendus exercitationem! Eos, est. Odit fugit, illum a autem sapiente impedit adipisci laboriosam optio excepturi ratione doloremque est velit reprehenderit ducimus sunt animi!</div>
+          </div>
+          <div class="weapon-card">
+            <div class="weapon-card__header">
+              <div class="weapon-card__header-identity">
+                <img src="../../assets/react.svg" class="weapon-card__header-icon"/>
+                <div class="weapon-card__header-title">Weapon Title</div>
+              </div>
+              <div class="weapon-card__header-decorations">
+                <img src="../../assets/react.svg" alt="decoration spot">
+                <img src="../../assets/react.svg" alt="decoration spot">
+                <img src="../../assets/react.svg" alt="decoration spot">
+              </div>
+            </div>
+            <div class="weapon-card__content">
+              <div class="weapon-stats">
+                <img src="" alt="icon">
+                <div class="stats-value">320</div>
+              </div>
+              <div class="weapon-stats">
+                <img src="" alt="icon">
+                <div class="stats-value">20%</div>
+              </div>
+              <div class="weapon-stats">
+                <img src="" alt="icon">
+                <div class="stats-value">30</div>
+              </div>
+            </div>
+            <div class="weapon-card__footer">
+              <div class="sharpness">
+                <div class="sharpness-red"></div>
+                <div class="sharpness-orange"></div>
+                <div class="sharpness-yellow"></div>
+                <div class="sharpness-green"></div>
+                <div class="sharpness-blue"></div>
+                <div class="sharpness-white"></div>
+                <div class="sharpness-purple"></div>
+              </div>
+              <button type="button" class="weapon-card__button-add">Add</button>
+            </div>
+            <div class="weapon-card__extra is-inactive">infos</div>
+          </div>
+          <div class="weapon-card">
+            <div class="weapon-card__header">
+              <div class="weapon-card__header-identity">
+                <img src="../../assets/react.svg" class="weapon-card__header-icon"/>
+                <div class="weapon-card__header-title">Weapon Title</div>
+              </div>
+              <div class="weapon-card__header-decorations">
+                <img src="../../assets/react.svg" alt="decoration spot">
+                <img src="../../assets/react.svg" alt="decoration spot">
+                <img src="../../assets/react.svg" alt="decoration spot">
+              </div>
+            </div>
+            <div class="weapon-card__content">
+              <div class="weapon-stats">
+                <img src="" alt="icon">
+                <div class="stats-value">320</div>
+              </div>
+              <div class="weapon-stats">
+                <img src="" alt="icon">
+                <div class="stats-value">20%</div>
+              </div>
+              <div class="weapon-stats">
+                <img src="" alt="icon">
+                <div class="stats-value">30</div>
+              </div>
+            </div>
+            <div class="weapon-card__footer">
+              <div class="sharpness">
+                <div class="sharpness-red"></div>
+                <div class="sharpness-orange"></div>
+                <div class="sharpness-yellow"></div>
+                <div class="sharpness-green"></div>
+                <div class="sharpness-blue"></div>
+                <div class="sharpness-white"></div>
+                <div class="sharpness-purple"></div>
+              </div>
+              <button type="button" class="weapon-card__button-add">Add</button>
+            </div>
+            <div class="weapon-card__extra is-inactive">infos</div>
+          </div>
+          <div class="weapon-card">
+            <div class="weapon-card__header">
+              <div class="weapon-card__header-identity">
+                <img src="../../assets/react.svg" class="weapon-card__header-icon"/>
+                <div class="weapon-card__header-title">Weapon Title</div>
+              </div>
+              <div class="weapon-card__header-decorations">
+                <img src="../../assets/react.svg" alt="decoration spot">
+                <img src="../../assets/react.svg" alt="decoration spot">
+                <img src="../../assets/react.svg" alt="decoration spot">
+              </div>
+            </div>
+            <div class="weapon-card__content">
+              <div class="weapon-stats">
+                <img src="" alt="icon">
+                <div class="stats-value">320</div>
+              </div>
+              <div class="weapon-stats">
+                <img src="" alt="icon">
+                <div class="stats-value">20%</div>
+              </div>
+              <div class="weapon-stats">
+                <img src="" alt="icon">
+                <div class="stats-value">30</div>
+              </div>
+            </div>
+            <div class="weapon-card__footer">
+              <div class="sharpness">
+                <div class="sharpness-red"></div>
+                <div class="sharpness-orange"></div>
+                <div class="sharpness-yellow"></div>
+                <div class="sharpness-green"></div>
+                <div class="sharpness-blue"></div>
+                <div class="sharpness-white"></div>
+                <div class="sharpness-purple"></div>
+              </div>
+              <button type="button" class="weapon-card__button-add">Add</button>
+            </div>
+            <div class="weapon-card__extra is-inactive">infos</div>
+          </div>
+          <div class="weapon-card">
+            <div class="weapon-card__header">
+              <div class="weapon-card__header-identity">
+                <img src="../../assets/react.svg" class="weapon-card__header-icon"/>
+                <div class="weapon-card__header-title">Weapon Title</div>
+              </div>
+              <div class="weapon-card__header-decorations">
+                <img src="../../assets/react.svg" alt="decoration spot">
+                <img src="../../assets/react.svg" alt="decoration spot">
+                <img src="../../assets/react.svg" alt="decoration spot">
+              </div>
+            </div>
+            <div class="weapon-card__content">
+              <div class="weapon-stats">
+                <img src="" alt="icon">
+                <div class="stats-value">320</div>
+              </div>
+              <div class="weapon-stats">
+                <img src="" alt="icon">
+                <div class="stats-value">20%</div>
+              </div>
+              <div class="weapon-stats">
+                <img src="" alt="icon">
+                <div class="stats-value">30</div>
+              </div>
+            </div>
+            <div class="weapon-card__footer">
+              <div class="sharpness">
+                <div class="sharpness-red"></div>
+                <div class="sharpness-orange"></div>
+                <div class="sharpness-yellow"></div>
+                <div class="sharpness-green"></div>
+                <div class="sharpness-blue"></div>
+                <div class="sharpness-white"></div>
+                <div class="sharpness-purple"></div>
+              </div>
+              <button type="button" class="weapon-card__button-add">Add</button>
+            </div>
+            <div class="weapon-card__extra is-inactive">infos</div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="divider"></div>
