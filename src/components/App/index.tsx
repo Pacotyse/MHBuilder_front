@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
-import reactLogo from '../../assets/react.svg';
 import './styles.scss';
+import AppHeader from '../AppHeader';
 
 function App() {
   return (
     <div className="app">
-      <h1 className="app__title">Monster Hunter Builder</h1>
+      <AppHeader />
       {/* React router prevent the app from refreshing when navigating */}
       <Routes>
         <Route path="/" element={<h2>Accueil</h2>} />
