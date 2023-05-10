@@ -1,0 +1,48 @@
+@use '../../styles/vars';
+
+.modal {
+  position: relative;
+  background-color: vars.$grey;
+  padding: vars.$gap-s;
+  display: flex;
+  width: 90%;
+  min-width: 300px;
+  max-width: 450px;
+  max-height: 700px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: vars.$gap-s;
+  border-radius: vars.$radius-m;
+
+  &-backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    background-color: #000000d4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-xl {
+    height: 80%;
+  }
+  
+  &__button-close {
+    position: absolute;
+    left: 50%;
+    translate: -50% -50%;
+    bottom: calc(vars.$gap-m * -4);
+    background-color: vars.$white;
+    height: 2.3rem;
+    width: 2.3rem;
+    border: none;
+    border-radius: 50%;
+  }
+}
+
+
