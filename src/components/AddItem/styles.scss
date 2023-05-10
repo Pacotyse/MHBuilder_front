@@ -10,12 +10,10 @@
   color: vars.$white;
   border: vars.$dark-grey solid 2px;
   border-radius: vars.$radius-m;
-
+  
   &:hover {
     background-color: vars.$primary;
     cursor: pointer;
   }
-  &__icon {
-    width: vars.$icon-width;
-  }
+  
 }
