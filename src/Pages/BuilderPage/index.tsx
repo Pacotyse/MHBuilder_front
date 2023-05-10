@@ -1,9 +1,24 @@
+import AddItem from '../../components/AddItem';
+import weaponIcon from '../../assets/icons/great-sword-1.png';
+import helmetIcon from '../../assets/icons/helmet-1.png';
+import chestIcon from '../../assets/icons/chest-1.png';
+import waistIcon from '../../assets/icons/waist-1.png';
+import glovesIcon from '../../assets/icons/gloves-1.png';
+import feetIcon from '../../assets/icons/feet-1.png';
+import './styles.scss';
+
 function BuilderPage() {
   return (
-    <main>
+    <main className="main">
       <h2>Builder</h2>
       <section className="section-items">
         <p className="section-items__description">Set your items</p>
+        <AddItem item="weapon" icon={weaponIcon} />
+        <AddItem item="helmet" icon={helmetIcon} />
+        <AddItem item="chest" icon={chestIcon} />
+        <AddItem item="waist" icon={waistIcon} />
+        <AddItem item="gloves" icon={glovesIcon} />
+        <AddItem item="feet" icon={feetIcon} />
       </section>
       <section className="section-stats">
         <div className="stats-container">
