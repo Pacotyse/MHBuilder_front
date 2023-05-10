@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import './styles.scss';
 import AppHeader from '../AppHeader';
+import BuilderPage from '../../Pages/BuilderPage';
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       {/* React router prevent the app from refreshing when navigating */}
       <Routes>
         <Route path="/" element={<h2>Accueil</h2>} />
-        <Route path="/builder" element={<h2>Builder</h2>} />
+        <Route path="/builder" element={<BuilderPage />} />
         <Route path="/loadouts" element={<h2>Loadouts</h2>} />
         <Route path="/login" element={<h2>Login</h2>} />
         <Route path="/sign-in" element={<h2>Sign-in</h2>} />
