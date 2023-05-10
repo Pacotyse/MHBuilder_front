@@ -6,6 +6,9 @@ body {
   background-color: vars.$grey;
 }
 
+.main {
+  color: vars.$white;
+}
 .is-inactive {
   display: none !important;
 }

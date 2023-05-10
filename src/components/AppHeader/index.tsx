@@ -15,7 +15,7 @@ function AppHeader() {
           <span />
           <span />
         </button>
-        <nav className="menu is-active">
+        <nav className="menu ">
           <ul>
             <li>
               <NavLink
