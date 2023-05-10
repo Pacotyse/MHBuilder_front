@@ -1,4 +1,8 @@
+import { useState } from 'react';
 import AddItem from '../../components/AddItem';
+import Modal from '../../components/Modal';
+import WeaponType from '../../components/Modal/WeaponType';
+import WeaponCard from '../../components/Modal/WeaponCard';
 import helmetIcon from '../../assets/icons/helmet-1.png';
 import chestIcon from '../../assets/icons/chest-1.png';
 import waistIcon from '../../assets/icons/waist-1.png';
@@ -19,41 +23,56 @@ import longSword from '../../assets/icons/long-sword-1.png';
 import switchAxe from '../../assets/icons/switch-axe-1.png';
 import swordShield from '../../assets/icons/sword-shield-1.png';
 import './styles.scss';
-import Modal from '../../components/Modal';
-import WeaponType from '../../components/Modal/WeaponType';
-import WeaponCard from '../../components/Modal/WeaponCard';
 
 function BuilderPage() {
+  const [weaponTypeModalShown, setWeaponTypeModalShown] = useState(false);
+  const [weaponSelectionModalShown, setWeaponSelectionModalShown] = useState(false);
+  const [armorSelectionModalShown, setArmorSelectionModalShown] = useState(false);
+
+  const handleClickOnWeaponType = (weapon: string): void => {
+    setWeaponTypeModalShown(!weaponTypeModalShown);
+    setWeaponSelectionModalShown(!weaponSelectionModalShown);
+  };
+
   return (
     <main className="main">
       <h2>Builder</h2>
       <section className="section-items">
         <p className="section-items__description">Set your items</p>
-        <AddItem item="weapon" icon={greatSword} />
-        <AddItem item="helmet" icon={helmetIcon} />
-        <AddItem item="chest" icon={chestIcon} />
-        <AddItem item="waist" icon={waistIcon} />
-        <AddItem item="gloves" icon={glovesIcon} />
-        <AddItem item="feet" icon={feetIcon} />
+        <AddItem item="weapon" icon={greatSword} openModal={() => setWeaponTypeModalShown(!weaponTypeModalShown)} />
+        <AddItem item="helmet" icon={helmetIcon} openModal={() => setArmorSelectionModalShown(!armorSelectionModalShown)} />
+        <AddItem item="chest" icon={chestIcon} openModal={() => setArmorSelectionModalShown(!armorSelectionModalShown)} />
+        <AddItem item="waist" icon={waistIcon} openModal={() => setArmorSelectionModalShown(!armorSelectionModalShown)} />
+        <AddItem item="gloves" icon={glovesIcon} openModal={() => setArmorSelectionModalShown(!armorSelectionModalShown)} />
+        <AddItem item="feet" icon={feetIcon} openModal={() => setArmorSelectionModalShown(!armorSelectionModalShown)} />
       </section>
-      <Modal modalXl={false} shown={false}>
-        <WeaponType name="Bow" icon={bow1} />
-        <WeaponType name="Bow Gun" icon={bowGun1} />
-        <WeaponType name="Charge Blade" icon={chargeBlade} />
-        <WeaponType name="Dual Blades" icon={dualBlades} />
-        <WeaponType name="Great Sword" icon={greatSword} />
-        <WeaponType name="Hammer" icon={hammer} />
-        <WeaponType name="Heavy Bow Gun" icon={heavyBowGun} />
-        <WeaponType name="Hunter Horn" icon={hunterHorn} />
-        <WeaponType name="Insect Glaive" icon={insectGlaive} />
-        <WeaponType name="Lance" icon={lance} />
-        <WeaponType name="Lance Gun" icon={lanceGun} />
-        <WeaponType name="Long Sword" icon={longSword} />
-        <WeaponType name="Switch Axe" icon={switchAxe} />
-        <WeaponType name="Sword & Shield" icon={swordShield} />
+      <Modal
+        modalXl={false}
+        shown={weaponTypeModalShown}
+        close={() => setWeaponTypeModalShown(!weaponTypeModalShown)}
+      >
+        <WeaponType name="Bow" icon={bow1} openSelectionModal={handleClickOnWeaponType} />
+        <WeaponType name="Bow Gun" icon={bowGun1} openSelectionModal={handleClickOnWeaponType} />
+        <WeaponType name="Charge Blade" icon={chargeBlade} openSelectionModal={handleClickOnWeaponType} />
+        <WeaponType name="Dual Blades" icon={dualBlades} openSelectionModal={handleClickOnWeaponType} />
+        <WeaponType name="Great Sword" icon={greatSword} openSelectionModal={handleClickOnWeaponType} />
+        <WeaponType name="Hammer" icon={hammer} openSelectionModal={handleClickOnWeaponType} />
+        <WeaponType name="Heavy Bow Gun" icon={heavyBowGun} openSelectionModal={handleClickOnWeaponType} />
+        <WeaponType name="Hunter Horn" icon={hunterHorn} openSelectionModal={handleClickOnWeaponType} />
+        <WeaponType name="Insect Glaive" icon={insectGlaive} openSelectionModal={handleClickOnWeaponType} />
+        <WeaponType name="Lance" icon={lance} openSelectionModal={handleClickOnWeaponType} />
+        <WeaponType name="Lance Gun" icon={lanceGun} openSelectionModal={handleClickOnWeaponType} />
+        <WeaponType name="Long Sword" icon={longSword} openSelectionModal={handleClickOnWeaponType} />
+        <WeaponType name="Switch Axe" icon={switchAxe} openSelectionModal={handleClickOnWeaponType} />
+        <WeaponType name="Sword & Shield" icon={swordShield} openSelectionModal={handleClickOnWeaponType} />
       </Modal>
-      <Modal modalXl shown={false}>
+      <Modal
+        modalXl
+        shown={weaponSelectionModalShown}
+        close={() => setWeaponSelectionModalShown(!weaponSelectionModalShown)}
+      >
         <div className="item-list">
+          {/* here : map on [data] */}
           <WeaponCard />
           <WeaponCard />
           <WeaponCard />
