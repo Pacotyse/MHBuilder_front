@@ -10,4 +10,8 @@
     color: vars.$white;
     text-decoration: none;
   }
+
+  & .item__icon {
+      width: vars.$icon-width;
+    }
 }
