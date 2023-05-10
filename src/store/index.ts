@@ -1,7 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
+import builderReducer from './reducers/builder';
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    builder: builderReducer,
+  },
 });
 
 export default store;
