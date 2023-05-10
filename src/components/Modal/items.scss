@@ -1,0 +1,93 @@
+@use '../../styles/vars';
+
+.item {
+
+  &-list {
+    height: 95%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  &-card {
+    width: 100%;
+    padding: vars.$gap-l vars.$gap-s;
+    display: flex;
+    flex-direction: column;
+    gap: vars.$gap-m;
+    border-bottom: solid 2px vars.$white;
+
+    &:last-child {
+      border: none;
+    }
+
+    &__header {
+      display: flex;
+      justify-content: space-between;
+
+      &-identity {
+        display: flex;
+        width: 60%;
+        gap: vars.$gap-s;
+        align-items: center;
+      }
+      
+      &-decorations {
+        display: flex;
+        gap: vars.$gap-s;
+        & img {
+          width: 1.3rem;
+          height: 1.3rem;
+        }
+      }
+    }
+
+
+    &__content {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    &__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    &__button-add {
+      background-color: vars.$blue;
+      border: solid 2px vars.$white;
+      border-radius: vars.$radius-m;
+      padding: vars.$gap-s vars.$gap-m;
+      color: vars.$white;
+      font-weight: bold;
+    }
+    
+    &__extra {
+      width: 100%;
+      height: auto;
+      border-top: solid 1px var(--bg-color);
+      padding: var(--gap-s);
+    }
+  }
+
+
+
+
+
+  
+  &-stats {
+    display: flex;
+    gap: vars.$gap-s;
+    
+    & img {
+      width: 1rem;
+      height: 1rem;
+    }
+    
+    &__value {
+      font-weight: bold;
+    }
+  }
+}
