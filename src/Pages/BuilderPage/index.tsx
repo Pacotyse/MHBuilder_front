@@ -78,6 +78,16 @@ function BuilderPage() {
           <WeaponCard />
         </div>
       </Modal>
+      <Modal modalXl shown={false}>
+        <div className="item-list">
+          <WeaponCard />
+          <WeaponCard />
+          <WeaponCard />
+          <WeaponCard />
+          <WeaponCard />
+          <WeaponCard />
+        </div>
+      </Modal>
       <section className="section-stats">
         <div className="stats-container">
           Weapon
