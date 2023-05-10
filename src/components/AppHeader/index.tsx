@@ -1,5 +1,6 @@
-import './styles.scss';
+import { NavLink } from 'react-router-dom';
 import logoBones from '../../assets/icons/bones.png';
+import './styles.scss';
 
 function AppHeader() {
   return (
@@ -17,21 +18,40 @@ function AppHeader() {
         <nav className="menu is-active">
           <ul>
             <li>
-              <a href="/" className="menu__link">Home</a>
+              <NavLink
+                to="/"
+                className={({ isActive }) => (isActive ? 'menu__link menu-active' : 'menu__link')}
+              >
+                Home
+
+              </NavLink>
             </li>
             <li>
-              <a href="/builder" className="menu__link">Builder</a>
+              <NavLink
+                to="/builder"
+                className={({ isActive }) => (isActive ? 'menu__link menu-active' : 'menu__link')}
+              >
+                Builder
+              </NavLink>
             </li>
             <li>
-              <a href="/loadouts" className="menu__link">Loadouts</a>
+              <NavLink
+                to="/loadouts"
+                className={({ isActive }) => (isActive ? 'menu__link menu-active' : 'menu__link')}
+              >
+                Loadouts
+              </NavLink>
             </li>
             <li>
-              <a href="/users/12" className="menu__link ">
+              <NavLink
+                to="/users/12"
+                className={({ isActive }) => (isActive ? 'menu__link menu-active' : 'menu__link')}
+              >
                 <div className="menu__link-profile">
                   <img src={logoBones} alt="img" className="menu__link-profile__icon" />
                   <span>Profile</span>
                 </div>
-              </a>
+              </NavLink>
             </li>
 
           </ul>
