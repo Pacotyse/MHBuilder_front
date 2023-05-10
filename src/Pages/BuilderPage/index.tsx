@@ -6,6 +6,7 @@ import waistIcon from '../../assets/icons/waist-1.png';
 import glovesIcon from '../../assets/icons/gloves-1.png';
 import feetIcon from '../../assets/icons/feet-1.png';
 import './styles.scss';
+import Modal from '../../components/Modal';
 
 function BuilderPage() {
   return (
@@ -20,6 +21,9 @@ function BuilderPage() {
         <AddItem item="gloves" icon={glovesIcon} />
         <AddItem item="feet" icon={feetIcon} />
       </section>
+      <Modal modalXl={false}>
+        {/* here goes modal conten : form / cards */}
+      </Modal>
       <section className="section-stats">
         <div className="stats-container">
           Weapon
