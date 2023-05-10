@@ -21,6 +21,7 @@ import swordShield from '../../assets/icons/sword-shield-1.png';
 import './styles.scss';
 import Modal from '../../components/Modal';
 import WeaponType from '../../components/Modal/WeaponType';
+import WeaponCard from '../../components/Modal/WeaponCard';
 
 function BuilderPage() {
   return (
@@ -50,6 +51,16 @@ function BuilderPage() {
         <WeaponType name="Long Sword" icon={longSword} />
         <WeaponType name="Switch Axe" icon={switchAxe} />
         <WeaponType name="Sword & Shield" icon={swordShield} />
+      </Modal>
+      <Modal modalXl shown={false}>
+        <div className="item-list">
+          <WeaponCard />
+          <WeaponCard />
+          <WeaponCard />
+          <WeaponCard />
+          <WeaponCard />
+          <WeaponCard />
+        </div>
       </Modal>
       <section className="section-stats">
         <div className="stats-container">
