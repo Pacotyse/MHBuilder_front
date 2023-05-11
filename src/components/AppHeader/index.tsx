@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
+import { TiThMenu, TiTimes } from 'react-icons/ti';
 import logoBones from '../../assets/icons/bones.png';
 import './styles.scss';
 
@@ -21,9 +22,8 @@ function AppHeader() {
           <h1 className="header__title">Monster Hunter Builder</h1>
         </div>
         <button type="button" className="header__button-menu" onClick={() => setMenuShown(!menuShown)}>
-          <span />
-          <span />
-          <span />
+          {!menuShown && <TiThMenu className="icon" />}
+          {menuShown && <TiTimes className="icon" />}
         </button>
         <nav className={menuClassNames}>
           <ul>
