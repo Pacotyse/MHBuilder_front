@@ -23,14 +23,18 @@ import longSword from '../../assets/icons/long-sword-1.png';
 import switchAxe from '../../assets/icons/switch-axe-1.png';
 import swordShield from '../../assets/icons/sword-shield-1.png';
 import './styles.scss';
+import { useAppDispatch } from '../../hooks/redux';
+import { setWeaponType } from '../../store/reducers/builder';
 import ArmorCard from '../../components/Modal/ArmorCard';
 
 function BuilderPage() {
+  const dispatch = useAppDispatch();
   const [weaponTypeModalShown, setWeaponTypeModalShown] = useState(false);
   const [weaponSelectionModalShown, setWeaponSelectionModalShown] = useState(false);
   const [armorSelectionModalShown, setArmorSelectionModalShown] = useState(false);
 
   const handleClickOnWeaponType = (weapon: string): void => {
+    dispatch(setWeaponType(weapon));
     setWeaponTypeModalShown(!weaponTypeModalShown);
     setWeaponSelectionModalShown(!weaponSelectionModalShown);
   };
