@@ -1,3 +1,7 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+// enable div to be clicked
+
 import '../items.scss';
 import './styles.scss';
 import { useState } from 'react';
@@ -8,10 +12,11 @@ import defenseIcon from '../../../assets/icons/sub-defense.png';
 import affinityIcon from '../../../assets/icons/sub-affinity.png';
 
 function WeaponCard() {
+  // when click on a weapon, shows extra information
   const [showExtra, setShowExtra] = useState(false);
 
   return (
-    <div className="item-card">
+    <div className="item-card" onClick={() => setShowExtra(!showExtra)}>
       <div className="item-card__header">
         <div className="item-card__header-identity">
           <img src={greatSword} className="item__icon" alt="icon" />
@@ -53,7 +58,7 @@ function WeaponCard() {
         && (
         <div className="item-card__extra">
           {/* eslint-disable-next-line max-len */}
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis blanditiis mollitia repellendus exercitationem! Eos, est. Odit fugit, illum a autem sapiente impedit adipisci laboriosam optio excepturi ratione doloremque est velit reprehenderit ducimus sunt animi!
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis blanditiis mollitia repellendus exercitationem! Eos, est. Odit fugit, illum a autem sapiente impedit adipisci reprehenderit ducimus sunt animi!
         </div>
         )}
     </div>
