@@ -23,7 +23,7 @@ import attack from '../assets/icons/sub-attack.png';
 import defense from '../assets/icons/sub-defense.png';
 import affinity from '../assets/icons/sub-affinity.png';
 
-interface IIcons {
+export interface IIcons {
   helmet_1: string
   chest_1: string
   waist_1: string

@@ -5,40 +5,41 @@
 import '../items.scss';
 import './styles.scss';
 import { useState } from 'react';
-import greatSword from '../../../assets/icons/great-sword-1.png';
-import decorationIcon from '../../../assets/icons/decoration.png';
-import attackIcon from '../../../assets/icons/sub-attack.png';
-import defenseIcon from '../../../assets/icons/sub-defense.png';
-import affinityIcon from '../../../assets/icons/sub-affinity.png';
+import { useAppSelector } from '../../../hooks/redux';
+
+import getIconByKey, { IIcons } from '../../../utils/icons';
 
 function WeaponCard() {
+  const weaponType = useAppSelector((state) => state.builder.weaponType);
+  // set format to get the icon
+  const weaponTypeIcon = `${weaponType}_1`;
+
   // when click on a weapon, shows extra information
   const [showExtra, setShowExtra] = useState(false);
-
   return (
     <div className="item-card" onClick={() => setShowExtra(!showExtra)}>
       <div className="item-card__header">
         <div className="item-card__header-identity">
-          <img src={greatSword} className="item__icon" alt="icon" />
+          <img src={getIconByKey(weaponTypeIcon as keyof IIcons)} className="item__icon" alt="icon" />
           <div className="item-card__header-title">Weapon Title</div>
         </div>
         <div className="item-card__header-decorations">
-          <img src={decorationIcon} alt="decoration icon" />
-          <img src={decorationIcon} alt="decoration icon" />
-          <img src={decorationIcon} alt="decoration icon" />
+          <img src={getIconByKey('decoration_1')} alt="decoration icon" />
+          <img src={getIconByKey('decoration_1')} alt="decoration icon" />
+          <img src={getIconByKey('decoration_1')} alt="decoration icon" />
         </div>
       </div>
       <div className="item-card__content">
         <div className="item-stats">
-          <img src={attackIcon} alt="attack icon" />
+          <img src={getIconByKey('attack')} alt="attack icon" />
           <div className="item-stats__value">320</div>
         </div>
         <div className="item-stats">
-          <img src={affinityIcon} alt="affinity icon" />
+          <img src={getIconByKey('affinity')} alt="affinity icon" />
           <div className="item-stats__value">20%</div>
         </div>
         <div className="item-stats">
-          <img src={defenseIcon} alt="defense icon" />
+          <img src={getIconByKey('defense')} alt="defense icon" />
           <div className="item-stats__value">30</div>
         </div>
       </div>
