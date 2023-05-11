@@ -1,8 +1,18 @@
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import cn from 'classnames';
 import logoBones from '../../assets/icons/bones.png';
 import './styles.scss';
 
 function AppHeader() {
+  const [menuShown, setMenuShown] = useState(false);
+  const menuClassNames = cn('menu', {
+    'is-active': menuShown,
+  });
+
+  useEffect(() => {
+    setMenuShown(false);
+  }, []);
   return (
     <header className="header">
       <div className="header__main">
@@ -10,12 +20,12 @@ function AppHeader() {
           <img src={logoBones} alt="logo" className="header__logo" />
           <h1 className="header__title">Monster Hunter Builder</h1>
         </div>
-        <button type="button" className="header__button-menu">
+        <button type="button" className="header__button-menu" onClick={() => setMenuShown(!menuShown)}>
           <span />
           <span />
           <span />
         </button>
-        <nav className="menu ">
+        <nav className={menuClassNames}>
           <ul>
             <li>
               <NavLink
