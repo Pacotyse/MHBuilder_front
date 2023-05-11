@@ -31,6 +31,7 @@ function AppHeader() {
               <NavLink
                 to="/"
                 className={({ isActive }) => (isActive ? 'menu__link menu-active' : 'menu__link')}
+                onClick={() => setMenuShown(false)}
               >
                 Home
 
@@ -40,6 +41,7 @@ function AppHeader() {
               <NavLink
                 to="/builder"
                 className={({ isActive }) => (isActive ? 'menu__link menu-active' : 'menu__link')}
+                onClick={() => setMenuShown(false)}
               >
                 Builder
               </NavLink>
@@ -48,6 +50,7 @@ function AppHeader() {
               <NavLink
                 to="/loadouts"
                 className={({ isActive }) => (isActive ? 'menu__link menu-active' : 'menu__link')}
+                onClick={() => setMenuShown(false)}
               >
                 Loadouts
               </NavLink>
@@ -56,6 +59,7 @@ function AppHeader() {
               <NavLink
                 to="/users/12"
                 className={({ isActive }) => (isActive ? 'menu__link menu-active' : 'menu__link')}
+                onClick={() => setMenuShown(false)}
               >
                 <div className="menu__link-profile">
                   <img src={logoBones} alt="img" className="menu__link-profile__icon" />
