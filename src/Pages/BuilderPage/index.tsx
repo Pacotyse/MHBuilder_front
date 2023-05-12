@@ -22,6 +22,7 @@ import './styles.scss';
 import Modal from '../../components/Modal';
 import WeaponType from '../../components/Modal/WeaponType';
 import WeaponCard from '../../components/Modal/WeaponCard';
+import ArmorCard from '../../components/Modal/ArmorCard';
 
 function BuilderPage() {
   return (
@@ -52,7 +53,8 @@ function BuilderPage() {
         <WeaponType name="Switch Axe" icon={switchAxe} />
         <WeaponType name="Sword & Shield" icon={swordShield} />
       </Modal>
-      <Modal modalXl shown={false}>
+      <Modal modalXl shown>
+
         <div className="item-list">
           <WeaponCard />
           <WeaponCard />
@@ -68,6 +70,17 @@ function BuilderPage() {
         </div>
         {/* armor infos */}
         <div className="stats-container">Armor</div>
+        <Modal modalXl shown>
+          <div className="item-list">
+            <ArmorCard />
+            <ArmorCard />
+            <ArmorCard />
+            <ArmorCard />
+            <ArmorCard />
+            <ArmorCard />
+          </div>
+        </Modal>
+
         {/* skills infos */}
         <div className="stats-container">
           <ul className="stats-content__skills">
