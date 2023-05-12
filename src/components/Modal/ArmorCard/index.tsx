@@ -1,71 +1,70 @@
-import '../items.scss';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+// enable div to be clicked
+
 import './styles.scss';
 import { useState } from 'react';
-import chest from '../../../assets/icons/chest-1.png';
-import decorationIcon from '../../../assets/icons/decoration.png';
-import fireIcon from '../../../assets/icons/element-fire.png';
-import iceIcon from '../../../assets/icons/element-ice.png';
-import thunderIcon from '../../../assets/icons/element-thunder.png';
-import waterIcon from '../../../assets/icons/element-water.png';
-import dragonIcon from '../../../assets/icons/element-dragon.png';
-import defenseIcon from '../../../assets/icons/sub-defense.png';
+import { MdFileDownloadDone } from 'react-icons/md';
+
+import getIconByKey from '../../../utils/icons';
 
 function ArmorCard() {
   const [showExtra, setShowExtra] = useState(false);
 
   return (
-    <div className="item-card">
+    <div className="item-card" onClick={() => setShowExtra(!showExtra)}>
       <div className="item-card__header">
         <div className="item-card__header-identity">
-          <img src={chest} className="item__icon" alt="icon" />
+          <img src={getIconByKey('head_1')} className="item__icon" alt="icon" />
           <div className="item-card__header-title">Armor Title</div>
         </div>
         <div className="item-card__header-decorations">
-          <img src={decorationIcon} alt="decoration icon" />
-          <img src={decorationIcon} alt="decoration icon" />
-          <img src={decorationIcon} alt="decoration icon" />
+          <img src={getIconByKey('decoration_1')} alt="decoration icon" />
+          <img src={getIconByKey('decoration_1')} alt="decoration icon" />
+          <img src={getIconByKey('decoration_1')} alt="decoration icon" />
         </div>
       </div>
       <div className="item-card__content">
         <div className="item-stats">
-          <img src={defenseIcon} alt="defense icon" />
+          <img src={getIconByKey('defense')} alt="defense icon" />
           <div className="item-stats__value">967</div>
         </div>
         <div className="item-stats">
-          <img src={fireIcon} alt="fire icon" />
+          <img src={getIconByKey('element_fire')} alt="fire icon" />
           <div className="item-stats__value">5</div>
         </div>
         <div className="item-stats">
-          <img src={iceIcon} alt="ice icon" />
+          <img src={getIconByKey('element_ice')} alt="ice icon" />
           <div className="item-stats__value">7</div>
         </div>
         <div className="item-stats">
-          <img src={thunderIcon} alt="thunder icon" />
+          <img src={getIconByKey('element_thunder')} alt="thunder icon" />
           <div className="item-stats__value">8</div>
         </div>
         <div className="item-stats">
-          <img src={waterIcon} alt="water icon" />
+          <img src={getIconByKey('element_water')} alt="water icon" />
           <div className="item-stats__value">-7</div>
         </div>
         <div className="item-stats">
-          <img src={dragonIcon} alt="dragon icon" />
+          <img src={getIconByKey('element_dragon')} alt="dragon icon" />
           <div className="item-stats__value">3</div>
         </div>
       </div>
       <div className="item-card__footer">
-        <div className="item-card__skills">
-          <button type="button" className="item-card__skills">skill 1</button>
+        <div className="item-card__footer__skill-list">
+          <div className="item-card__footer__skill-tag">Skill 1</div>
+          <div className="item-card__footer__skill-tag">Skill 2</div>
+          <div className="item-card__footer__skill-tag">Skill 3</div>
+          <div className="item-card__footer__skill-tag">Skill 4</div>
+          <div className="item-card__footer__skill-tag">Skill 4</div>
+          <div className="item-card__footer__skill-tag">Skill 4</div>
+          <div className="item-card__footer__skill-tag">Skill 4</div>
         </div>
-        <div className="item-card__skills">
-          <button type="button" className="item-card__skills">skill 2</button>
-        </div>
-        <div className="item-card__skills">
-          <button type="button" className="item-card__skills">skill 3</button>
-        </div>
-        <div className="item-card__skills">
-          <button type="button" className="item-card__skills">skill 4</button>
-        </div>
-        <button type="button" className="item-card__button-add">Add</button>
+        <button type="button" className="item-card__button-add" onClick={(event) => event.stopPropagation()}>
+          Set
+          {' '}
+          <MdFileDownloadDone />
+        </button>
       </div>
       {showExtra
         && (

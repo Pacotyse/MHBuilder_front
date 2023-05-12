@@ -22,6 +22,11 @@ import decoration_1 from '../assets/icons/decoration.png';
 import attack from '../assets/icons/sub-attack.png';
 import defense from '../assets/icons/sub-defense.png';
 import affinity from '../assets/icons/sub-affinity.png';
+import element_fire from '../assets/icons/element-fire.png';
+import element_ice from '../assets/icons/element-ice.png';
+import element_water from '../assets/icons/element-water.png';
+import element_thunder from '../assets/icons/element-thunder.png';
+import element_dragon from '../assets/icons/element-dragon.png';
 
 export interface IIcons {
   head_1: string
@@ -47,6 +52,11 @@ export interface IIcons {
   attack: string
   defense: string
   affinity: string
+  element_fire: string
+  element_ice: string
+  element_water: string
+  element_thunder: string
+  element_dragon: string
 }
 // Listing all the images in an object
 const icons: IIcons = {
@@ -73,9 +83,14 @@ const icons: IIcons = {
   attack,
   defense,
   affinity,
+  element_fire,
+  element_ice,
+  element_water,
+  element_thunder,
+  element_dragon,
 };
 
-// This fonction will return the image basec on the key passed
+// This fonction will return the image based on the key passed
 function getIconByKey(key: keyof IIcons): string {
   return icons[key];
 }

@@ -94,7 +94,6 @@ function BuilderPage() {
         </div>
         {/* armor infos */}
         <div className="stats-container">Armor</div>
-
         {/* skills infos */}
         <div className="stats-container">
           <ul className="stats-content__skills">

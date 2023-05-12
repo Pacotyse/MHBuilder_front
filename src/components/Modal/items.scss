@@ -56,12 +56,15 @@
     }
     
     &__button-add {
-      background-color: vars.$blue;
-      border: solid 2px vars.$white;
+      background-color: vars.$primary;
+      border: solid 1px vars.$white;
       border-radius: vars.$radius-m;
-      padding: vars.$gap-s vars.$gap-m;
+      padding: vars.$gap-s vars.$gap-xs;
       color: vars.$white;
       font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: vars.$gap-s;
     }
     
     &__extra {

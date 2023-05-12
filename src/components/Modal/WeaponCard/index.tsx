@@ -5,6 +5,7 @@
 import '../items.scss';
 import './styles.scss';
 import { useState } from 'react';
+import { MdFileDownloadDone } from 'react-icons/md';
 import { useAppSelector } from '../../../hooks/redux';
 
 import getIconByKey, { IIcons } from '../../../utils/icons';
@@ -53,7 +54,12 @@ function WeaponCard() {
           <div className="sharpness-white" />
           <div className="sharpness-purple" />
         </div>
-        <button type="button" className="item-card__button-add">Add</button>
+        <button type="button" className="item-card__button-add" onClick={(event) => event.stopPropagation()}>
+          Set
+          {' '}
+          <MdFileDownloadDone />
+
+        </button>
       </div>
       {showExtra
         && (
