@@ -78,7 +78,11 @@ function BuilderPage() {
           <WeaponCard />
         </div>
       </Modal>
-      <Modal modalXl shown close={() => setWeaponSelectionModalShown(!armorSelectionModalShown)}>
+      <Modal
+        modalXl
+        shown={armorSelectionModalShown}
+        close={() => setArmorSelectionModalShown(!armorSelectionModalShown)}
+      >
         <div className="item-list">
           <ArmorCard />
           <ArmorCard />

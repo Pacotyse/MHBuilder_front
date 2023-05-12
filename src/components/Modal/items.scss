@@ -58,12 +58,13 @@
     &__button-add {
       background-color: vars.$primary;
       border: solid 1px vars.$white;
-      border-radius: vars.$radius-m;
+      border-radius: vars.$radius-l;
       padding: vars.$gap-s vars.$gap-xs;
       color: vars.$white;
       font-weight: bold;
       display: flex;
       align-items: center;
+      align-self: flex-start;
       gap: vars.$gap-s;
     }
     

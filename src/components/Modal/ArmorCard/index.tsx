@@ -56,9 +56,7 @@ function ArmorCard() {
           <div className="item-card__footer__skill-tag">Skill 2</div>
           <div className="item-card__footer__skill-tag">Skill 3</div>
           <div className="item-card__footer__skill-tag">Skill 4</div>
-          <div className="item-card__footer__skill-tag">Skill 4</div>
-          <div className="item-card__footer__skill-tag">Skill 4</div>
-          <div className="item-card__footer__skill-tag">Skill 4</div>
+          <div className="item-card__footer__skill-tag">Skill 5</div>
         </div>
         <button type="button" className="item-card__button-add" onClick={(event) => event.stopPropagation()}>
           Set
