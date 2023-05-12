@@ -23,6 +23,7 @@ import longSword from '../../assets/icons/long-sword-1.png';
 import switchAxe from '../../assets/icons/switch-axe-1.png';
 import swordShield from '../../assets/icons/sword-shield-1.png';
 import './styles.scss';
+import ArmorCard from '../../components/Modal/ArmorCard';
 
 function BuilderPage() {
   const [weaponTypeModalShown, setWeaponTypeModalShown] = useState(false);
@@ -87,6 +88,17 @@ function BuilderPage() {
         </div>
         {/* armor infos */}
         <div className="stats-container">Armor</div>
+        <Modal modalXl shown close={() => setArmorSelectionModalShown(!armorSelectionModalShown)}>
+          <div className="item-list">
+            <ArmorCard />
+            <ArmorCard />
+            <ArmorCard />
+            <ArmorCard />
+            <ArmorCard />
+            <ArmorCard />
+          </div>
+        </Modal>
+
         {/* skills infos */}
         <div className="stats-container">
           <ul className="stats-content__skills">
