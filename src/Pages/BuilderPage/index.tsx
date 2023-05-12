@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppDispatch } from '../../hooks/redux';
-import { setWeaponType } from '../../store/reducers/builder';
+import { getWeaponsByType, setWeaponType } from '../../store/reducers/builder';
 import AddItem from '../../components/AddItem';
 import Modal from '../../components/Modal';
 import WeaponType from '../../components/Modal/WeaponType';
@@ -18,6 +18,7 @@ function BuilderPage() {
 
   const handleClickOnWeaponType = (weapon: string): void => {
     dispatch(setWeaponType(weapon));
+    dispatch(getWeaponsByType(weapon));
     setWeaponTypeModalShown(!weaponTypeModalShown);
     setWeaponSelectionModalShown(!weaponSelectionModalShown);
   };

@@ -5,5 +5,5 @@ import axios from 'axios';
 
 // eslint-disable-next-line import/prefer-default-export
 export const axiosInstance = axios.create({
-  baseURL: 'https://test-production-f834.up.railway.app/',
+  baseURL: 'https://mhbuilderenzo.up.railway.app',
 });
