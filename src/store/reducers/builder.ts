@@ -7,7 +7,7 @@ import { createAppAsyncThunk } from '../../utils/redux';
 import { axiosInstance } from '../../utils/axios';
 
 export interface BuilderState {
-  weaponList: IWeapon[]
+  weaponList: IWeapon[] | null
   weaponType: string
   weapon: IWeapon | null
   head: IHead | null
@@ -32,12 +32,12 @@ export const fetchArmorsByType = createAppAsyncThunk(
   'builder/FETCH_ARMORS_BY_TYPE',
   async (itemType: string) => {
     const { data: armors } = await axiosInstance.get(`/armors/type/${itemType}`);
-    return armors as IWeapon[];
+    return armors;
   },
 );
 
 export const initialState: BuilderState = {
-  weaponList: [],
+  weaponList: null,
   weaponType: '',
   weapon: null,
   head: null,

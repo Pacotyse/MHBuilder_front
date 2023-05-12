@@ -3,6 +3,7 @@ export interface IWeapon {
   type: string
   name: string
   rarity: number
+  attack: number
   affinity: number
   defense_bonus: number
   secret_effect: string
@@ -17,6 +18,7 @@ export interface Sharpness {
   green: number | null
   blue: number | null
   white: number | null
+  purple: number | null
 }
 
 export interface Element {

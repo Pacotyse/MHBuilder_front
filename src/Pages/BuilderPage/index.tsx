@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAppDispatch } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchArmorsByType, fetchWeaponsByType, setWeaponType } from '../../store/reducers/builder';
 import AddItem from '../../components/AddItem';
 import Modal from '../../components/Modal';
@@ -11,7 +11,7 @@ import ArmorCard from '../../components/Modal/ArmorCard';
 
 function BuilderPage() {
   const dispatch = useAppDispatch();
-
+  const weaponList = useAppSelector((state) => state.builder.weaponList);
   const [weaponTypeModalShown, setWeaponTypeModalShown] = useState(false);
   const [weaponSelectionModalShown, setWeaponSelectionModalShown] = useState(false);
   const [armorSelectionModalShown, setArmorSelectionModalShown] = useState(false);
@@ -70,12 +70,9 @@ function BuilderPage() {
       >
         <div className="item-list">
           {/* here : map on [data] */}
-          <WeaponCard />
-          <WeaponCard />
-          <WeaponCard />
-          <WeaponCard />
-          <WeaponCard />
-          <WeaponCard />
+          {
+            weaponList && weaponList.map((weapon) => <WeaponCard key={weapon.id} weapon={weapon} />)
+          }
         </div>
       </Modal>
       <Modal
