@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { BiLoaderCircle } from 'react-icons/bi';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { fetchArmorsByType, fetchWeaponsByType, setWeaponType } from '../../store/reducers/builder';
+import { clearWeaponList, fetchArmorsByType, fetchWeaponsByType, setWeaponType } from '../../store/reducers/builder';
 import AddItem from '../../components/AddItem';
 import Modal from '../../components/Modal';
 import WeaponType from '../../components/Modal/WeaponType';
@@ -12,6 +13,7 @@ import ArmorCard from '../../components/Modal/ArmorCard';
 function BuilderPage() {
   const dispatch = useAppDispatch();
   const weaponList = useAppSelector((state) => state.builder.weaponList);
+  const isLoading = useAppSelector((state) => state.builder.isLoading);
   const [weaponTypeModalShown, setWeaponTypeModalShown] = useState(false);
   const [weaponSelectionModalShown, setWeaponSelectionModalShown] = useState(false);
   const [armorSelectionModalShown, setArmorSelectionModalShown] = useState(false);
@@ -25,6 +27,7 @@ function BuilderPage() {
 
   const handleShowModal = (itemType: string) => {
     if (itemType === 'weapon') {
+      dispatch(clearWeaponList());
       setWeaponTypeModalShown(!weaponTypeModalShown);
     } else {
       setArmorSelectionModalShown(!armorSelectionModalShown);
@@ -69,7 +72,7 @@ function BuilderPage() {
         close={() => setWeaponSelectionModalShown(!weaponSelectionModalShown)}
       >
         <div className="item-list">
-          {/* here : map on [data] */}
+          {isLoading && <BiLoaderCircle className="item-list__loader"/> }
           {
             weaponList && weaponList.map((weapon) => <WeaponCard key={weapon.id} weapon={weapon} />)
           }

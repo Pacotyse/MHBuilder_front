@@ -15,6 +15,7 @@ export interface BuilderState {
   arms: IArms | null
   waist: IWaist | null
   legs: ILegs | null
+  isLoading: boolean
 }
 
 export const setWeaponType = createAction<string>('builder/SET_WEAPON_TYPE');
@@ -36,6 +37,8 @@ export const fetchArmorsByType = createAppAsyncThunk(
   },
 );
 
+export const clearWeaponList = createAction('builder/CLEAR_WEAPON_LIST');
+
 export const initialState: BuilderState = {
   weaponList: null,
   weaponType: '',
@@ -45,6 +48,7 @@ export const initialState: BuilderState = {
   arms: null,
   waist: null,
   legs: null,
+  isLoading: false,
 };
 
 const builderReducer = createReducer(initialState, (builder) => {
@@ -52,18 +56,24 @@ const builderReducer = createReducer(initialState, (builder) => {
     .addCase(setWeaponType, (state, action) => {
       state.weaponType = action.payload;
     })
+    .addCase(clearWeaponList, (state) => {
+      state.weaponList = null;
+    })
+    .addCase(fetchWeaponsByType.pending, (state) => {
+      // to set a loading later
+      state.isLoading = true;
+    })
     .addCase(fetchWeaponsByType.fulfilled, (state, action) => {
+      state.isLoading = false;
       state.weaponList = action.payload;
     })
-    .addCase(fetchWeaponsByType.rejected, () => {
+    .addCase(fetchWeaponsByType.rejected, (state) => {
       // to set error message later
       console.log('Erreur dans le fetch de weapons');
-    })
-    .addCase(fetchWeaponsByType.pending, () => {
-      // to set a loading later
-      console.log('pending ...');
+      state.isLoading = false;
     })
     .addCase(fetchArmorsByType.fulfilled, (state, action) => {
+      state.isLoading = false;
       console.log(action.payload);
     });
 });
