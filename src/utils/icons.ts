@@ -1,9 +1,9 @@
 // In this file, we importe all the image assets
-import helmet_1 from '../assets/icons/helmet-1.png';
+import head_1 from '../assets/icons/head-1.png';
 import chest_1 from '../assets/icons/chest-1.png';
 import waist_1 from '../assets/icons/waist-1.png';
-import gloves_1 from '../assets/icons/gloves-1.png';
-import feet_1 from '../assets/icons/feet-1.png';
+import arms_1 from '../assets/icons/arms-1.png';
+import legs_1 from '../assets/icons/legs-1.png';
 import bow_1 from '../assets/icons/bow-1.png';
 import bow_gun_1 from '../assets/icons/bow-gun-1.png';
 import charge_blade_1 from '../assets/icons/charge-blade-1.png';
@@ -17,18 +17,18 @@ import lance_1 from '../assets/icons/lance-1.png';
 import lance_gun_1 from '../assets/icons/lance-gun-1.png';
 import long_sword_1 from '../assets/icons/long-sword-1.png';
 import switch_axe_1 from '../assets/icons/switch-axe-1.png';
-import sword_shield_1 from '../assets/icons/sword-shield-1.png';
+import sword_and_shield_1 from '../assets/icons/sword-and-shield-1.png';
 import decoration_1 from '../assets/icons/decoration.png';
 import attack from '../assets/icons/sub-attack.png';
 import defense from '../assets/icons/sub-defense.png';
 import affinity from '../assets/icons/sub-affinity.png';
 
 export interface IIcons {
-  helmet_1: string
+  head_1: string
   chest_1: string
   waist_1: string
-  gloves_1: string
-  feet_1: string
+  arms_1: string
+  legs_1: string
   bow_1: string
   bow_gun_1: string
   charge_blade_1: string
@@ -42,7 +42,7 @@ export interface IIcons {
   lance_gun_1: string
   long_sword_1: string
   switch_axe_1: string
-  sword_shield_1: string
+  sword_and_shield_1: string
   decoration_1: string
   attack: string
   defense: string
@@ -50,11 +50,11 @@ export interface IIcons {
 }
 // Listing all the images in an object
 const icons: IIcons = {
-  helmet_1,
+  head_1,
   chest_1,
   waist_1,
-  gloves_1,
-  feet_1,
+  arms_1,
+  legs_1,
   bow_1,
   bow_gun_1,
   charge_blade_1,
@@ -68,7 +68,7 @@ const icons: IIcons = {
   lance_gun_1,
   long_sword_1,
   switch_axe_1,
-  sword_shield_1,
+  sword_and_shield_1,
   decoration_1,
   attack,
   defense,
