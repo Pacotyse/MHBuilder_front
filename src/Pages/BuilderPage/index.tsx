@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppDispatch } from '../../hooks/redux';
-import { getWeaponsByType, setWeaponType } from '../../store/reducers/builder';
+import { fetchArmorsByType, fetchWeaponsByType, setWeaponType } from '../../store/reducers/builder';
 import AddItem from '../../components/AddItem';
 import Modal from '../../components/Modal';
 import WeaponType from '../../components/Modal/WeaponType';
@@ -18,22 +18,30 @@ function BuilderPage() {
 
   const handleClickOnWeaponType = (weapon: string): void => {
     dispatch(setWeaponType(weapon));
-    dispatch(getWeaponsByType(weapon));
+    dispatch(fetchWeaponsByType(weapon));
     setWeaponTypeModalShown(!weaponTypeModalShown);
     setWeaponSelectionModalShown(!weaponSelectionModalShown);
   };
 
+  const handleShowModal = (itemType: string) => {
+    if (itemType === 'weapon') {
+      setWeaponTypeModalShown(!weaponTypeModalShown);
+    } else {
+      setArmorSelectionModalShown(!armorSelectionModalShown);
+      dispatch(fetchArmorsByType(itemType));
+    }
+  };
   return (
     <main className="main">
       <h2>Builder</h2>
       <section className="section-items">
         <p className="section-items__description">Set your items</p>
-        <AddItem item="weapon" icon={getIconByKey('great_sword_1')} openModal={() => setWeaponTypeModalShown(!weaponTypeModalShown)} />
-        <AddItem item="helmet" icon={getIconByKey('helmet_1')} openModal={() => setArmorSelectionModalShown(!armorSelectionModalShown)} />
-        <AddItem item="chest" icon={getIconByKey('chest_1')} openModal={() => setArmorSelectionModalShown(!armorSelectionModalShown)} />
-        <AddItem item="waist" icon={getIconByKey('waist_1')} openModal={() => setArmorSelectionModalShown(!armorSelectionModalShown)} />
-        <AddItem item="gloves" icon={getIconByKey('gloves_1')} openModal={() => setArmorSelectionModalShown(!armorSelectionModalShown)} />
-        <AddItem item="feet" icon={getIconByKey('feet_1')} openModal={() => setArmorSelectionModalShown(!armorSelectionModalShown)} />
+        <AddItem itemType="weapon" icon={getIconByKey('great_sword_1')} openModal={handleShowModal} />
+        <AddItem itemType="head" icon={getIconByKey('head_1')} openModal={handleShowModal} />
+        <AddItem itemType="chest" icon={getIconByKey('chest_1')} openModal={handleShowModal} />
+        <AddItem itemType="waist" icon={getIconByKey('waist_1')} openModal={handleShowModal} />
+        <AddItem itemType="arms" icon={getIconByKey('arms_1')} openModal={handleShowModal} />
+        <AddItem itemType="legs" icon={getIconByKey('legs_1')} openModal={handleShowModal} />
       </section>
       <Modal
         modalXl={false}
@@ -53,7 +61,7 @@ function BuilderPage() {
         <WeaponType name="Lance Gun" icon={getIconByKey('lance_gun_1')} openSelectionModal={handleClickOnWeaponType} />
         <WeaponType name="Long Sword" icon={getIconByKey('long_sword_1')} openSelectionModal={handleClickOnWeaponType} />
         <WeaponType name="Switch Axe" icon={getIconByKey('switch_axe_1')} openSelectionModal={handleClickOnWeaponType} />
-        <WeaponType name="Sword & Shield" icon={getIconByKey('sword_shield_1')} openSelectionModal={handleClickOnWeaponType} />
+        <WeaponType name="Sword and Shield" icon={getIconByKey('sword_and_shield_1')} openSelectionModal={handleClickOnWeaponType} />
       </Modal>
       <Modal
         modalXl

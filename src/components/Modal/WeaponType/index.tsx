@@ -8,7 +8,7 @@ interface WeaponTypeProps {
 
 function WeaponType({ name, icon, openSelectionModal }: WeaponTypeProps) {
   // name to kebab-case in order to display the right icon depending on weapon type
-  const snakeCaseWeaponType = name.toLocaleLowerCase().split(' ').join('_');
+  const snakeCaseWeaponType = name.toLowerCase().split(' ').join('_');
   return (
     <button
       type="button"
