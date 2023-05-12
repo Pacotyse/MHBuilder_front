@@ -27,7 +27,7 @@ function ArmorCard() {
         </div>
       </div>
       <div className="item-card__content">
-        <div className="item-stats-defense">
+        <div className="item-stats">
           <img src={defenseIcon} alt="defense icon" />
           <div className="item-stats__value">967</div>
         </div>

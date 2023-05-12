@@ -11,7 +11,6 @@ import ArmorCard from '../../components/Modal/ArmorCard';
 
 function BuilderPage() {
   const dispatch = useAppDispatch();
-
   const [weaponTypeModalShown, setWeaponTypeModalShown] = useState(false);
   const [weaponSelectionModalShown, setWeaponSelectionModalShown] = useState(false);
   const [armorSelectionModalShown, setArmorSelectionModalShown] = useState(false);
