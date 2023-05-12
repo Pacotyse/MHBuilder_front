@@ -78,14 +78,14 @@ function BuilderPage() {
           <WeaponCard />
         </div>
       </Modal>
-      <Modal modalXl shown={false}>
+      <Modal modalXl shown close={() => setWeaponSelectionModalShown(!armorSelectionModalShown)}>
         <div className="item-list">
-          <WeaponCard />
-          <WeaponCard />
-          <WeaponCard />
-          <WeaponCard />
-          <WeaponCard />
-          <WeaponCard />
+          <ArmorCard />
+          <ArmorCard />
+          <ArmorCard />
+          <ArmorCard />
+          <ArmorCard />
+          <ArmorCard />
         </div>
       </Modal>
       <section className="section-stats">
@@ -94,16 +94,6 @@ function BuilderPage() {
         </div>
         {/* armor infos */}
         <div className="stats-container">Armor</div>
-        <Modal modalXl shown close={() => setArmorSelectionModalShown(!armorSelectionModalShown)}>
-          <div className="item-list">
-            <ArmorCard />
-            <ArmorCard />
-            <ArmorCard />
-            <ArmorCard />
-            <ArmorCard />
-            <ArmorCard />
-          </div>
-        </Modal>
 
         {/* skills infos */}
         <div className="stats-container">
