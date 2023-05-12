@@ -6,17 +6,24 @@ import './styles.scss';
 import { useState } from 'react';
 import { MdFileDownloadDone } from 'react-icons/md';
 
-import getIconByKey from '../../../utils/icons';
+import getIconByKey, { IIcons } from '../../../utils/icons';
+import { IArmor } from '../../../@types/armor';
 
-function ArmorCard() {
+interface ArmorCardProps {
+  armor: IArmor
+}
+function ArmorCard({ armor }: ArmorCardProps) {
   const [showExtra, setShowExtra] = useState(false);
+  const armorType = armor.type;
+  // set the right format to get the icon
+  const armorTypeIcon = `${armorType}_1`;
 
   return (
     <div className="item-card" onClick={() => setShowExtra(!showExtra)}>
       <div className="item-card__header">
         <div className="item-card__header-identity">
-          <img src={getIconByKey('head_1')} className="item__icon" alt="icon" />
-          <div className="item-card__header-title">Armor Title</div>
+          <img src={getIconByKey(armorTypeIcon as keyof IIcons)} className="item__icon" alt="icon" />
+          <div className="item-card__header-title">{armor.name}</div>
         </div>
         <div className="item-card__header-decorations">
           <img src={getIconByKey('decoration_1')} alt="decoration icon" />
@@ -27,27 +34,29 @@ function ArmorCard() {
       <div className="item-card__content">
         <div className="item-stats">
           <img src={getIconByKey('defense')} alt="defense icon" />
-          <div className="item-stats__value">967</div>
+          <div className="item-stats__value">{armor.defense}</div>
         </div>
-        <div className="item-stats">
-          <img src={getIconByKey('element_fire')} alt="fire icon" />
-          <div className="item-stats__value">5</div>
-        </div>
-        <div className="item-stats">
-          <img src={getIconByKey('element_ice')} alt="ice icon" />
-          <div className="item-stats__value">7</div>
-        </div>
-        <div className="item-stats">
-          <img src={getIconByKey('element_thunder')} alt="thunder icon" />
-          <div className="item-stats__value">8</div>
-        </div>
-        <div className="item-stats">
-          <img src={getIconByKey('element_water')} alt="water icon" />
-          <div className="item-stats__value">-7</div>
-        </div>
-        <div className="item-stats">
-          <img src={getIconByKey('element_dragon')} alt="dragon icon" />
-          <div className="item-stats__value">3</div>
+        <div className="item-stats__other">
+          <div className="item-stats">
+            <img src={getIconByKey('element_fire')} alt="fire icon" />
+            <div className="item-stats__value">{armor.resistances.fire}</div>
+          </div>
+          <div className="item-stats">
+            <img src={getIconByKey('element_ice')} alt="ice icon" />
+            <div className="item-stats__value">{armor.resistances.ice}</div>
+          </div>
+          <div className="item-stats">
+            <img src={getIconByKey('element_thunder')} alt="thunder icon" />
+            <div className="item-stats__value">{armor.resistances.thunder}</div>
+          </div>
+          <div className="item-stats">
+            <img src={getIconByKey('element_water')} alt="water icon" />
+            <div className="item-stats__value">{armor.resistances.water}</div>
+          </div>
+          <div className="item-stats">
+            <img src={getIconByKey('element_dragon')} alt="dragon icon" />
+            <div className="item-stats__value">{armor.resistances.dragon}</div>
+          </div>
         </div>
       </div>
       <div className="item-card__footer">

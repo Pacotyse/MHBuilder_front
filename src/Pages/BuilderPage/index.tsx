@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { BiLoaderCircle } from 'react-icons/bi';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { clearWeaponList, fetchArmorsByType, fetchWeaponsByType, setWeaponType } from '../../store/reducers/builder';
+import {
+  clearArmorList,
+  clearWeaponList, fetchArmorsByType, fetchWeaponsByType, setWeaponType,
+} from '../../store/reducers/builder';
 import AddItem from '../../components/AddItem';
 import Modal from '../../components/Modal';
 import WeaponType from '../../components/Modal/WeaponType';
@@ -12,24 +15,28 @@ import ArmorCard from '../../components/Modal/ArmorCard';
 
 function BuilderPage() {
   const dispatch = useAppDispatch();
-  const weaponList = useAppSelector((state) => state.builder.weaponList);
   const isLoading = useAppSelector((state) => state.builder.isLoading);
+  const weaponList = useAppSelector((state) => state.builder.weaponList);
+  const armorList = useAppSelector((state) => state.builder.armorList);
+
   const [weaponTypeModalShown, setWeaponTypeModalShown] = useState(false);
   const [weaponSelectionModalShown, setWeaponSelectionModalShown] = useState(false);
   const [armorSelectionModalShown, setArmorSelectionModalShown] = useState(false);
 
-  const handleClickOnWeaponType = (weapon: string): void => {
-    dispatch(setWeaponType(weapon));
-    dispatch(fetchWeaponsByType(weapon));
+  const handleClickOnWeaponType = (weaponType: string): void => {
+    dispatch(setWeaponType(weaponType));
+    dispatch(fetchWeaponsByType(weaponType));
     setWeaponTypeModalShown(!weaponTypeModalShown);
     setWeaponSelectionModalShown(!weaponSelectionModalShown);
   };
 
   const handleShowModal = (itemType: string) => {
     if (itemType === 'weapon') {
+      // clear list of weapons
       dispatch(clearWeaponList());
       setWeaponTypeModalShown(!weaponTypeModalShown);
     } else {
+      dispatch(clearArmorList());
       setArmorSelectionModalShown(!armorSelectionModalShown);
       dispatch(fetchArmorsByType(itemType));
     }
@@ -72,7 +79,7 @@ function BuilderPage() {
         close={() => setWeaponSelectionModalShown(!weaponSelectionModalShown)}
       >
         <div className="item-list">
-          {isLoading && <BiLoaderCircle className="item-list__loader"/> }
+          {isLoading && <BiLoaderCircle className="item-list__loader" /> }
           {
             weaponList && weaponList.map((weapon) => <WeaponCard key={weapon.id} weapon={weapon} />)
           }
@@ -84,12 +91,10 @@ function BuilderPage() {
         close={() => setArmorSelectionModalShown(!armorSelectionModalShown)}
       >
         <div className="item-list">
-          <ArmorCard />
-          <ArmorCard />
-          <ArmorCard />
-          <ArmorCard />
-          <ArmorCard />
-          <ArmorCard />
+          {isLoading && <BiLoaderCircle className="item-list__loader" /> }
+          {
+            armorList && armorList.map((armor) => <ArmorCard key={armor.id} armor={armor} />)
+          }
         </div>
       </Modal>
       <section className="section-stats">

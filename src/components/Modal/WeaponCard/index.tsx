@@ -41,13 +41,15 @@ function WeaponCard({ weapon }: WeaponCardProps) {
           <img src={getIconByKey('attack')} alt="attack icon" />
           <div className="item-stats__value">{weapon.attack}</div>
         </div>
-        <div className="item-stats">
-          <img src={getIconByKey('affinity')} alt="affinity icon" />
-          <div className="item-stats__value">{weapon.affinity}</div>
-        </div>
-        <div className="item-stats">
-          <img src={getIconByKey('defense')} alt="defense icon" />
-          <div className="item-stats__value">{weapon.defense_bonus}</div>
+        <div className="item-stats__other">
+          <div className="item-stats">
+            <img src={getIconByKey('affinity')} alt="affinity icon" />
+            <div className="item-stats__value">{weapon.affinity}</div>
+          </div>
+          <div className="item-stats">
+            <img src={getIconByKey('defense')} alt="defense icon" />
+            <div className="item-stats__value">{weapon.defense_bonus}</div>
+          </div>
         </div>
       </div>
       <div className="item-card__footer">

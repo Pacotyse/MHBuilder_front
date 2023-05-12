@@ -1,3 +1,13 @@
+export interface IArmor {
+  id: number
+  type: 'Head' | 'Chest' | 'Arms' | 'Waist' | 'Legs'
+  name: string
+  rarity: number
+  defense: number
+  resistances: Resistances
+  skills: Skill[]
+}
+
 export interface IHead {
   id: number
   type: 'Head'

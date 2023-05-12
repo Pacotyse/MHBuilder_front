@@ -1,6 +1,7 @@
-import { createAction, createReducer } from '@reduxjs/toolkit';
+import { createAction, createReducer, isAction } from '@reduxjs/toolkit';
 import { IWeapon } from '../../@types/weapon';
 import {
+  IArmor,
   IArms, IChest, IHead, ILegs, IWaist,
 } from '../../@types/armor';
 import { createAppAsyncThunk } from '../../utils/redux';
@@ -8,6 +9,8 @@ import { axiosInstance } from '../../utils/axios';
 
 export interface BuilderState {
   weaponList: IWeapon[] | null
+  armorList: IArmor[] | null
+  armorType: string
   weaponType: string
   weapon: IWeapon | null
   head: IHead | null
@@ -19,6 +22,7 @@ export interface BuilderState {
 }
 
 export const setWeaponType = createAction<string>('builder/SET_WEAPON_TYPE');
+export const setArmorType = createAction<string>('builder/SET_ARMOR_TYPE');
 
 export const fetchWeaponsByType = createAppAsyncThunk(
   'builder/FETCH_WEAPONS_BY_TYPE',
@@ -33,14 +37,17 @@ export const fetchArmorsByType = createAppAsyncThunk(
   'builder/FETCH_ARMORS_BY_TYPE',
   async (itemType: string) => {
     const { data: armors } = await axiosInstance.get(`/armors/type/${itemType}`);
-    return armors;
+    return armors as IArmor[];
   },
 );
 
 export const clearWeaponList = createAction('builder/CLEAR_WEAPON_LIST');
+export const clearArmorList = createAction('builder/CLEAR_ARMOR_LIST');
 
 export const initialState: BuilderState = {
   weaponList: null,
+  armorList: null,
+  armorType: '',
   weaponType: '',
   weapon: null,
   head: null,
@@ -56,8 +63,14 @@ const builderReducer = createReducer(initialState, (builder) => {
     .addCase(setWeaponType, (state, action) => {
       state.weaponType = action.payload;
     })
+    .addCase(setArmorType, (state, action) => {
+      state.armorType = action.payload;
+    })
     .addCase(clearWeaponList, (state) => {
       state.weaponList = null;
+    })
+    .addCase(clearArmorList, (state) => {
+      state.armorList = null;
     })
     .addCase(fetchWeaponsByType.pending, (state) => {
       // to set a loading later
@@ -72,9 +85,16 @@ const builderReducer = createReducer(initialState, (builder) => {
       console.log('Erreur dans le fetch de weapons');
       state.isLoading = false;
     })
+    .addCase(fetchArmorsByType.pending, (state) => {
+      state.isLoading = true;
+    })
+    .addCase(fetchArmorsByType.rejected, (state) => {
+      state.isLoading = false;
+      console.log('Erreur dans le fetch de armors');
+    })
     .addCase(fetchArmorsByType.fulfilled, (state, action) => {
       state.isLoading = false;
-      console.log(action.payload);
+      state.armorList = action.payload;
     });
 });
 

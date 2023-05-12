@@ -59,6 +59,7 @@
       display: flex;
       width: 100%;
       justify-content: space-between;
+      gap: vars.$gap-m;
     }
 
     &__footer {
@@ -95,7 +96,13 @@
   
   &-stats {
     display: flex;
-    gap: vars.$gap-s;
+    gap: vars.$gap-xs;
+
+    &__other {
+      display: flex;
+      justify-content: flex-end;
+      gap: vars.$gap-m;
+    }
     
     & img {
       width: 1rem;
