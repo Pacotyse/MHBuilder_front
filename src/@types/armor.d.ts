@@ -1,6 +1,6 @@
 export interface IArmor {
   id: number
-  type: 'Head' | 'Chest' | 'Arms' | 'Waist' | 'Legs'
+  type: 'head' | 'chest' | 'arms' | 'waist' | 'legs'
   name: string
   rarity: number
   defense: number
@@ -10,7 +10,7 @@ export interface IArmor {
 
 export interface IHead {
   id: number
-  type: 'Head'
+  type: 'head'
   name: string
   rarity: number
   defense: number
@@ -20,7 +20,7 @@ export interface IHead {
 
 export interface IChest {
   id: number
-  type: 'Chest'
+  type: 'chest'
   name: string
   rarity: number
   defense: number
@@ -30,7 +30,7 @@ export interface IChest {
 
 export interface IArms {
   id: number
-  type: 'Arms'
+  type: 'arms'
   name: string
   rarity: number
   defense: number
@@ -40,7 +40,7 @@ export interface IArms {
 
 export interface IWaist {
   id: number
-  type: 'Waist'
+  type: 'waist'
   name: string
   rarity: number
   defense: number
@@ -50,7 +50,7 @@ export interface IWaist {
 
 export interface ILegs {
   id: number
-  type: 'Legs'
+  type: 'legs'
   name: string
   rarity: number
   defense: number

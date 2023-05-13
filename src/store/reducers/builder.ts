@@ -47,6 +47,8 @@ export const clearArmorList = createAction('builder/CLEAR_ARMOR_LIST');
 
 export const setBuilderWeapon = createAction<IWeapon>('builder/SET_WEAPON');
 
+export const setBuilderArmor = createAction<IArmor>('builder/SET_ARMOR');
+
 export const initialState: BuilderState = {
   weaponList: null,
   armorList: null,
@@ -101,6 +103,10 @@ const builderReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setBuilderWeapon, (state, action) => {
       state.weapon = action.payload;
+    })
+    .addCase(setBuilderArmor, (state, action) => {
+      //! TS Error to fix later
+      state[action.payload.type] = action.payload;
     });
 });
 

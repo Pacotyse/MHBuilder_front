@@ -8,15 +8,23 @@ import { MdFileDownloadDone } from 'react-icons/md';
 
 import getIconByKey, { IIcons } from '../../../utils/icons';
 import { IArmor } from '../../../@types/armor';
+import { useAppDispatch } from '../../../hooks/redux';
+import { setBuilderArmor } from '../../../store/reducers/builder';
 
 interface ArmorCardProps {
   armor: IArmor
 }
 function ArmorCard({ armor }: ArmorCardProps) {
+  const dispatch = useAppDispatch();
   const [showExtra, setShowExtra] = useState(false);
   const armorType = armor.type;
   // set the right format to get the icon
   const armorTypeIcon = `${armorType}_1`;
+
+  function handleSetArmor(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+    event.stopPropagation();
+    dispatch(setBuilderArmor(armor));
+  }
 
   return (
     <div className="item-card" onClick={() => setShowExtra(!showExtra)}>
@@ -67,7 +75,7 @@ function ArmorCard({ armor }: ArmorCardProps) {
           <div className="item-card__footer__skill-tag">Skill 4</div>
           <div className="item-card__footer__skill-tag">Skill 5</div>
         </div>
-        <button type="button" className="item-card__button-add" onClick={(event) => event.stopPropagation()}>
+        <button type="button" className="item-card__button-add" onClick={handleSetArmor}>
           Set
           {' '}
           <MdFileDownloadDone />
