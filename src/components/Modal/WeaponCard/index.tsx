@@ -9,17 +9,25 @@ import { useState } from 'react';
 import { MdFileDownloadDone } from 'react-icons/md';
 import getIconByKey, { IIcons } from '../../../utils/icons';
 import { IWeapon } from '../../../@types/weapon';
+import { useAppDispatch } from '../../../hooks/redux';
+import { setBuilderWeapon } from '../../../store/reducers/builder';
 
 interface WeaponCardProps {
   weapon: IWeapon
 }
 function WeaponCard({ weapon }: WeaponCardProps) {
+  const dispatch = useAppDispatch();
   const weaponType = weapon.type.split('-').join('_');
   // set format to get the icon
   const weaponTypeIcon = `${weaponType}_1`;
 
   // when click on a weapon, shows extra information
   const [showExtra, setShowExtra] = useState(false);
+
+  function handleSetWeapon(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+    event.stopPropagation();
+    dispatch(setBuilderWeapon(weapon.id));
+  }
 
   // get purcent of maximum sharpness
 
@@ -121,7 +129,7 @@ function WeaponCard({ weapon }: WeaponCardProps) {
           />
           )}
         </div>
-        <button type="button" className="item-card__button-add" onClick={(event) => event.stopPropagation()}>
+        <button type="button" className="item-card__button-add" onClick={handleSetWeapon}>
           Set
           {' '}
           <MdFileDownloadDone />

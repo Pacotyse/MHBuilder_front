@@ -1,4 +1,4 @@
-import { createAction, createReducer, isAction } from '@reduxjs/toolkit';
+import { createAction, createReducer } from '@reduxjs/toolkit';
 import { IWeapon } from '../../@types/weapon';
 import {
   IArmor,
@@ -43,6 +43,14 @@ export const fetchArmorsByType = createAppAsyncThunk(
 
 export const clearWeaponList = createAction('builder/CLEAR_WEAPON_LIST');
 export const clearArmorList = createAction('builder/CLEAR_ARMOR_LIST');
+
+export const setBuilderWeapon = createAppAsyncThunk(
+  'builder/SET_BUILDER_WEAPON',
+  async (weaponId: number) => {
+    const { data: weapon } = await axiosInstance.get(`/weapons/${weaponId}`);
+    return weapon as IWeapon;
+  },
+);
 
 export const initialState: BuilderState = {
   weaponList: null,
@@ -95,6 +103,12 @@ const builderReducer = createReducer(initialState, (builder) => {
     .addCase(fetchArmorsByType.fulfilled, (state, action) => {
       state.isLoading = false;
       state.armorList = action.payload;
+    })
+    .addCase(setBuilderWeapon.fulfilled, (state, action) => {
+      state.weapon = action.payload;
+    })
+    .addCase(setBuilderWeapon.rejected, (state) => {
+      console.log('impossible d\'ajouter l\'arme');
     });
 });
 
