@@ -26,7 +26,8 @@ function WeaponCard({ weapon }: WeaponCardProps) {
 
   function handleSetWeapon(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
     event.stopPropagation();
-    dispatch(setBuilderWeapon(weapon.id));
+    // dispatch(setBuilderWeapon(weapon.id));
+    dispatch(setBuilderWeapon(weapon));
   }
 
   // get purcent of maximum sharpness

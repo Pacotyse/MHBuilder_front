@@ -33,6 +33,7 @@ export const fetchWeaponsByType = createAppAsyncThunk(
     return weapons as IWeapon[];
   },
 );
+
 export const fetchArmorsByType = createAppAsyncThunk(
   'builder/FETCH_ARMORS_BY_TYPE',
   async (itemType: string) => {
@@ -44,13 +45,7 @@ export const fetchArmorsByType = createAppAsyncThunk(
 export const clearWeaponList = createAction('builder/CLEAR_WEAPON_LIST');
 export const clearArmorList = createAction('builder/CLEAR_ARMOR_LIST');
 
-export const setBuilderWeapon = createAppAsyncThunk(
-  'builder/SET_BUILDER_WEAPON',
-  async (weaponId: number) => {
-    const { data: weapon } = await axiosInstance.get(`/weapons/${weaponId}`);
-    return weapon as IWeapon;
-  },
-);
+export const setBuilderWeapon = createAction<IWeapon>('builder/SET_WEAPON');
 
 export const initialState: BuilderState = {
   weaponList: null,
@@ -104,11 +99,8 @@ const builderReducer = createReducer(initialState, (builder) => {
       state.isLoading = false;
       state.armorList = action.payload;
     })
-    .addCase(setBuilderWeapon.fulfilled, (state, action) => {
+    .addCase(setBuilderWeapon, (state, action) => {
       state.weapon = action.payload;
-    })
-    .addCase(setBuilderWeapon.rejected, (state) => {
-      console.log('impossible d\'ajouter l\'arme');
     });
 });
 
