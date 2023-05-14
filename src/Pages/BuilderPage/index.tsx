@@ -83,7 +83,13 @@ function BuilderPage() {
           {isLoading && <BiLoaderCircle className="item-list__loader" />}
           {errorMessage && <div className="modal-error">{errorMessage}</div>}
           {
-            weaponList && weaponList.map((weapon) => <WeaponCard key={weapon.id} weapon={weapon} />)
+            weaponList && weaponList.map((weapon) => (
+              <WeaponCard
+                key={weapon.id}
+                weapon={weapon}
+                showModal={setWeaponSelectionModalShown}
+              />
+            ))
           }
         </div>
       </Modal>
@@ -96,7 +102,13 @@ function BuilderPage() {
           {isLoading && <BiLoaderCircle className="item-list__loader" />}
           {errorMessage && <div className="modal-error">{errorMessage}</div>}
           {
-            armorList && armorList.map((armor) => <ArmorCard key={armor.id} armor={armor} />)
+            armorList && armorList.map((armor) => (
+              <ArmorCard
+                key={armor.id}
+                armor={armor}
+                showModal={setArmorSelectionModalShown}
+              />
+            ))
           }
         </div>
       </Modal>

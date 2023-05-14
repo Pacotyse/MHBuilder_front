@@ -13,8 +13,9 @@ import { setBuilderArmor } from '../../../store/reducers/builder';
 
 interface ArmorCardProps {
   armor: IArmor
+  showModal: (shown: boolean) => void
 }
-function ArmorCard({ armor }: ArmorCardProps) {
+function ArmorCard({ armor, showModal }: ArmorCardProps) {
   const dispatch = useAppDispatch();
   const [showExtra, setShowExtra] = useState(false);
   const armorType = armor.type;
@@ -23,7 +24,10 @@ function ArmorCard({ armor }: ArmorCardProps) {
 
   function handleSetArmor(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
     event.stopPropagation();
+    // add the armor item to the builder
     dispatch(setBuilderArmor(armor));
+    // close modal when armor is selected
+    showModal(false);
   }
 
   return (

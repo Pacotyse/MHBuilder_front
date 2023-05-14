@@ -14,8 +14,9 @@ import { setBuilderWeapon } from '../../../store/reducers/builder';
 
 interface WeaponCardProps {
   weapon: IWeapon
+  showModal: (shown: boolean) => void
 }
-function WeaponCard({ weapon }: WeaponCardProps) {
+function WeaponCard({ weapon, showModal }: WeaponCardProps) {
   const dispatch = useAppDispatch();
   const weaponType = weapon.type.split('-').join('_');
   // set format to get the icon
@@ -26,8 +27,8 @@ function WeaponCard({ weapon }: WeaponCardProps) {
 
   function handleSetWeapon(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
     event.stopPropagation();
-    // dispatch(setBuilderWeapon(weapon.id));
     dispatch(setBuilderWeapon(weapon));
+    showModal(false);
   }
 
   // get purcent of maximum sharpness
@@ -70,7 +71,7 @@ function WeaponCard({ weapon }: WeaponCardProps) {
             className="sharpness-red"
             style={{
               // maximum sharpness on weapon is 250
-              // Here we calculate the width purcent to fit the 150px container
+              // Here we calculate the width purcent to fit the container's width
               width: `${(weapon.sharpness.red / 250) * 100}%`,
             }}
           />
