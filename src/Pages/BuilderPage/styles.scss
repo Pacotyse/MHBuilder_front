@@ -1,13 +1,24 @@
 @use '../../styles/vars';
 
-.section-items {
-  display: flex;
-  flex-direction: column;
-  gap: vars.$gap-s;
-  padding: vars.$gap-s;
-  margin: vars.$gap-s;
+.section{
+
+  &-items {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$gap-s;
+    padding: vars.$gap-s;
+    margin: vars.$gap-s;
+  }
 
   &__description {
     text-align: center;
+  }
+
+  &-stats {
+  display: flex;
+  flex-direction: column;
+  gap: vars.$gap-m;
+  width: 90%;
+  margin: auto;
   }
 }

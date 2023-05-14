@@ -1,0 +1,11 @@
+@use '../../styles/vars';
+
+.stats-container {
+  width: 100%;
+  border: solid 2px vars.$white;
+  border-radius: vars.$radius-m;
+  padding: vars.$gap-s;
+  display: flex;
+  flex-direction: column;
+  gap: vars.$gap-s;
+}

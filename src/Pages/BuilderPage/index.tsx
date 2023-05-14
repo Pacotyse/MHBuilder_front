@@ -10,6 +10,8 @@ import getIconByKey from '../../utils/icons';
 import WeaponTypeModal from '../../components/WeaponTypeModal';
 import WeaponSelectionModal from '../../components/WeaponSelectionModal';
 import ArmorSelectionModal from '../../components/ArmorSelectionModal';
+import AttackStatsContainer from '../../components/AttackStats';
+import ArmorStats from '../../components/ArmorStats';
 
 function BuilderPage() {
   const dispatch = useAppDispatch();
@@ -57,11 +59,9 @@ function BuilderPage() {
         setArmorSelectionModalShown={setArmorSelectionModalShown}
       />
       <section className="section-stats">
-        <div className="stats-container">
-          Weapon
-        </div>
+        <AttackStatsContainer />
         {/* armor infos */}
-        <div className="stats-container">Armor</div>
+        <ArmorStats />
         {/* skills infos */}
         <div className="stats-container">
           <ul className="stats-content__skills">
