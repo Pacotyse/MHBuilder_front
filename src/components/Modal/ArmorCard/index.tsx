@@ -69,11 +69,7 @@ function ArmorCard({ armor }: ArmorCardProps) {
       </div>
       <div className="item-card__footer">
         <div className="item-card__footer__skill-list">
-          <div className="item-card__footer__skill-tag">Skill 1</div>
-          <div className="item-card__footer__skill-tag">Skill 2</div>
-          <div className="item-card__footer__skill-tag">Skill 3</div>
-          <div className="item-card__footer__skill-tag">Skill 4</div>
-          <div className="item-card__footer__skill-tag">Skill 5</div>
+          {armor.skills.map((skill) => <div key={skill.name} className="item-card__footer__skill-tag">{skill.name}</div>)}
         </div>
         <button type="button" className="item-card__button-add" onClick={handleSetArmor}>
           Set
