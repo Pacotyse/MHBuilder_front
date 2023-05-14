@@ -53,6 +53,7 @@ function WeaponSelectionModal(
               key={weapon.id}
               weapon={weapon}
               showModal={setWeaponSelectionModalShown}
+              isSelected={false}
             />
           ))
           }

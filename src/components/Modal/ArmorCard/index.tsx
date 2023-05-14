@@ -4,6 +4,7 @@
 
 import './styles.scss';
 import { useState } from 'react';
+import cn from 'classnames';
 import { MdFileDownloadDone } from 'react-icons/md';
 
 import getIconByKey, { IIcons } from '../../../utils/icons';
@@ -14,8 +15,9 @@ import { setBuilderArmor } from '../../../store/reducers/builder';
 interface ArmorCardProps {
   armor: IArmor
   showModal: (shown: boolean) => void
+  isSelected: boolean
 }
-function ArmorCard({ armor, showModal }: ArmorCardProps) {
+function ArmorCard({ armor, showModal, isSelected }: ArmorCardProps) {
   const dispatch = useAppDispatch();
   const [showExtra, setShowExtra] = useState(false);
   const armorType = armor.type;
@@ -30,8 +32,13 @@ function ArmorCard({ armor, showModal }: ArmorCardProps) {
     showModal(false);
   }
 
+  // Set dynamic classnames
+  const containerClassnames = cn('item-card', {
+    'item-card__selected': isSelected,
+  });
+
   return (
-    <div className="item-card" onClick={() => setShowExtra(!showExtra)}>
+    <div className={containerClassnames} onClick={() => setShowExtra(!showExtra)}>
       <div className="item-card__header">
         <div className="item-card__header-identity">
           <img src={getIconByKey(armorTypeIcon as keyof IIcons)} className="item__icon" alt="icon" />
@@ -75,13 +82,16 @@ function ArmorCard({ armor, showModal }: ArmorCardProps) {
         <div className="item-card__footer__skill-list">
           {armor.skills.map((skill) => <div key={skill.name} className="item-card__footer__skill-tag">{skill.name}</div>)}
         </div>
+        {!isSelected
+        && (
         <button type="button" className="item-card__button-add" onClick={handleSetArmor}>
           Set
           {' '}
           <MdFileDownloadDone />
         </button>
+        )}
       </div>
-      {showExtra
+      {showExtra && !isSelected
         && (
         <div className="item-card__extra">
           {/* eslint-disable-next-line max-len */}

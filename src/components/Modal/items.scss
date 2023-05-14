@@ -49,7 +49,9 @@
     &:last-child {
       border: none;
     }
-
+    &__selected {
+      padding: 0;
+    }
     &__header {
       display: flex;
       justify-content: space-between;

@@ -6,6 +6,7 @@
 import '../items.scss';
 import './styles.scss';
 import { useState } from 'react';
+import cn from 'classnames';
 import { MdFileDownloadDone } from 'react-icons/md';
 import getIconByKey, { IIcons } from '../../../utils/icons';
 import { IWeapon } from '../../../@types/weapon';
@@ -16,8 +17,9 @@ import { setSharpness } from '../../../utils/weapon';
 interface WeaponCardProps {
   weapon: IWeapon
   showModal: (shown: boolean) => void
+  isSelected: boolean
 }
-function WeaponCard({ weapon, showModal }: WeaponCardProps) {
+function WeaponCard({ weapon, showModal, isSelected }: WeaponCardProps) {
   const dispatch = useAppDispatch();
   const weaponType = weapon.type.split('-').join('_');
   // set format to get the icon
@@ -32,10 +34,13 @@ function WeaponCard({ weapon, showModal }: WeaponCardProps) {
     showModal(false);
   }
 
-  // get purcent of maximum sharpness
+  // Set dynamic classnames
+  const containerClassnames = cn('item-card', {
+    'item-card__selected': isSelected,
+  });
 
   return (
-    <div className="item-card" onClick={() => setShowExtra(!showExtra)}>
+    <div className={containerClassnames} onClick={() => setShowExtra(!showExtra)}>
       <div className="item-card__header">
         <div className="item-card__header-identity">
           <img src={getIconByKey(weaponTypeIcon as keyof IIcons)} className="item__icon" alt="icon" />
@@ -92,13 +97,16 @@ function WeaponCard({ weapon, showModal }: WeaponCardProps) {
           && (<div className="sharpness-purple" style={{ width: setSharpness(weapon.sharpness.purple) }} />
           )}
         </div>
-        <button type="button" className="item-card__button-add" onClick={handleSetWeapon}>
-          Set
-          {' '}
-          <MdFileDownloadDone />
-        </button>
+        {!isSelected
+          && (
+          <button type="button" className="item-card__button-add" onClick={handleSetWeapon}>
+            Set
+            {' '}
+            <MdFileDownloadDone />
+          </button>
+          )}
       </div>
-      {showExtra
+      {showExtra && !isSelected
         && (
         <div className="item-card__extra">
           {/* eslint-disable-next-line max-len */}
