@@ -18,6 +18,7 @@ function BuilderPage() {
   const isLoading = useAppSelector((state) => state.builder.isLoading);
   const weaponList = useAppSelector((state) => state.builder.weaponList);
   const armorList = useAppSelector((state) => state.builder.armorList);
+  const errorMessage = useAppSelector((state) => state.builder.errorMessage);
 
   const [weaponTypeModalShown, setWeaponTypeModalShown] = useState(false);
   const [weaponSelectionModalShown, setWeaponSelectionModalShown] = useState(false);
@@ -79,7 +80,8 @@ function BuilderPage() {
         close={() => setWeaponSelectionModalShown(!weaponSelectionModalShown)}
       >
         <div className="item-list">
-          {isLoading && <BiLoaderCircle className="item-list__loader" /> }
+          {isLoading && <BiLoaderCircle className="item-list__loader" />}
+          {errorMessage && <div className="modal-error">{errorMessage}</div>}
           {
             weaponList && weaponList.map((weapon) => <WeaponCard key={weapon.id} weapon={weapon} />)
           }
@@ -91,7 +93,8 @@ function BuilderPage() {
         close={() => setArmorSelectionModalShown(!armorSelectionModalShown)}
       >
         <div className="item-list">
-          {isLoading && <BiLoaderCircle className="item-list__loader" /> }
+          {isLoading && <BiLoaderCircle className="item-list__loader" />}
+          {errorMessage && <div className="modal-error">{errorMessage}</div>}
           {
             armorList && armorList.map((armor) => <ArmorCard key={armor.id} armor={armor} />)
           }

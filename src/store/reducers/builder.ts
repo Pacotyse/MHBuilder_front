@@ -19,6 +19,7 @@ export interface BuilderState {
   waist: IWaist | null
   legs: ILegs | null
   isLoading: boolean
+  errorMessage: string
 }
 
 export const setWeaponType = createAction<string>('builder/SET_WEAPON_TYPE');
@@ -61,6 +62,7 @@ export const initialState: BuilderState = {
   waist: null,
   legs: null,
   isLoading: false,
+  errorMessage: '',
 };
 
 const builderReducer = createReducer(initialState, (builder) => {
@@ -78,7 +80,7 @@ const builderReducer = createReducer(initialState, (builder) => {
       state.armorList = null;
     })
     .addCase(fetchWeaponsByType.pending, (state) => {
-      // to set a loading later
+      state.errorMessage = '';
       state.isLoading = true;
     })
     .addCase(fetchWeaponsByType.fulfilled, (state, action) => {
@@ -86,20 +88,20 @@ const builderReducer = createReducer(initialState, (builder) => {
       state.weaponList = action.payload;
     })
     .addCase(fetchWeaponsByType.rejected, (state) => {
-      // to set error message later
-      console.log('Erreur dans le fetch de weapons');
       state.isLoading = false;
+      state.errorMessage = 'Server error, Failed to get data';
     })
     .addCase(fetchArmorsByType.pending, (state) => {
+      state.errorMessage = '';
       state.isLoading = true;
-    })
-    .addCase(fetchArmorsByType.rejected, (state) => {
-      state.isLoading = false;
-      console.log('Erreur dans le fetch de armors');
     })
     .addCase(fetchArmorsByType.fulfilled, (state, action) => {
       state.isLoading = false;
       state.armorList = action.payload;
+    })
+    .addCase(fetchArmorsByType.rejected, (state) => {
+      state.isLoading = false;
+      state.errorMessage = 'Server error, failed to get data';
     })
     .addCase(setBuilderWeapon, (state, action) => {
       state.weapon = action.payload;
