@@ -10,7 +10,6 @@ import { axiosInstance } from '../../utils/axios';
 export interface BuilderState {
   weaponList: IWeapon[] | null
   armorList: IArmor[] | null
-  armorType: string
   weaponType: string
   weapon: IWeapon | null
   head: IHead | null
@@ -23,7 +22,10 @@ export interface BuilderState {
 }
 
 export const setWeaponType = createAction<string>('builder/SET_WEAPON_TYPE');
-export const setArmorType = createAction<string>('builder/SET_ARMOR_TYPE');
+export const clearWeaponList = createAction('builder/CLEAR_WEAPON_LIST');
+export const clearArmorList = createAction('builder/CLEAR_ARMOR_LIST');
+export const setBuilderWeapon = createAction<IWeapon>('builder/SET_WEAPON');
+export const setBuilderArmor = createAction<IArmor>('builder/SET_ARMOR');
 
 export const fetchWeaponsByType = createAppAsyncThunk(
   'builder/FETCH_WEAPONS_BY_TYPE',
@@ -43,17 +45,9 @@ export const fetchArmorsByType = createAppAsyncThunk(
   },
 );
 
-export const clearWeaponList = createAction('builder/CLEAR_WEAPON_LIST');
-export const clearArmorList = createAction('builder/CLEAR_ARMOR_LIST');
-
-export const setBuilderWeapon = createAction<IWeapon>('builder/SET_WEAPON');
-
-export const setBuilderArmor = createAction<IArmor>('builder/SET_ARMOR');
-
 export const initialState: BuilderState = {
   weaponList: null,
   armorList: null,
-  armorType: '',
   weaponType: '',
   weapon: null,
   head: null,
@@ -68,10 +62,8 @@ export const initialState: BuilderState = {
 const builderReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(setWeaponType, (state, action) => {
+      // here we can do this because Redux Toolkit makes the state immutable
       state.weaponType = action.payload;
-    })
-    .addCase(setArmorType, (state, action) => {
-      state.armorType = action.payload;
     })
     .addCase(clearWeaponList, (state) => {
       state.weaponList = null;
@@ -101,7 +93,7 @@ const builderReducer = createReducer(initialState, (builder) => {
     })
     .addCase(fetchArmorsByType.rejected, (state) => {
       state.isLoading = false;
-      state.errorMessage = 'Server error, failed to get data';
+      state.errorMessage = 'Server error, Failed to get data';
     })
     .addCase(setBuilderWeapon, (state, action) => {
       state.weapon = action.payload;
