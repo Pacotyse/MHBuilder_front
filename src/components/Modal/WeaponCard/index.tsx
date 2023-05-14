@@ -11,6 +11,7 @@ import getIconByKey, { IIcons } from '../../../utils/icons';
 import { IWeapon } from '../../../@types/weapon';
 import { useAppDispatch } from '../../../hooks/redux';
 import { setBuilderWeapon } from '../../../store/reducers/builder';
+import { setSharpness } from '../../../utils/weapon';
 
 interface WeaponCardProps {
   weapon: IWeapon
@@ -64,78 +65,37 @@ function WeaponCard({ weapon, showModal }: WeaponCardProps) {
       </div>
       <div className="item-card__footer">
         <div className="sharpness">
-          {/* checking if sharpness value is not null */}
+          {/* first checking if sharpness value is not null */}
           {weapon.sharpness.red
-          && (
-          <div
-            className="sharpness-red"
-            style={{
-              // maximum sharpness on weapon is 250
-              // Here we calculate the width purcent to fit the container's width
-              width: `${(weapon.sharpness.red / 250) * 100}%`,
-            }}
-          />
-          )}
+            && (
+              // Then set the width of the sharpness
+              <div className="sharpness-red" style={{ width: setSharpness(weapon.sharpness.red) }} />
+            )}
           {weapon.sharpness.orange
           && (
-          <div
-            className="sharpness-orange"
-            style={{
-              width: `${(weapon.sharpness.orange / 250) * 100}%`,
-            }}
-          />
+          <div className="sharpness-orange" style={{ width: setSharpness(weapon.sharpness.orange) }} />
           )}
           {weapon.sharpness.yellow
           && (
-          <div
-            className="sharpness-yellow"
-            style={{
-              width: `${(weapon.sharpness.yellow / 250) * 100}%`,
-            }}
-          />
+          <div className="sharpness-yellow" style={{ width: setSharpness(weapon.sharpness.yellow) }} />
           )}
           {weapon.sharpness.green
-          && (
-          <div
-            className="sharpness-green"
-            style={{
-              width: `${(weapon.sharpness.green / 250) * 100}%`,
-            }}
-          />
+          && (<div className="sharpness-green" style={{ width: setSharpness(weapon.sharpness.green) }} />
           )}
           {weapon.sharpness.blue
-          && (
-          <div
-            className="sharpness-blue"
-            style={{
-              width: `${(weapon.sharpness.blue / 250) * 100}%`,
-            }}
-          />
+          && (<div className="sharpness-blue" style={{ width: setSharpness(weapon.sharpness.blue) }} />
           )}
           {weapon.sharpness.white
-          && (
-          <div
-            className="sharpness-white"
-            style={{
-              width: `${(weapon.sharpness.white / 250) * 100}%`,
-            }}
-          />
+          && (<div className="sharpness-white" style={{ width: setSharpness(weapon.sharpness.white) }} />
           )}
           {weapon.sharpness.purple
-          && (
-          <div
-            className="sharpness-purple"
-            style={{
-              width: `${(weapon.sharpness.purple / 250) * 100}%`,
-            }}
-          />
+          && (<div className="sharpness-purple" style={{ width: setSharpness(weapon.sharpness.purple) }} />
           )}
         </div>
         <button type="button" className="item-card__button-add" onClick={handleSetWeapon}>
           Set
           {' '}
           <MdFileDownloadDone />
-
         </button>
       </div>
       {showExtra
