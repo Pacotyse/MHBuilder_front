@@ -1,7 +1,9 @@
 import { BiLoaderCircle } from 'react-icons/bi';
+import { RiArrowGoBackFill } from 'react-icons/ri';
 import Modal from '../Modal';
 import { useAppSelector } from '../../hooks/redux';
 import WeaponCard from '../Modal/WeaponCard';
+import './styles.scss';
 
 interface WeaponSelectionModalProps {
   weaponSelectionModalShown: boolean
@@ -29,6 +31,9 @@ function WeaponSelectionModal(
       shown={weaponSelectionModalShown}
       close={() => setWeaponSelectionModalShown(!weaponSelectionModalShown)}
     >
+      <button type="button" className="item__go-back" onClick={handleGoBack}>
+        <RiArrowGoBackFill className="item__go-back__icon" />
+      </button>
       <div className="item-list">
         {isLoading && <BiLoaderCircle className="item-list__loader" />}
         {errorMessage && <div className="modal-error">{errorMessage}</div>}

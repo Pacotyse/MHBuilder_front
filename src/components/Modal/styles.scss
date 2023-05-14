@@ -36,12 +36,16 @@
     position: absolute;
     left: 50%;
     translate: -50% -50%;
-    bottom: calc(vars.$gap-m * -4);
-    background-color: vars.$white;
-    height: 2.3rem;
-    width: 2.3rem;
+    bottom: -5rem;
+    background-color: transparent;
     border: none;
     border-radius: 50%;
+
+    &__icon {
+      color: vars.$white;
+      width: 2.5rem;
+      height: 2.5rem;
+    }
   }
 
   &-error {
