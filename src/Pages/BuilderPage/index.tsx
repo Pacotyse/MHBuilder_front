@@ -50,6 +50,7 @@ function BuilderPage() {
       <WeaponSelectionModal
         weaponSelectionModalShown={weaponSelectionModalShown}
         setWeaponSelectionModalShown={setWeaponSelectionModalShown}
+        setWeaponTypeModalShown={setWeaponTypeModalShown}
       />
       <ArmorSelectionModal
         armorSelectionModalShown={armorSelectionModalShown}

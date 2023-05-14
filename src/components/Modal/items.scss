@@ -20,6 +20,23 @@
       height: 5rem;
       animation: rotation 2s infinite linear ;
     }
+
+    &__empty {
+      margin: auto;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: vars.$gap-l;
+
+      &__button-back {
+        padding: vars.$gap-s;
+        background-color: vars.$primary;
+        border: vars.$white solid 2px;
+        border-radius: vars.$radius-l;
+        color: vars.$white;
+        font-weight: bold;
+      }
+    }
   }
   &-card {
     width: 100%;

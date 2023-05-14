@@ -24,6 +24,10 @@ function ArmorSelectionModal(
       <div className="item-list">
         {isLoading && <BiLoaderCircle className="item-list__loader" />}
         {errorMessage && <div className="modal-error">{errorMessage}</div>}
+        {!isLoading
+          && !errorMessage
+          && !armorList
+          && <div className="item-list__empty">No items available yet.</div>}
         {
             armorList && armorList.map((armor) => (
               <ArmorCard
