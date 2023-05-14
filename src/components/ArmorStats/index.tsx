@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../hooks/redux';
-import getIconByKey from '../../utils/icons';
+import getIconByKey, { IIcons } from '../../utils/icons';
 import './styles.scss';
 
 function ArmorStats() {
@@ -64,7 +64,28 @@ function ArmorStats() {
     });
     return sum;
   }
-
+  const elements = [
+    {
+      name: 'fire',
+      array: resFire,
+    },
+    {
+      name: 'ice',
+      array: resIce,
+    },
+    {
+      name: 'thunder',
+      array: resThunder,
+    },
+    {
+      name: 'water',
+      array: resWater,
+    },
+    {
+      name: 'dragon',
+      array: resDragon,
+    },
+  ];
   return (
     <div className="stats-container">
       <h4>
@@ -74,62 +95,20 @@ function ArmorStats() {
           {total(defenseStats)}
         </span>
       </h4>
-      <div>
-        Res.
-        {' '}
-        <img src={getIconByKey('element_fire')} alt="fire icon" className="stats__element-icon" />
-        {' '}
-        :
-        {' '}
-        <span className="stats-value">
-          {total(resFire)}
-        </span>
-      </div>
+      {elements.map((element) => (
+        <div key={element.name}>
+          Res.
+          {' '}
+          <img src={getIconByKey(`element_${element.name}` as keyof IIcons)} alt={`${element.name} icon`} className="stats__element-icon" />
+          {' '}
+          :
+          {' '}
+          <span className="stats-value">
+            {total(element.array)}
+          </span>
+        </div>
+      ))}
 
-      <div>
-        Res.
-        {' '}
-        <img src={getIconByKey('element_ice')} alt="ice icon" className="stats__element-icon" />
-        {' '}
-        :
-        {' '}
-        <span className="stats-value">
-          {total(resIce)}
-        </span>
-      </div>
-      <div>
-        Res.
-        {' '}
-        <img src={getIconByKey('element_thunder')} alt="thunder icon" className="stats__element-icon" />
-        {' '}
-        :
-        {' '}
-        <span className="stats-value">
-          {total(resThunder)}
-        </span>
-      </div>
-      <div>
-        Res.
-        {' '}
-        <img src={getIconByKey('element_water')} alt="water icon" className="stats__element-icon" />
-        {' '}
-        :
-        {' '}
-        <span className="stats-value">
-          {total(resWater)}
-        </span>
-      </div>
-      <div>
-        Res.
-        {' '}
-        <img src={getIconByKey('element_dragon')} alt="dragon icon" className="stats__element-icon" />
-        {' '}
-        :
-        {' '}
-        <span className="stats-value">
-          {total(resDragon)}
-        </span>
-      </div>
     </div>
   );
 }
