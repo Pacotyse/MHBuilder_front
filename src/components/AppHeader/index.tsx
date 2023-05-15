@@ -67,6 +67,15 @@ function AppHeader() {
                 </div>
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="/login"
+                className={({ isActive }) => (isActive ? 'menu__link menu-active' : 'menu__link')}
+                onClick={() => setMenuShown(false)}
+              >
+                <span>Login</span>
+              </NavLink>
+            </li>
 
           </ul>
         </nav>
