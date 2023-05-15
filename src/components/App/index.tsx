@@ -3,7 +3,7 @@ import './styles.scss';
 import AppHeader from '../AppHeader';
 import BuilderPage from '../../Pages/BuilderPage';
 import HomePage from '../../Pages/HomePage';
-import LoginForm from '../LoginForm';
+import LoginPage from '../../Pages/LoginPage';
 
 function App() {
   return (
@@ -16,16 +16,7 @@ function App() {
         <Route path="/loadouts" element={<h2>Loadouts</h2>} />
         <Route
           path="/login"
-          element={(
-            <LoginForm
-              email="hbzjebf@gmail.cohrthtm"
-              password="baldnhbakjd"
-              changeField={(value, name) => value}
-              handleLogin={() => Boolean(false)}
-              handleLogout={() => Boolean(false)}
-              isLogged={false}
-            />
-        )}
+          element={<LoginPage />}
         />
         <Route path="/sign-in" element={<h2>Sign-in</h2>} />
         <Route path="/users/:id" element={<h2>Profile</h2>} />
