@@ -2,10 +2,14 @@ import { Route, Routes } from 'react-router-dom';
 import './styles.scss';
 import AppHeader from '../AppHeader';
 import BuilderPage from '../../Pages/BuilderPage';
+<<<<<<< HEAD
 import HomePage from '../../Pages/HomePage';
 import LoginPage from '../../Pages/LoginPage';
 import ProfilePage from '../../Pages/ProfilePage';
 import AppFooter from '../AppFooter';
+=======
+import LoginPage from '../../Pages/LoginPage';
+>>>>>>> b28d3d1 (feat (userRedux): add controlled input)
 
 function App() {
   return (
