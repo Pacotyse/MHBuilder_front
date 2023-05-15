@@ -13,6 +13,11 @@ interface UserState {
     email: string;
     password: string;
   };
+  registerCredentials: {
+    email: string
+    password: string
+    username: string
+  },
 }
 
 export const initialState: UserState = {
@@ -25,6 +30,11 @@ export const initialState: UserState = {
     email: '',
     password: '',
   },
+  registerCredentials: {
+    email: '',
+    password: '',
+    username: '',
+  },
 };
 
 export const changeCredentialsField = createAction<{
@@ -32,6 +42,12 @@ export const changeCredentialsField = createAction<{
   // keyof credentials can be 'email' or 'password
   field: keyof UserState['credentials'];
 }>('user/CHANGE_CREDENTIALS_FIELD');
+
+export const changeRegisterCredentialsField = createAction<{
+  value: string;
+  // keyof registerCredentials can be 'email' or 'password or 'username'
+  field: keyof UserState['registerCredentials'];
+}>('user/CHANGE_REGISTER_CREDENTIALS_FIELD');
 
 export const login = createAppAsyncThunk(
   'user/LOGIN',
@@ -54,6 +70,10 @@ const userReducer = createReducer(initialState, (builder) => {
     .addCase(changeCredentialsField, (state, action) => {
       const { field, value } = action.payload;
       state.credentials[field] = value;
+    })
+    .addCase(changeRegisterCredentialsField, (state, action) => {
+      const { field, value } = action.payload;
+      state.registerCredentials[field] = value;
     })
     .addCase(login.pending, (state) => {
       state.isLoading = true;
