@@ -1,7 +1,6 @@
 import { FormEvent } from 'react';
 import Field from '../LoginForm/Field';
 import { useAppSelector } from '../../hooks/redux';
-// import './styles.scss';
 
 interface SignInFormProps {
   email: string;

@@ -2,19 +2,19 @@ import LoginForm from '../../components/LoginForm';
 import SignInForm from '../../components/SignInForm';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
-  changeCredentialsField, changeRegisterCredentialsField, login, register,
+  changeLoginCredentialsField, changeRegisterCredentialsField, login, register,
 } from '../../store/reducers/user';
 
 function LoginPage() {
   const dispatch = useAppDispatch();
-  const loginEmail = useAppSelector((state) => state.user.credentials.email);
-  const loginPassword = useAppSelector((state) => state.user.credentials.password);
+  const loginEmail = useAppSelector((state) => state.user.loginCredentials.email);
+  const loginPassword = useAppSelector((state) => state.user.loginCredentials.password);
   const registerEmail = useAppSelector((state) => state.user.registerCredentials.email);
   const registerPassword = useAppSelector((state) => state.user.registerCredentials.password);
   const registerUsername = useAppSelector((state) => state.user.registerCredentials.username);
 
   const handleChangeLoginField = (value: string, name: 'email' | 'password') => {
-    dispatch(changeCredentialsField({
+    dispatch(changeLoginCredentialsField({
       value,
       field: name,
     }));
