@@ -1,4 +1,4 @@
-import { IArmor } from '../../@types/armor';
+import { IArmor, IArmorType } from '../../@types/armor';
 import { IIcons } from '../../@types/icons';
 import { IWeapon } from '../../@types/weapon';
 import { useAppSelector } from '../../hooks/redux';
@@ -8,9 +8,9 @@ import WeaponCard from '../Modal/WeaponCard';
 import './styles.scss';
 
 interface AddItemProps {
-  itemType: 'weapon' | 'head' | 'arms' | 'legs' | 'waist' | 'chest'
+  itemType: 'weapon' | IArmorType
   icon: string
-  openModal: (itemType: string) => void
+  openModal: (itemType: 'weapon' | IArmorType) => void
 }
 function AddItem({ itemType, icon, openModal }: AddItemProps) {
   // Get the item stocked in the state

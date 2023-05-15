@@ -13,6 +13,7 @@ import ArmorSelectionModal from '../../components/ArmorSelectionModal';
 import AttackStatsContainer from '../../components/AttackStats';
 import ArmorStats from '../../components/ArmorStats';
 import SkillStats from '../../components/SkillStats';
+import { IArmorType } from '../../@types/armor';
 
 function BuilderPage() {
   const dispatch = useAppDispatch();
@@ -21,7 +22,7 @@ function BuilderPage() {
   const [weaponSelectionModalShown, setWeaponSelectionModalShown] = useState(false);
   const [armorSelectionModalShown, setArmorSelectionModalShown] = useState(false);
 
-  const handleShowModal = (itemType: string) => {
+  const handleShowModal = (itemType: 'weapon' | IArmorType) => {
     if (itemType === 'weapon') {
       // clear list of weapons
       dispatch(clearWeaponList());

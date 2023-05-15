@@ -1,6 +1,8 @@
+export type IArmorType = 'head' | 'arms' | 'legs' | 'chest' | 'waist';
+
 export interface IArmor {
   id: number
-  type: 'head' | 'chest' | 'arms' | 'waist' | 'legs'
+  type: IArmorType
   name: string
   rarity: number
   defense: number
