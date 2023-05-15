@@ -1,7 +1,9 @@
 import LoginForm from '../../components/LoginForm';
 import SignInForm from '../../components/SignInForm';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { changeCredentialsField, changeRegisterCredentialsField } from '../../store/reducers/user';
+import {
+  changeCredentialsField, changeRegisterCredentialsField, login, register,
+} from '../../store/reducers/user';
 
 function LoginPage() {
   const dispatch = useAppDispatch();
@@ -23,13 +25,21 @@ function LoginPage() {
       field: name,
     }));
   };
+
+  const handleSubmitLogin = () => {
+    dispatch(login());
+  };
+  const handleSubmitRegister = () => {
+    dispatch(register());
+  };
+
   return (
     <div>
       <LoginForm
         email={loginEmail}
         password={loginPassword}
         changeField={handleChangeLoginField}
-        handleLogin={() => Boolean(false)}
+        handleLogin={handleSubmitLogin}
         handleLogout={() => Boolean(false)}
         isLogged={false}
       />
@@ -38,7 +48,7 @@ function LoginPage() {
         password={registerPassword}
         username={registerUsername}
         changeField={handleChangeRegisterField}
-        handleSignIn={() => false}
+        handleSignIn={handleSubmitRegister}
       />
     </div>
   );

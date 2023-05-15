@@ -9,7 +9,7 @@ interface UserState {
   isLogged: boolean;
   isLoading: boolean;
   errorMessage: string;
-  credentials: {
+  loginCredentials: {
     email: string;
     password: string;
   };
@@ -26,7 +26,7 @@ export const initialState: UserState = {
   isLogged: false,
   isLoading: false,
   errorMessage: '',
-  credentials: {
+  loginCredentials: {
     email: '',
     password: '',
   },
@@ -37,11 +37,11 @@ export const initialState: UserState = {
   },
 };
 
-export const changeCredentialsField = createAction<{
+export const changeLoginCredentialsField = createAction<{
   value: string;
   // keyof credentials can be 'email' or 'password
-  field: keyof UserState['credentials'];
-}>('user/CHANGE_CREDENTIALS_FIELD');
+  field: keyof UserState['loginCredentials'];
+}>('user/CHANGE_LOGIN_CREDENTIALS_FIELD');
 
 export const changeRegisterCredentialsField = createAction<{
   value: string;
@@ -55,11 +55,27 @@ export const login = createAppAsyncThunk(
     // get the state here
     const state = thunkAPI.getState();
     // Extract email and password from credentials
-    const { email, password } = state.user.credentials;
+    const { email, password } = state.user.loginCredentials;
     // Send data to back
-    const { data } = await axiosInstance.post('/login', {
+    const { data } = await axiosInstance.post('/users/login', {
       email,
       password,
+    });
+    return data as UserResponse;
+  },
+);
+export const register = createAppAsyncThunk(
+  'user/REGISTER',
+  async (_, thunkAPI) => {
+    // get the state here
+    const state = thunkAPI.getState();
+    // Extract email and password and username from registerCredentials
+    const { email, password, username } = state.user.registerCredentials;
+    // Send data to back
+    const { data } = await axiosInstance.post('/users/register', {
+      email,
+      password,
+      username,
     });
     return data as UserResponse;
   },
@@ -67,9 +83,9 @@ export const login = createAppAsyncThunk(
 
 const userReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(changeCredentialsField, (state, action) => {
+    .addCase(changeLoginCredentialsField, (state, action) => {
       const { field, value } = action.payload;
-      state.credentials[field] = value;
+      state.loginCredentials[field] = value;
     })
     .addCase(changeRegisterCredentialsField, (state, action) => {
       const { field, value } = action.payload;
