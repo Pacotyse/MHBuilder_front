@@ -5,6 +5,7 @@ function AttackStats() {
   const weapon = useAppSelector((state) => state.builder.weapon);
   return (
     <div className="stats-container">
+      <h3 className="stats-title">Attack stats</h3>
       <h4>
         Name :
         {' '}

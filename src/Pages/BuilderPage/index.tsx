@@ -12,6 +12,7 @@ import WeaponSelectionModal from '../../components/WeaponSelectionModal';
 import ArmorSelectionModal from '../../components/ArmorSelectionModal';
 import AttackStatsContainer from '../../components/AttackStats';
 import ArmorStats from '../../components/ArmorStats';
+import SkillStats from '../../components/SkillStats';
 
 function BuilderPage() {
   const dispatch = useAppDispatch();
@@ -60,25 +61,8 @@ function BuilderPage() {
       />
       <section className="section-stats">
         <AttackStatsContainer />
-        {/* armor infos */}
+        <SkillStats />
         <ArmorStats />
-        {/* skills infos */}
-        <div className="stats-container">
-          <ul className="stats-content__skills">
-            <li>
-              <span>Skill name</span>
-              <div>level ***</div>
-            </li>
-            <li>
-              <span>Skill name</span>
-              <div>level ***</div>
-            </li>
-            <li>
-              <span>Skill name</span>
-              <div>level ***</div>
-            </li>
-          </ul>
-        </div>
       </section>
     </main>
   );

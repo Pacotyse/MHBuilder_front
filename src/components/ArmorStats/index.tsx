@@ -88,6 +88,7 @@ function ArmorStats() {
   ];
   return (
     <div className="stats-container">
+      <h3 className="stats-title">Armor stats</h3>
       <h4>
         Defense :
         {' '}

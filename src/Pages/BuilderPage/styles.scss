@@ -8,11 +8,12 @@
     gap: vars.$gap-s;
     padding: vars.$gap-s;
     margin: vars.$gap-s;
+
+    &__description {
+      text-align: center;
+    }
   }
 
-  &__description {
-    text-align: center;
-  }
 
   &-stats {
   display: flex;

@@ -21,7 +21,8 @@
       position: absolute;
       top: vars.$header-height;
       left: 0;
-      background-color: vars.$dark-grey;
+      background-color: vars.$grey;
+      border-bottom: solid 1px vars.$dark-grey;
       width: 100%;
       display: none;
 
@@ -137,6 +138,7 @@
       display: block;
       width: 70%;
       background-color: transparent;
+      border-bottom: none;
 
       & ul {
         flex-direction: row;
