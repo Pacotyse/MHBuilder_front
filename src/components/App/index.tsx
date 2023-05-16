@@ -4,6 +4,7 @@ import AppHeader from '../AppHeader';
 import BuilderPage from '../../Pages/BuilderPage';
 import HomePage from '../../Pages/HomePage';
 import LoginPage from '../../Pages/LoginPage';
+import ProfilePage from '../../Pages/ProfilePage';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
           element={<LoginPage />}
         />
         <Route path="/sign-in" element={<h2>Sign-in</h2>} />
-        <Route path="/profile" element={<h2>Profile</h2>} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route path="*" element={<h2>404</h2>} />
       </Routes>
 
