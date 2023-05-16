@@ -28,10 +28,13 @@ function SignInForm({
   };
 
   return (
+
     <div className="login-form">
+
       {!isLogged && (
 
         <form autoComplete="off" className="login-form-element" onSubmit={handleSubmit}>
+          <h3 className="login-form-title">REGISTER</h3>
           <Field
             placeholder="Email"
             onChange={handleChangeField('email')}
@@ -53,7 +56,7 @@ function SignInForm({
             type="submit"
             className="login-form-button"
           >
-            OK
+            Register
           </button>
         </form>
       )}

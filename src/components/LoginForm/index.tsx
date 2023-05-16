@@ -32,6 +32,7 @@ function LoginForm({
 
   return (
     <div className="login-form">
+
       {isLogged && (
         <div className="login-form-logged">
           <p className="login-form-message">
@@ -49,6 +50,7 @@ function LoginForm({
       {!isLogged && (
 
         <form autoComplete="off" className="login-form-element" onSubmit={handleSubmit}>
+          <h3 className="login-form-title">LOGIN</h3>
           <Field
             placeholder="Adresse Email"
             onChange={handleChangeField('email')}
@@ -64,10 +66,11 @@ function LoginForm({
             type="submit"
             className="login-form-button"
           >
-            OK
+            Login
           </button>
         </form>
       )}
+      <div className="divider" />
     </div>
   );
 }

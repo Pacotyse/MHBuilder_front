@@ -1,14 +1,31 @@
 @use 'src/styles/vars';
 
+
+
 .login-form {
   
   &-element {
     display: flex;
     align-items: center;
+    flex-direction: column;
+    padding-top: 5rem;
+    background-color: #D7CCC8;
+    
   }
+
+  // &-element {
+  //   position: relative;
+  //   z-index: 1;
+  //   max-width: 350px;
+  //   margin: 0 auto 100px;
+  //   padding: 45px;
+  //   background: #FFFFFF;
+    
+  // }
 
   &-message {
     margin: .3em 1em;
+    
   }
 
   &-logged {
@@ -18,12 +35,38 @@
   }
 
   &-button {
+    display: flex;
     font-size: 1em;
-    color: #fff;
-    background-color: #fff;
+    color: white;
+    background-color: #FF5722;
+    margin-top: .4em;
+    margin-bottom: 3em;
     border-radius: .3em;
     border: 0;
     padding: .7em;
     height: 2.5em;
+    border-radius: 0.5rem;
+    text-transform: uppercase;
+    
+ 
   }
+
+  &-title {
+    display: flex;
+    color:rgb(0, 0, 0);
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 1em;
+
+
+  }
+}
+
+.divider{
+  background-color: #A06F8A;
+  display: flex;
+  font-size: 5px; 
+  text-align: center; 
+  width: 75%; 			
+  margin: 1px auto;			
 }

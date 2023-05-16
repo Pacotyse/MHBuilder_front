@@ -1,5 +1,6 @@
 import LoginForm from '../../components/LoginForm';
 import SignInForm from '../../components/SignInForm';
+import './styles.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
   changeLoginCredentialsField, changeRegisterCredentialsField, login, register,
@@ -34,7 +35,7 @@ function LoginPage() {
   };
 
   return (
-    <div>
+    <div className="loginForm-container">
       <LoginForm
         email={loginEmail}
         password={loginPassword}
@@ -43,13 +44,15 @@ function LoginPage() {
         handleLogout={() => Boolean(false)}
         isLogged={false}
       />
-      <SignInForm
-        email={registerEmail}
-        password={registerPassword}
-        username={registerUsername}
-        changeField={handleChangeRegisterField}
-        handleSignIn={handleSubmitRegister}
-      />
+      <div className="signInForm-container">
+        <SignInForm
+          email={registerEmail}
+          password={registerPassword}
+          username={registerUsername}
+          changeField={handleChangeRegisterField}
+          handleSignIn={handleSubmitRegister}
+        />
+      </div>
     </div>
   );
 }
