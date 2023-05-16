@@ -2,6 +2,7 @@ import { createAction, createReducer } from '@reduxjs/toolkit';
 import { createAppAsyncThunk } from '../../utils/redux';
 import { axiosInstance } from '../../utils/axios';
 import { UserResponse } from '../../@types/user';
+import { getUserDataFromLocalStorage } from '../../utils/user';
 
 interface UserState {
   username: string;
@@ -20,6 +21,8 @@ interface UserState {
   },
 }
 
+const userData = getUserDataFromLocalStorage();
+
 export const initialState: UserState = {
   username: '',
   token: '',
@@ -35,6 +38,8 @@ export const initialState: UserState = {
     password: '',
     username: '',
   },
+  // If user data in the localStorage already exist, set it in the initial state
+  ...userData,
 };
 
 export const changeLoginCredentialsField = createAction<{
@@ -61,6 +66,10 @@ export const login = createAppAsyncThunk(
       email,
       password,
     });
+
+    // Transform data into json to save it into localStorage
+    localStorage.setItem('user', JSON.stringify(data));
+
     return data as UserResponse;
   },
 );
