@@ -4,9 +4,13 @@ import cn from 'classnames';
 import { TiThMenu, TiTimes } from 'react-icons/ti';
 import logoBones from '../../assets/icons/bones.png';
 import './styles.scss';
+import { useAppSelector } from '../../hooks/redux';
+import { getUserDataFromLocalStorage } from '../../utils/user';
 
 function AppHeader() {
   const [menuShown, setMenuShown] = useState(false);
+  const isLogged = useAppSelector((state) => state.user.isLogged);
+
   const menuClassNames = cn('menu', {
     'is-active': menuShown,
   });
@@ -55,6 +59,8 @@ function AppHeader() {
                 Loadouts
               </NavLink>
             </li>
+            {isLogged
+            && (
             <li>
               <NavLink
                 to="/users/12"
@@ -67,6 +73,9 @@ function AppHeader() {
                 </div>
               </NavLink>
             </li>
+            )}
+            {!isLogged
+            && (
             <li>
               <NavLink
                 to="/login"
@@ -76,6 +85,7 @@ function AppHeader() {
                 <span>Login</span>
               </NavLink>
             </li>
+            )}
 
           </ul>
         </nav>
