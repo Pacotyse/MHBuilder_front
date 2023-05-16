@@ -4,33 +4,21 @@ import { ChangeEvent, useId } from 'react';
 import './styles.scss';
 
 interface FieldProps {
-<<<<<<< HEAD
   disabled: boolean
-=======
->>>>>>> 27fcd65 (feat (login): add component loginForm)
   value: string;
   type?: string;
   placeholder: string;
   onChange: (value: string) => void;
-<<<<<<< HEAD
   children?: React.ReactNode;
 }
 // == Composant
 function Field({
   disabled,
-=======
-}
-// == Composant
-function Field({
->>>>>>> 27fcd65 (feat (login): add component loginForm)
   value,
   type,
   placeholder,
   onChange,
-<<<<<<< HEAD
   children,
-=======
->>>>>>> 27fcd65 (feat (login): add component loginForm)
 }: FieldProps) {
   const inputId = useId();
 
@@ -49,10 +37,7 @@ function Field({
         type={type}
         className="field-input"
         placeholder={placeholder}
-<<<<<<< HEAD
         disabled={disabled}
-=======
->>>>>>> 27fcd65 (feat (login): add component loginForm)
       />
 
       <label
@@ -61,10 +46,7 @@ function Field({
       >
         {placeholder}
       </label>
-<<<<<<< HEAD
       {children}
-=======
->>>>>>> 27fcd65 (feat (login): add component loginForm)
     </div>
   );
 }
@@ -72,10 +54,7 @@ function Field({
 // Valeurs par défaut pour les props
 Field.defaultProps = {
   type: 'text',
-<<<<<<< HEAD
   children: undefined,
-=======
->>>>>>> 27fcd65 (feat (login): add component loginForm)
 };
 
 // == Export
