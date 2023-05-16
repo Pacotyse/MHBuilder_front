@@ -1,6 +1,5 @@
 import { FormEvent } from 'react';
 import Field from '../LoginForm/Field';
-import { useAppSelector } from '../../hooks/redux';
 
 interface SignInFormProps {
   email: string;
@@ -8,6 +7,7 @@ interface SignInFormProps {
   username: string
   changeField: (value: string, name: 'email' | 'password' | 'username') => void;
   handleSignIn: () => void;
+  isLogged: boolean
 }
 function SignInForm({
   email,
@@ -15,9 +15,8 @@ function SignInForm({
   username,
   changeField,
   handleSignIn,
+  isLogged,
 }: SignInFormProps) {
-  const isLogged = useAppSelector((state) => state.user.isLogged);
-
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     handleSignIn();

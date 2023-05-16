@@ -63,7 +63,7 @@ function AppHeader() {
             && (
             <li>
               <NavLink
-                to="/users/12"
+                to="/profile"
                 className={({ isActive }) => (isActive ? 'menu__link menu-active' : 'menu__link')}
                 onClick={() => setMenuShown(false)}
               >

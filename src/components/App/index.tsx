@@ -19,7 +19,7 @@ function App() {
           element={<LoginPage />}
         />
         <Route path="/sign-in" element={<h2>Sign-in</h2>} />
-        <Route path="/users/:id" element={<h2>Profile</h2>} />
+        <Route path="/profile" element={<h2>Profile</h2>} />
         <Route path="*" element={<h2>404</h2>} />
       </Routes>
 
