@@ -5,6 +5,7 @@ import { UserResponse } from '../../@types/user';
 import { getUserDataFromLocalStorage, removeUserDataFromLocalStorage } from '../../utils/user';
 
 interface UserState {
+  id: number | null
   username: string;
   token: string;
   isLogged: boolean;
@@ -24,6 +25,7 @@ interface UserState {
 const userData = getUserDataFromLocalStorage();
 
 export const initialState: UserState = {
+  id: null,
   username: '',
   token: '',
   // iLogged false by default, but if userdata in localStorage, set to true by default
@@ -93,6 +95,16 @@ export const register = createAppAsyncThunk(
 
 export const logout = createAction('user/LOGOUT');
 
+export const deleteUser = createAppAsyncThunk(
+  'user/DELETE_USER',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const { id } = state.user;
+    const { data } = await axiosInstance.delete(`/users/${id}`);
+    return data;
+  },
+);
+
 const userReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(changeLoginCredentialsField, (state, action) => {
@@ -110,20 +122,31 @@ const userReducer = createReducer(initialState, (builder) => {
     .addCase(login.fulfilled, (state, action) => {
       state.username = action.payload.username;
       state.token = action.payload.token;
+      state.id = action.payload.id;
       state.isLoading = false;
       state.isLogged = true;
     })
     .addCase(login.rejected, (state) => {
       state.isLoading = false;
-      state.errorMessage = 'Login or password is incorrect';
+      state.errorMessage = 'Invalid login or password';
     })
     .addCase(logout, (state) => {
       state.isLogged = false;
+      state.id = null;
       state.token = '';
       state.username = '';
-
       // When disconnected, remove user data from localStorage
       removeUserDataFromLocalStorage();
+    })
+    .addCase(deleteUser.fulfilled, (state) => {
+      state.isLogged = false;
+      state.id = null;
+      state.token = '';
+      state.username = '';
+      removeUserDataFromLocalStorage();
+    })
+    .addCase(deleteUser.rejected, (state) => {
+      state.errorMessage = 'Failed to delete user.';
     });
 });
 
