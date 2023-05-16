@@ -2,7 +2,7 @@ import { createAction, createReducer } from '@reduxjs/toolkit';
 import { createAppAsyncThunk } from '../../utils/redux';
 import { axiosInstance } from '../../utils/axios';
 import { UserResponse } from '../../@types/user';
-import { getUserDataFromLocalStorage } from '../../utils/user';
+import { getUserDataFromLocalStorage, removeUserDataFromLocalStorage } from '../../utils/user';
 
 interface UserState {
   username: string;
@@ -26,7 +26,8 @@ const userData = getUserDataFromLocalStorage();
 export const initialState: UserState = {
   username: '',
   token: '',
-  isLogged: false,
+  // iLogged false by default, but if userdata in localStorage, set to true by default
+  isLogged: Boolean(userData),
   isLoading: false,
   errorMessage: '',
   loginCredentials: {
@@ -90,6 +91,8 @@ export const register = createAppAsyncThunk(
   },
 );
 
+export const logout = createAction('user/LOGOUT');
+
 const userReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(changeLoginCredentialsField, (state, action) => {
@@ -113,6 +116,14 @@ const userReducer = createReducer(initialState, (builder) => {
     .addCase(login.rejected, (state) => {
       state.isLoading = false;
       state.errorMessage = 'Login or password is incorrect';
+    })
+    .addCase(logout, (state) => {
+      state.isLogged = false;
+      state.token = '';
+      state.username = '';
+
+      // When disconnected, remove user data from localStorage
+      removeUserDataFromLocalStorage();
     });
 });
 
