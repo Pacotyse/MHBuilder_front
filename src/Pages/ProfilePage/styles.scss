@@ -1,2 +1,104 @@
 @use '../../styles/vars';
 
+.profile {
+  padding: vars.$gap-m;
+
+  &-title {
+    font-size: vars.$font-l;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  &-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: vars.$gap-l;
+    align-items: center;
+
+    &__identity {
+      display: flex;
+      align-items: center;
+      gap: vars.$gap-l;
+    }
+
+    &__avatar {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 25%;
+      background-color: #fff;
+    }
+
+    &__actions {
+      display: flex;
+      justify-content: center;
+      gap: vars.$gap-m;
+      position: relative;
+      width: 100%;
+      margin: auto;
+    }
+
+    &__logout, &__settings {
+      background-color: vars.$white;
+      border: none;
+      border-radius: vars.$radius-s;
+      padding: vars.$gap-s;
+    }
+
+    &__settings-actions {
+      position: absolute;
+      bottom: -8rem;
+      display: flex;
+      flex-direction: column;
+      gap: vars.$gap-m;
+      background-color: #00000080;
+      border: vars.$white solid 2px;
+      border-radius: vars.$radius-m;
+      padding: vars.$gap-s;
+      width: 200px;
+      margin: auto;
+
+
+      & button {
+        width: 100%;
+        padding: vars.$gap-s;
+        border-radius: 5px;
+      }
+      
+      &__edit {
+        color: vars.$primary;
+        border-radius: none;
+        border: vars.$primary solid 2px;
+      }
+
+      &__delete {
+        color: vars.$error;
+        border: vars.$error solid 2px;
+        border-radius: none;
+      }
+    }
+
+  }
+
+  &__modal {
+    &-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: vars.$gap-m;
+      padding: vars.$gap-m;
+    }
+    
+    &-confirm {
+      display: flex;
+      gap: vars.$gap-l;
+    }
+    &__button-delete {
+      background-color: vars.$error;
+      color: vars.$white;
+      padding: vars.$gap-s;
+      border-radius: vars.$radius-s;
+    }
+  }
+  
+}
