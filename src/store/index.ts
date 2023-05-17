@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import builderReducer from './reducers/builder';
 import userReducer from './reducers/user';
+import loadoutReducer from './reducers/loadout';
 
 const store = configureStore({
   reducer: {
     builder: builderReducer,
     user: userReducer,
+    loadout: loadoutReducer,
   },
 });
 
