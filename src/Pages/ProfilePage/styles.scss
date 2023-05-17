@@ -2,6 +2,9 @@
 
 .profile {
   padding: vars.$gap-m;
+  display: flex;
+  flex-direction: column;
+  gap: vars.$gap-l;
 
   &-title {
     font-size: vars.$font-l;
@@ -26,7 +29,7 @@
       width: 4rem;
       height: 4rem;
       border-radius: 25%;
-      background-color: #fff;
+      border: #fff solid;
     }
 
     &__actions {
@@ -88,6 +91,10 @@
       gap: vars.$gap-m;
       padding: vars.$gap-m;
     }
+    &-text {
+      text-align: center;
+      line-height: 1.2rem;
+    }
     
     &-confirm {
       display: flex;
@@ -100,5 +107,17 @@
       border-radius: vars.$radius-s;
     }
   }
+
+  &-content__list {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$gap-m;
+  }
   
+  &-divider {
+    width: 90%;
+    height: 3px;
+    background-color: #fff;
+    margin: auto;
+  }
 }

@@ -1,15 +1,18 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { deleteUser, logout } from '../../store/reducers/user';
 import './styles.scss';
 import getIconByKey from '../../utils/icons';
 import Modal from '../../components/Modal';
+import { fetchLoadouts } from '../../store/reducers/loadout';
+import Loadout from '../../components/Loadout';
 
 function ProfilePage() {
   const dispatch = useAppDispatch();
   const isLogged = useAppSelector((state) => state.user.isLogged);
   const username = useAppSelector((state) => state.user.username);
+  const loadouts = useAppSelector((state) => state.loadout.loadouts);
 
   const [showSettings, setShowSettings] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -29,6 +32,11 @@ function ProfilePage() {
     setShowConfirmModal(false);
     setShowSettings(false);
   };
+
+  // Automatic fetch loadouts when reach /profile
+  useEffect(() => {
+    dispatch(fetchLoadouts());
+  }, [dispatch]);
 
   return (
     <main className="main">
@@ -71,12 +79,10 @@ function ProfilePage() {
 
                 </div>
               </div>
-
+              <div className="profile-divider" />
               <div className="profile-content">
                 <ul className="profile-content__list">
-                  <li className="profile-content__loadout">a</li>
-                  <li className="profile-content__loadout">a</li>
-                  <li className="profile-content__loadout">a</li>
+                  {loadouts.map((loadout) => <Loadout key={loadout.id} loadout={loadout} />)}
                 </ul>
               </div>
             </div>

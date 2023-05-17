@@ -25,6 +25,7 @@
       border-bottom: solid 1px vars.$dark-grey;
       width: 100%;
       display: none;
+      z-index: 2;
 
       & ul {
         list-style: none;
