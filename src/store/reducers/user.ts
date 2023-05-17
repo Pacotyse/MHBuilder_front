@@ -18,6 +18,7 @@ interface UserState {
   registerCredentials: {
     email: string
     password: string
+    passwordConfirm: string
     username: string
   },
 }
@@ -39,6 +40,7 @@ export const initialState: UserState = {
   registerCredentials: {
     email: '',
     password: '',
+    passwordConfirm: '',
     username: '',
   },
   // If user data in the localStorage already exist, set it in the initial state
@@ -115,11 +117,15 @@ const userReducer = createReducer(initialState, (builder) => {
       const { field, value } = action.payload;
       state.registerCredentials[field] = value;
     })
+    .addCase(register.fulfilled, (state) => {
+      state.registerCredentials = initialState.registerCredentials;
+    })
     .addCase(login.pending, (state) => {
       state.isLoading = true;
       state.errorMessage = '';
     })
     .addCase(login.fulfilled, (state, action) => {
+      state.loginCredentials = initialState.loginCredentials;
       state.username = action.payload.username;
       state.token = action.payload.token;
       state.id = action.payload.id;

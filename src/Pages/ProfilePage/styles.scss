@@ -4,6 +4,7 @@
   padding: vars.$gap-m;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: vars.$gap-l;
 
   &-title {
@@ -46,6 +47,9 @@
       border: none;
       border-radius: vars.$radius-s;
       padding: vars.$gap-s;
+      display: flex;
+      align-items: center;
+      gap: vars.$gap-s;
     }
 
     &__settings-actions {
@@ -54,7 +58,7 @@
       display: flex;
       flex-direction: column;
       gap: vars.$gap-m;
-      background-color: #00000080;
+      background-color: #000000b0;
       border: vars.$white solid 2px;
       border-radius: vars.$radius-m;
       padding: vars.$gap-s;
@@ -69,9 +73,8 @@
       }
       
       &__edit {
-        color: vars.$primary;
         border-radius: none;
-        border: vars.$primary solid 2px;
+        border: solid 2px;
       }
 
       &__delete {
@@ -131,7 +134,29 @@
   &-divider {
     width: 90%;
     height: 3px;
-    background-color: #fff;
+    background-color: vars.$white;
     margin: auto;
+    max-width: 500px;
+  }
+}
+
+@media (min-width : 769px) {
+
+  .profile {
+    justify-content: space-between;
+    &-header {
+      flex-direction: row;
+      max-width: 500px;
+      margin: auto;
+      &__identity {
+        width: 300rem;
+      }
+      &__actions {
+        flex-direction: column;
+      }
+      &__avatar {
+
+      }
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { BiLoaderCircle } from 'react-icons/bi';
+import { FiSettings, FiLogOut } from 'react-icons/fi';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { deleteUser, logout } from '../../store/reducers/user';
 import './styles.scss';
@@ -46,7 +47,6 @@ function ProfilePage() {
       {isLogged
           && (
             <div className="profile">
-
               <h2 className="profile-title">Profile Page</h2>
               <div className="profile-header">
                 <div className="profile-header__identity">
@@ -54,8 +54,17 @@ function ProfilePage() {
                   <h3 className="profile-pseudo">{username}</h3>
                 </div>
                 <div className="profile-header__actions">
-                  <button type="button" className="profile-header__logout" onClick={handleLogout}>Logout</button>
-                  <button type="button" className="profile-header__settings" onClick={() => setShowSettings(!showSettings)}>Settings</button>
+                  <button type="button" className="profile-header__logout" onClick={handleLogout}>
+                    Logout
+                    {' '}
+                    <FiLogOut />
+                  </button>
+                  <button type="button" className="profile-header__settings" onClick={() => setShowSettings(!showSettings)}>
+                    Settings
+                    {' '}
+                    <FiSettings />
+                    {' '}
+                  </button>
                   {showSettings
                     && (
                       <div className="profile-header__settings-actions">
