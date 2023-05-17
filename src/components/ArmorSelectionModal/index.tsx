@@ -32,6 +32,7 @@ function ArmorSelectionModal(
             armorList && armorList.map((armor) => (
               <ArmorCard
                 key={armor.id}
+                isSelected={false}
                 armor={armor}
                 showModal={setArmorSelectionModalShown}
               />

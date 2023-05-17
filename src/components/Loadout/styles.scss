@@ -3,6 +3,7 @@
 .loadout{ 
   &-container {
     width: 100%;
+    max-width: 450px;
     display: flex;
     justify-content: space-between;
     padding: vars.$gap-s;

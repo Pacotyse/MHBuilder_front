@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import { BiLoaderCircle } from 'react-icons/bi';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { deleteUser, logout } from '../../store/reducers/user';
 import './styles.scss';
@@ -13,6 +14,7 @@ function ProfilePage() {
   const isLogged = useAppSelector((state) => state.user.isLogged);
   const username = useAppSelector((state) => state.user.username);
   const loadouts = useAppSelector((state) => state.loadout.loadouts);
+  const isLoading = useAppSelector((state) => state.loadout.isLoading);
 
   const [showSettings, setShowSettings] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -81,9 +83,17 @@ function ProfilePage() {
               </div>
               <div className="profile-divider" />
               <div className="profile-content">
+                <h3>My loadouts</h3>
+                {isLoading && <BiLoaderCircle className="profile-content__loader" />}
+                {!isLoading
+
+              && (
                 <ul className="profile-content__list">
-                  {loadouts.map((loadout) => <Loadout key={loadout.id} loadout={loadout} />)}
+                  {loadouts && loadouts.map((loadout) => (
+                    <Loadout key={loadout.id} loadout={loadout} />
+                  ))}
                 </ul>
+              )}
               </div>
             </div>
           )}
