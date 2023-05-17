@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import LoginForm from '../../components/LoginForm';
-import SignInForm from '../../components/SignInForm';
+import RegisterForm from '../../components/RegisterForm';
 import './styles.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
@@ -13,6 +13,8 @@ function LoginPage() {
   const loginPassword = useAppSelector((state) => state.user.loginCredentials.password);
   const registerEmail = useAppSelector((state) => state.user.registerCredentials.email);
   const registerPassword = useAppSelector((state) => state.user.registerCredentials.password);
+  // eslint-disable-next-line max-len
+  const registerPasswordConfirm = useAppSelector((state) => state.user.registerCredentials.passwordConfirm);
   const registerUsername = useAppSelector((state) => state.user.registerCredentials.username);
   const isLogged = useAppSelector((state) => state.user.isLogged);
   const handleChangeLoginField = (value: string, name: 'email' | 'password') => {
@@ -21,7 +23,7 @@ function LoginPage() {
       field: name,
     }));
   };
-  const handleChangeRegisterField = (value: string, name: 'email' | 'password' | 'username') => {
+  const handleChangeRegisterField = (value: string, name: 'email' | 'password' | 'username' | 'passwordConfirm') => {
     dispatch(changeRegisterCredentialsField({
       value,
       field: name,
@@ -32,7 +34,11 @@ function LoginPage() {
     dispatch(login());
   };
   const handleSubmitRegister = () => {
-    dispatch(register());
+    if (registerPassword === registerPasswordConfirm) {
+      dispatch(register());
+    } else {
+      throw new Error('Mdp non compatibles');
+    }
   };
 
   const handleLogout = () => {
@@ -52,10 +58,11 @@ function LoginPage() {
           isLogged={isLogged}
         />
         <div className="signInForm-container">
-          <SignInForm
+          <RegisterForm
             email={registerEmail}
             password={registerPassword}
             username={registerUsername}
+            passwordConfirm={registerPasswordConfirm}
             changeField={handleChangeRegisterField}
             handleSignIn={handleSubmitRegister}
             isLogged={isLogged}

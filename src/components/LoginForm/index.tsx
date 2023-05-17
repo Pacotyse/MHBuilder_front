@@ -2,6 +2,7 @@ import { FormEvent } from 'react';
 import Field from './Field';
 
 import './styles.scss';
+import { useAppSelector } from '../../hooks/redux';
 
 interface LoginFormProps {
   email: string;
@@ -21,6 +22,7 @@ function LoginForm({
   isLogged,
   loggedMessage,
 }: LoginFormProps) {
+  const isLoading = useAppSelector((state) => state.user.isLoading);
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     handleLogin();
@@ -52,11 +54,13 @@ function LoginForm({
         <form autoComplete="off" className="login-form-element" onSubmit={handleSubmit}>
           <h3 className="login-form-title">LOGIN</h3>
           <Field
+            disabled={isLoading}
             placeholder="Adresse Email"
             onChange={handleChangeField('email')}
             value={email}
           />
           <Field
+            disabled={isLoading}
             type="password"
             placeholder="Mot de passe"
             onChange={handleChangeField('password')}

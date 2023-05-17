@@ -4,6 +4,7 @@ import { ChangeEvent, useId } from 'react';
 import './styles.scss';
 
 interface FieldProps {
+  disabled: boolean
   value: string;
   type?: string;
   placeholder: string;
@@ -11,6 +12,7 @@ interface FieldProps {
 }
 // == Composant
 function Field({
+  disabled,
   value,
   type,
   placeholder,
@@ -33,6 +35,7 @@ function Field({
         type={type}
         className="field-input"
         placeholder={placeholder}
+        disabled={disabled}
       />
 
       <label
