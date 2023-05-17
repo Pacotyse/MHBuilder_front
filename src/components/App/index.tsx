@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import './styles.scss';
 import AppHeader from '../AppHeader';
 import BuilderPage from '../../Pages/BuilderPage';
+import HomePage from '../../Pages/HomePage';
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       <AppHeader />
       {/* React router prevent the app from refreshing when navigating */}
       <Routes>
-        <Route path="/" element={<h2>Accueil</h2>} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/builder" element={<BuilderPage />} />
         <Route path="/loadouts" element={<h2>Loadouts</h2>} />
         <Route path="/login" element={<h2>Login</h2>} />
