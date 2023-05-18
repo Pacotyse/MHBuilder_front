@@ -12,7 +12,7 @@ import getIconByKey, { IIcons } from '../../../utils/icons';
 import { IWeapon } from '../../../@types/weapon';
 import { useAppDispatch } from '../../../hooks/redux';
 import { setBuilderWeapon } from '../../../store/reducers/builder';
-import { setSharpness } from '../../../utils/weapon';
+import { setSharpnessWidth } from '../../../utils/weapon';
 
 interface WeaponCardProps {
   weapon: IWeapon
@@ -74,27 +74,25 @@ function WeaponCard({ weapon, showModal, isSelected }: WeaponCardProps) {
           {weapon.sharpness.red
             && (
               // Then set the width of the sharpness
-              <div className="sharpness-red" style={{ width: setSharpness(weapon.sharpness.red) }} />
+              <div className="sharpness-red" style={{ width: setSharpnessWidth(weapon.sharpness.red) }} />
             )}
           {weapon.sharpness.orange
-          && (
-          <div className="sharpness-orange" style={{ width: setSharpness(weapon.sharpness.orange) }} />
+          && (<div className="sharpness-orange" style={{ width: setSharpnessWidth(weapon.sharpness.orange) }} />
           )}
           {weapon.sharpness.yellow
-          && (
-          <div className="sharpness-yellow" style={{ width: setSharpness(weapon.sharpness.yellow) }} />
+          && (<div className="sharpness-yellow" style={{ width: setSharpnessWidth(weapon.sharpness.yellow) }} />
           )}
           {weapon.sharpness.green
-          && (<div className="sharpness-green" style={{ width: setSharpness(weapon.sharpness.green) }} />
+          && (<div className="sharpness-green" style={{ width: setSharpnessWidth(weapon.sharpness.green) }} />
           )}
           {weapon.sharpness.blue
-          && (<div className="sharpness-blue" style={{ width: setSharpness(weapon.sharpness.blue) }} />
+          && (<div className="sharpness-blue" style={{ width: setSharpnessWidth(weapon.sharpness.blue) }} />
           )}
           {weapon.sharpness.white
-          && (<div className="sharpness-white" style={{ width: setSharpness(weapon.sharpness.white) }} />
+          && (<div className="sharpness-white" style={{ width: setSharpnessWidth(weapon.sharpness.white) }} />
           )}
           {weapon.sharpness.purple
-          && (<div className="sharpness-purple" style={{ width: setSharpness(weapon.sharpness.purple) }} />
+          && (<div className="sharpness-purple" style={{ width: setSharpnessWidth(weapon.sharpness.purple) }} />
           )}
         </div>
         {!isSelected

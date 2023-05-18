@@ -3,8 +3,9 @@
 .app {
   min-height: 100vh;
   width: 100vw;
-  max-width: 1920px;
+  max-width: 1250px;
   margin: auto;
+  color: vars.$white;
 
   & a {
     color: vars.$white;

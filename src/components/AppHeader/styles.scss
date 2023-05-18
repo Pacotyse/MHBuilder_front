@@ -137,13 +137,14 @@
     &__main .menu{
       position: unset;
       display: block;
+
       width: 70%;
       background-color: transparent;
       border-bottom: none;
 
       & ul {
         flex-direction: row;
-        justify-content: center;
+        justify-content: flex-end;
         padding: 0;
       }
 

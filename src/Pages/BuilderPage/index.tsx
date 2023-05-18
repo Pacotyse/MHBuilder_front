@@ -25,15 +25,19 @@ function BuilderPage() {
     if (itemType === 'weapon') {
       // clear list of weapons
       dispatch(clearWeaponList());
+      setArmorSelectionModalShown(false);
+      setWeaponSelectionModalShown(false);
       setWeaponTypeModalShown(!weaponTypeModalShown);
     } else {
       dispatch(clearArmorList());
+      setWeaponTypeModalShown(false);
+      setWeaponSelectionModalShown(false);
       setArmorSelectionModalShown(!armorSelectionModalShown);
       dispatch(fetchArmorsByType(itemType));
     }
   };
   return (
-    <main className="main">
+    <main className="builder-main">
 
       <section className="section-items">
         <p className="section-items__description">Set your items</p>
@@ -45,20 +49,23 @@ function BuilderPage() {
         <AddItem itemType="legs" icon={getIconByKey('legs_1')} openModal={handleShowModal} />
       </section>
 
-      <WeaponTypeModal
-        weaponTypeModalShown={weaponTypeModalShown}
-        setWeaponTypeModalShown={setWeaponTypeModalShown}
-        showSelectionModal={() => setWeaponSelectionModalShown(!weaponSelectionModalShown)}
-      />
-      <WeaponSelectionModal
-        weaponSelectionModalShown={weaponSelectionModalShown}
-        setWeaponSelectionModalShown={setWeaponSelectionModalShown}
-        setWeaponTypeModalShown={setWeaponTypeModalShown}
-      />
-      <ArmorSelectionModal
-        armorSelectionModalShown={armorSelectionModalShown}
-        setArmorSelectionModalShown={setArmorSelectionModalShown}
-      />
+      <section className="section-modal">
+        <p className="section-modal__description">Choose an item</p>
+        <WeaponTypeModal
+          weaponTypeModalShown={weaponTypeModalShown}
+          setWeaponTypeModalShown={setWeaponTypeModalShown}
+          showSelectionModal={() => setWeaponSelectionModalShown(!weaponSelectionModalShown)}
+        />
+        <WeaponSelectionModal
+          weaponSelectionModalShown={weaponSelectionModalShown}
+          setWeaponSelectionModalShown={setWeaponSelectionModalShown}
+          setWeaponTypeModalShown={setWeaponTypeModalShown}
+        />
+        <ArmorSelectionModal
+          armorSelectionModalShown={armorSelectionModalShown}
+          setArmorSelectionModalShown={setArmorSelectionModalShown}
+        />
+      </section>
       <section className="section-stats">
         <AttackStatsContainer />
         <SkillStats />
