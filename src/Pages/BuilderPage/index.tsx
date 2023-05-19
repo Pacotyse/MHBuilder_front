@@ -37,7 +37,7 @@ function BuilderPage() {
     }
   };
   return (
-    <main className="builder-main">
+    <main className="builder-main main">
 
       <section className="section-items">
         <p className="section-items__description">Set your items</p>

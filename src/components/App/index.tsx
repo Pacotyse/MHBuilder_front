@@ -5,6 +5,7 @@ import BuilderPage from '../../Pages/BuilderPage';
 import HomePage from '../../Pages/HomePage';
 import LoginPage from '../../Pages/LoginPage';
 import ProfilePage from '../../Pages/ProfilePage';
+import AppFooter from '../AppFooter';
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="*" element={<h2>404</h2>} />
       </Routes>
-
+      <AppFooter />
     </div>
   );
 }
