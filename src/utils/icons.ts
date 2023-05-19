@@ -5,16 +5,16 @@ import waist_1 from '../assets/icons/waist-1.png';
 import arms_1 from '../assets/icons/arms-1.png';
 import legs_1 from '../assets/icons/legs-1.png';
 import bow_1 from '../assets/icons/bow-1.png';
-import bow_gun_1 from '../assets/icons/bow-gun-1.png';
+import light_bow_gun_1 from '../assets/icons/light_bow-gun-1.png';
 import charge_blade_1 from '../assets/icons/charge-blade-1.png';
 import dual_blades_1 from '../assets/icons/dual-blades-1.png';
 import great_sword_1 from '../assets/icons/great-sword-1.png';
 import hammer_1 from '../assets/icons/hammer-1.png';
 import heavy_bow_gun_1 from '../assets/icons/heavy-bow-gun-1.png';
-import hunter_horn_1 from '../assets/icons/hunter-horn-1.png';
+import hunting_horn_1 from '../assets/icons/hunting-horn-1.png';
 import insect_glaive_1 from '../assets/icons/insect-glaive-1.png';
 import lance_1 from '../assets/icons/lance-1.png';
-import lance_gun_1 from '../assets/icons/lance-gun-1.png';
+import gunlance_1 from '../assets/icons/gunlance-1.png';
 import long_sword_1 from '../assets/icons/long-sword-1.png';
 import switch_axe_1 from '../assets/icons/switch-axe-1.png';
 import sword_and_shield_1 from '../assets/icons/sword-and-shield-1.png';
@@ -35,16 +35,16 @@ export interface IIcons {
   arms_1: string
   legs_1: string
   bow_1: string
-  bow_gun_1: string
+  light_bow_gun_1: string
   charge_blade_1: string
   dual_blades_1: string
   great_sword_1: string
   hammer_1: string
   heavy_bow_gun_1: string
-  hunter_horn_1: string
+  hunting_horn_1: string
   insect_glaive_1: string
   lance_1: string
-  lance_gun_1: string
+  gunlance_1: string
   long_sword_1: string
   switch_axe_1: string
   sword_and_shield_1: string
@@ -66,16 +66,16 @@ const icons: IIcons = {
   arms_1,
   legs_1,
   bow_1,
-  bow_gun_1,
+  light_bow_gun_1,
   charge_blade_1,
   dual_blades_1,
   great_sword_1,
   hammer_1,
   heavy_bow_gun_1,
-  hunter_horn_1,
+  hunting_horn_1,
   insect_glaive_1,
   lance_1,
-  lance_gun_1,
+  gunlance_1,
   long_sword_1,
   switch_axe_1,
   sword_and_shield_1,

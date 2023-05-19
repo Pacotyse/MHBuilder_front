@@ -60,7 +60,7 @@ function WeaponCard({ weapon, showModal, isSelected }: WeaponCardProps) {
         <div className="item-stats__other">
           <div className="item-stats">
             <img src={getIconByKey('affinity')} alt="affinity icon" />
-            <div className="item-stats__value">{weapon.affinity}</div>
+            <div className="item-stats__value">{`${weapon.affinity}%`}</div>
           </div>
           <div className="item-stats">
             <img src={getIconByKey('defense')} alt="defense icon" />

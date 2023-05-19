@@ -37,7 +37,10 @@ function Loadout({ loadout }: LoadoutProps) {
         </div>
         <div className="loadout__stats">
           <img src={getIconByKey('affinity')} alt="affinity icon" className="loadout__stats-icon" />
-          <div className="loadout__value">{loadout.weapon.affinity}</div>
+          <div className="loadout__value">
+            {loadout.weapon.affinity}
+            %
+          </div>
         </div>
         <div className="loadout__stats">
           <img src={getIconByKey('element_thunder')} alt="thunder icon" className="loadout__stats-icon" />

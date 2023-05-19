@@ -6,13 +6,6 @@ function AttackStats() {
   return (
     <div className="stats-container">
       <h3 className="stats-title">Attack stats</h3>
-      <h4>
-        Name :
-        {' '}
-        <span className="stats-value">
-          {weapon?.name}
-        </span>
-      </h4>
       <div>
         Neutral attack :
         {' '}
@@ -70,6 +63,7 @@ function AttackStats() {
         {' '}
         <span className="stats-value">
           {weapon?.affinity}
+          %
         </span>
       </div>
       <div>
