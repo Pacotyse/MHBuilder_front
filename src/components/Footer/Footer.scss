@@ -1,0 +1,34 @@
+.footer-container{
+
+    background-color:violet;
+    padding: 4em 0 2em 0;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self:center;
+}
+
+.footer-socials {
+
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center ;
+    text-align: center;
+    margin-bottom: 24px;
+    padding: 24px;
+    color: white;
+
+}
+
+.footer-socials > p {
+
+    font-size: medium;
+}
+
+.footer-socials-head {
+
+    margin-bottom: 24px;
+    font-size: 24px;
+    
+}

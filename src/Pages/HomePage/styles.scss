@@ -38,8 +38,14 @@ object-fit: contain;
         margin-bottom: 0.4em;
     }
 
-        &-btn{
-        color: #ed9a34;
+        &-btn-button{
+            
+            --button_radius: 0.75em;
+            --button_color: #e8e8e8;
+            --button_outline_color: #b11f1f;
+            font-size: 17px;
+            font-weight: bold;
+             border: none;
  }
  
 }

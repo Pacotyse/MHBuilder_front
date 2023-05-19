@@ -1,0 +1,35 @@
+
+
+.goToBuilder {
+
+    &-container{
+    background-color: rgba(228, 125, 65, 0.774);
+    height: 40vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    }
+
+
+    &-h1{
+
+        color:white;
+        font-size:50px;
+        margin-top: -50px;
+
+    }
+
+    &-p {
+
+        margin-top: 8px;
+        color: white;
+        font-size: 22px;
+    }
+
+    &-btn {
+
+        margin-top: 1em;
+    }
+}
