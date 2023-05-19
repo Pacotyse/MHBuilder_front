@@ -6,6 +6,7 @@ import FirstSection from '../../components/Main/FirstSection';
 import SecondSection from '../../components/Main/SecondSection';
 import DiscordSection from '../../components/Main/DiscordSection';
 import LastestUpdate from '../../components/Main/LastestUpdate';
+import Footer from '../../components/Footer/Footer';
 
 function HomePage() {
   return (
@@ -15,6 +16,7 @@ function HomePage() {
       <SecondSection />
       <DiscordSection />
       <LastestUpdate />
+      <Footer />
 
     </div>
 

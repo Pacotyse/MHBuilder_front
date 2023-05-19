@@ -1,28 +1,21 @@
 import React from 'react';
+import './Footer.scss';
 
 function Footer() {
   return (
 
-    <>
-      <div className="footer-container">
-        <section className="footer-socials">
-          <p className="footer-socials-head">
-            Join us on social media
-          </p>
-          <Link to="/">Twitter</Link>
-          <div className="input-areas" />
-        </section>
+    <div className="footer-container">
+      <div className="footer-socials">
+        <p className="footer-socials-p">
+          Join us on social media
+        </p>
       </div>
-      <section>
-        <div className="footer-links">
-          <div className="footer-link-items">
-            <h2>About Us</h2>
-            <Link to="/">Terms of Service</Link>
-          </div>
-        </div>
-      </section>
+      <div className="input-areas" />
 
-    </>
+      <div className="footer-links">
+        <h2 className="footer-links-h2">About Us</h2>
+      </div>
+    </div>
   );
 }
 
