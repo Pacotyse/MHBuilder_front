@@ -14,7 +14,7 @@ axiosInstance.interceptors.request.use((config) => {
 
   // If the user is connected, add an authorization to the request header
   // eslint-disable-next-line no-param-reassign
-  config.headers.Authorization = userData ? `${userData.token}` : null;
+  config.headers.Authorization = userData ? `Bearer ${userData.token}` : null;
 
   return config;
 });
