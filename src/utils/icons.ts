@@ -190,14 +190,18 @@ import sword_and_shield_8 from '../assets/icons/weapons/sword_and_shield_8.png';
 import sword_and_shield_9 from '../assets/icons/weapons/sword_and_shield_9.png';
 import sword_and_shield_10 from '../assets/icons/weapons/sword_and_shield_10.png';
 import decoration_1 from '../assets/icons/decoration.png';
-import attack from '../assets/icons/sub-attack.png';
-import defense from '../assets/icons/sub-defense.png';
-import affinity from '../assets/icons/sub-affinity.png';
+import attack from '../assets/icons/attack.png';
+import defense from '../assets/icons/defense.png';
+import affinity from '../assets/icons/affinity.png';
 import element_fire from '../assets/icons/elements/element_fire.png';
 import element_ice from '../assets/icons/elements/element_ice.png';
 import element_water from '../assets/icons/elements/element_water.png';
 import element_thunder from '../assets/icons/elements/element_thunder.png';
 import element_dragon from '../assets/icons/elements/element_dragon.png';
+import element_sleep from '../assets/icons/elements/element_sleep.png';
+import element_paralyzis from '../assets/icons/elements/element_paralyzis.png';
+import element_poison from '../assets/icons/elements/element_poison.png';
+import element_blast from '../assets/icons/elements/element_blast.png';
 import { IIcons } from '../@types/icons';
 
 // Listing all the images in an object
@@ -401,6 +405,10 @@ const icons: IIcons = {
   element_water,
   element_thunder,
   element_dragon,
+  element_sleep,
+  element_paralyzis,
+  element_poison,
+  element_blast,
 };
 
 // This fonction will return the image based on the key passed

@@ -43,3 +43,31 @@
     // width: 10px;
   }
 }
+
+.item-stats {
+  &__weapon {
+    display: flex;
+    gap: vars.$gap-l;
+
+    & img {
+      width: 1.1rem;
+    }
+  }
+
+  &__neutral {
+    display: flex;
+    gap: vars.$gap-xs;
+    align-items: center;
+  }
+  &__elements{
+    display: flex;
+    gap: vars.$gap-m;
+    align-items: center;
+
+    &-one {
+      display: flex;
+      gap: vars.$gap-xs;
+      align-items: flex-end;
+    }
+  }
+}

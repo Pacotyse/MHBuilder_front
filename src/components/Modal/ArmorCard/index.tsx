@@ -23,7 +23,7 @@ function ArmorCard({ armor, showModal, isSelected }: ArmorCardProps) {
   const [showExtra, setShowExtra] = useState(false);
   const armorType = armor.type;
   // set the right format to get the icon
-  const armorTypeIcon = `${armorType}_1`;
+  const armorTypeIcon = `${armorType}_${armor.rarity}`;
 
   function handleSetArmor(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
     event.stopPropagation();

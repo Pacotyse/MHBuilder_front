@@ -8,6 +8,10 @@ export interface IIcons {
   element_water: string
   element_thunder: string
   element_dragon: string
+  element_sleep: string
+  element_poison: string
+  element_paralyzis: string
+  element_blast: string
   head_1: string
   head_2: string
   head_3: string

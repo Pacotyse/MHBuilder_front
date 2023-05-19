@@ -8,7 +8,7 @@ export interface IWeapon {
   defense_bonus: number
   secret_effect: string
   sharpness: Sharpness
-  element: Element
+  element: Element[]
 }
 
 export interface Sharpness {
@@ -22,9 +22,6 @@ export interface Sharpness {
 }
 
 export interface Element {
-  fire: number | null
-  water: number | null
-  thunder: number | null
-  ice: number | null
-  dragon: number | null
+  name: string
+  value: number
 }
