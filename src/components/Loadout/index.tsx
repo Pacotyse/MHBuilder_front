@@ -1,5 +1,6 @@
+import { IIcons } from '../../@types/icons';
 import { ILoadout } from '../../@types/loadout';
-import getIconByKey, { IIcons } from '../../utils/icons';
+import getIconByKey from '../../utils/icons';
 import './styles.scss';
 
 interface LoadoutProps {

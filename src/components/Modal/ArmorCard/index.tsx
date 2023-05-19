@@ -7,10 +7,11 @@ import { useState } from 'react';
 import cn from 'classnames';
 import { MdFileDownloadDone } from 'react-icons/md';
 
-import getIconByKey, { IIcons } from '../../../utils/icons';
+import getIconByKey from '../../../utils/icons';
 import { IArmor } from '../../../@types/armor';
 import { useAppDispatch } from '../../../hooks/redux';
 import { setBuilderArmor } from '../../../store/reducers/builder';
+import { IIcons } from '../../../@types/icons';
 
 interface ArmorCardProps {
   armor: IArmor

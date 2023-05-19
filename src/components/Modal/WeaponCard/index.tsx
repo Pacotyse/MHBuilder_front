@@ -8,11 +8,12 @@ import './styles.scss';
 import { useState } from 'react';
 import cn from 'classnames';
 import { MdFileDownloadDone } from 'react-icons/md';
-import getIconByKey, { IIcons } from '../../../utils/icons';
+import getIconByKey from '../../../utils/icons';
 import { IWeapon } from '../../../@types/weapon';
 import { useAppDispatch } from '../../../hooks/redux';
 import { setBuilderWeapon } from '../../../store/reducers/builder';
 import { setSharpnessWidth } from '../../../utils/weapon';
+import { IIcons } from '../../../@types/icons';
 
 interface WeaponCardProps {
   weapon: IWeapon

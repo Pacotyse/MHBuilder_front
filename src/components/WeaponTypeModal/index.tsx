@@ -9,6 +9,7 @@ interface WeaponTypeModalProps {
   weaponTypeModalShown: boolean
   setWeaponTypeModalShown: (shown: boolean) => void
 }
+
 function WeaponTypeModal(
   {
     showSelectionModal, weaponTypeModalShown, setWeaponTypeModalShown,

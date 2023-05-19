@@ -1,5 +1,6 @@
+import { IIcons } from '../../@types/icons';
 import { useAppSelector } from '../../hooks/redux';
-import getIconByKey, { IIcons } from '../../utils/icons';
+import getIconByKey from '../../utils/icons';
 import './styles.scss';
 
 function ArmorStats() {

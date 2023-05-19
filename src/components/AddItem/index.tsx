@@ -1,7 +1,8 @@
 import { IArmor } from '../../@types/armor';
+import { IIcons } from '../../@types/icons';
 import { IWeapon } from '../../@types/weapon';
 import { useAppSelector } from '../../hooks/redux';
-import getIconByKey, { IIcons } from '../../utils/icons';
+import getIconByKey from '../../utils/icons';
 import ArmorCard from '../Modal/ArmorCard';
 import WeaponCard from '../Modal/WeaponCard';
 import './styles.scss';
