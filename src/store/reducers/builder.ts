@@ -4,6 +4,7 @@ import {
   IArmor,
   IArms, IChest, IHead, ILegs, IWaist,
 } from '../../@types/armor';
+import { IBuildStats } from '../../@types/stats';
 import { createAppAsyncThunk } from '../../utils/redux';
 import { axiosInstance } from '../../utils/axios';
 
@@ -19,6 +20,7 @@ export interface BuilderState {
   legs: ILegs | null
   isLoading: boolean
   errorMessage: string
+  buildStats: IBuildStats | null
 }
 
 export const setWeaponType = createAction<string>('builder/SET_WEAPON_TYPE');
@@ -31,8 +33,8 @@ export const fetchWeaponsByType = createAppAsyncThunk(
   'builder/FETCH_WEAPONS_BY_TYPE',
   async (weaponType: string) => {
     // Here, set to kebab-case format to fit api
-    const kebabCaseWeaponType = weaponType.split('_').join('-');
-    const { data: weapons } = await axiosInstance.get(`/weapons/type/${kebabCaseWeaponType}`);
+    // const kebabCaseWeaponType = weaponType.split('_').join('-');
+    const { data: weapons } = await axiosInstance.get(`/weapons/type/${weaponType}`);
     return weapons as IWeapon[];
   },
 );
@@ -42,6 +44,25 @@ export const fetchArmorsByType = createAppAsyncThunk(
   async (itemType: string) => {
     const { data: armors } = await axiosInstance.get(`/armors/type/${itemType}`);
     return armors as IArmor[];
+  },
+);
+
+export const getBuilderStats = createAppAsyncThunk(
+  'builder/GET_LOADOUT_STATS',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const {
+      weapon, head, chest, arms, waist, legs,
+    } = state.builder;
+    const { data: stats } = await axiosInstance.post('/loadouts/details', {
+      weapon,
+      head,
+      chest,
+      arms,
+      waist,
+      legs,
+    });
+    return stats as IBuildStats;
   },
 );
 
@@ -57,6 +78,7 @@ export const initialState: BuilderState = {
   legs: null,
   isLoading: false,
   errorMessage: '',
+  buildStats: null,
 };
 
 const builderReducer = createReducer(initialState, (builder) => {
@@ -101,6 +123,9 @@ const builderReducer = createReducer(initialState, (builder) => {
     .addCase(setBuilderArmor, (state, action) => {
       //! TS Error to fix later
       state[action.payload.type] = action.payload;
+    })
+    .addCase(getBuilderStats.fulfilled, (state, action) => {
+      state.buildStats = action.payload;
     });
 });
 
