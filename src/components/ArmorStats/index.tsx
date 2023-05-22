@@ -4,87 +4,29 @@ import getIconByKey from '../../utils/icons';
 import './styles.scss';
 
 function ArmorStats() {
-  const head = useAppSelector((state) => state.builder.head);
-  const arms = useAppSelector((state) => state.builder.arms);
-  const chest = useAppSelector((state) => state.builder.chest);
-  const legs = useAppSelector((state) => state.builder.legs);
-  const waist = useAppSelector((state) => state.builder.waist);
+  const stats = useAppSelector((state) => state.builder.buildStats?.stats);
+  const res = stats?.resistances;
 
-  // Set all defense values in an array
-  const defenseStats = [
-    head?.defense,
-    chest?.defense,
-    arms?.defense,
-    waist?.defense,
-    legs?.defense,
-  ];
-  const resFire = [
-    head?.resistances.fire,
-    chest?.resistances.fire,
-    arms?.resistances.fire,
-    waist?.resistances.fire,
-    legs?.resistances.fire,
-  ];
-  const resIce = [
-    head?.resistances.ice,
-    chest?.resistances.ice,
-    arms?.resistances.ice,
-    waist?.resistances.ice,
-    legs?.resistances.ice,
-  ];
-  const resThunder = [
-    head?.resistances.thunder,
-    chest?.resistances.thunder,
-    arms?.resistances.thunder,
-    waist?.resistances.thunder,
-    legs?.resistances.thunder,
-  ];
-  const resWater = [
-    head?.resistances.water,
-    chest?.resistances.water,
-    arms?.resistances.water,
-    waist?.resistances.water,
-    legs?.resistances.water,
-  ];
-  const resDragon = [
-    head?.resistances.dragon,
-    chest?.resistances.dragon,
-    arms?.resistances.dragon,
-    waist?.resistances.dragon,
-    legs?.resistances.dragon,
-  ];
-
-  function total(arr: (number | undefined)[]) {
-    let sum = 0;
-    arr.map((value) => {
-      if (value) {
-        sum += value;
-        return sum;
-      }
-      return sum;
-    });
-    return sum;
-  }
   const elements = [
     {
       name: 'fire',
-      array: resFire,
-    },
-    {
-      name: 'ice',
-      array: resIce,
-    },
-    {
-      name: 'thunder',
-      array: resThunder,
+      value: res?.fire,
     },
     {
       name: 'water',
-      array: resWater,
+      value: res?.water,
+    },
+    {
+      name: 'thunder',
+      value: res?.thunder,
+    },
+    {
+      name: 'ice',
+      value: res?.ice,
     },
     {
       name: 'dragon',
-      array: resDragon,
+      value: res?.dragon,
     },
   ];
   return (
@@ -94,7 +36,7 @@ function ArmorStats() {
         Defense :
         {' '}
         <span className="stats-value">
-          {total(defenseStats)}
+          {stats?.defense}
         </span>
       </h4>
       {elements.map((element) => (
@@ -106,7 +48,7 @@ function ArmorStats() {
           :
           {' '}
           <span className="stats-value">
-            {total(element.array)}
+            {element.value}
           </span>
         </div>
       ))}

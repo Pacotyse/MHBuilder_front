@@ -4,7 +4,7 @@ import {
   IArmor,
   IArms, IChest, IHead, ILegs, IWaist,
 } from '../../@types/armor';
-import { IBuildStats } from '../../@types/stats';
+import { IStats } from '../../@types/stats';
 import { createAppAsyncThunk } from '../../utils/redux';
 import { axiosInstance } from '../../utils/axios';
 
@@ -20,7 +20,7 @@ export interface BuilderState {
   legs: ILegs | null
   isLoading: boolean
   errorMessage: string
-  buildStats: IBuildStats | null
+  buildStats: IStats | null
 }
 
 export const setWeaponType = createAction<string>('builder/SET_WEAPON_TYPE');
@@ -32,8 +32,6 @@ export const setBuilderArmor = createAction<IArmor>('builder/SET_ARMOR');
 export const fetchWeaponsByType = createAppAsyncThunk(
   'builder/FETCH_WEAPONS_BY_TYPE',
   async (weaponType: string) => {
-    // Here, set to kebab-case format to fit api
-    // const kebabCaseWeaponType = weaponType.split('_').join('-');
     const { data: weapons } = await axiosInstance.get(`/weapons/type/${weaponType}`);
     return weapons as IWeapon[];
   },
@@ -62,7 +60,7 @@ export const getBuilderStats = createAppAsyncThunk(
       waist,
       legs,
     });
-    return stats as IBuildStats;
+    return stats as IStats;
   },
 );
 
