@@ -9,6 +9,7 @@ interface FieldProps {
   type?: string;
   placeholder: string;
   onChange: (value: string) => void;
+  children?: React.ReactNode;
 }
 // == Composant
 function Field({
@@ -17,6 +18,7 @@ function Field({
   type,
   placeholder,
   onChange,
+  children,
 }: FieldProps) {
   const inputId = useId();
 
@@ -44,6 +46,7 @@ function Field({
       >
         {placeholder}
       </label>
+      {children}
     </div>
   );
 }
@@ -51,6 +54,7 @@ function Field({
 // Valeurs par défaut pour les props
 Field.defaultProps = {
   type: 'text',
+  children: undefined,
 };
 
 // == Export

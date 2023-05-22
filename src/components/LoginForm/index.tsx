@@ -1,4 +1,6 @@
-import { FormEvent } from 'react';
+import { FormEvent, useState } from 'react';
+import { BiHide } from 'react-icons/bi';
+import { FiEye } from 'react-icons/fi';
 import Field from './Field';
 
 import './styles.scss';
@@ -23,6 +25,8 @@ function LoginForm({
   loggedMessage,
 }: LoginFormProps) {
   const isLoading = useAppSelector((state) => state.user.isLoading);
+  const [passwordShown, setPasswordShown] = useState(false);
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     handleLogin();
@@ -30,6 +34,10 @@ function LoginForm({
 
   const handleChangeField = (name: 'email' | 'password') => (value: string) => {
     changeField(value, name);
+  };
+
+  const handleTogglePasswordShown = () => {
+    setPasswordShown(!passwordShown);
   };
 
   return (
@@ -61,11 +69,24 @@ function LoginForm({
           />
           <Field
             disabled={isLoading}
-            type="password"
+            type={passwordShown ? 'password' : 'text'}
             placeholder="Mot de passe"
             onChange={handleChangeField('password')}
             value={password}
-          />
+          >
+            {passwordShown
+            && (
+            <button type="button" className="field__button-toggle" onClick={handleTogglePasswordShown}>
+              <BiHide />
+            </button>
+            )}
+            {!passwordShown
+            && (
+            <button type="button" className="field__button-toggle" onClick={handleTogglePasswordShown}>
+              <FiEye />
+            </button>
+            )}
+          </Field>
           <button
             type="submit"
             className="login-form-button"

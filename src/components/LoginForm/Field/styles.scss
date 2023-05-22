@@ -40,6 +40,18 @@
       padding: 1.4em .7em .4em;
     }
   }
+
+  &__button-toggle {
+    border: none;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: -0.5rem;
+    padding: .5rem;
+    top: 50%;
+    translate: -50% -50%;
+  }
 }
 
 
