@@ -1,6 +1,7 @@
 export interface IWeapon {
   id: number
   type: string
+  icon: string
   name: string
   rarity: number
   attack: number
@@ -8,7 +9,7 @@ export interface IWeapon {
   defense_bonus: number
   secret_effect: string
   sharpness: Sharpness
-  element: Element[]
+  elements: Element[]
 }
 
 export interface Sharpness {

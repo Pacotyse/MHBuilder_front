@@ -3,6 +3,7 @@ export type IArmorType = 'head' | 'arms' | 'legs' | 'chest' | 'waist';
 export interface IArmor {
   id: number
   type: IArmorType
+  icon: string
   name: string
   rarity: number
   defense: number
