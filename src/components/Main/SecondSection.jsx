@@ -7,7 +7,7 @@ function SecondSection() {
 
     <div className="secondSection-container">
       <div className="communityBuild-container">
-        <h1 className="communityBuild-h1">Community's Build</h1>
+        <h1 className="communityBuild-h1">Community&apos;s Build</h1>
         <p className="communityBuild-p">lorem</p>
         <button type="button" className="communityBuild-btn">
           Go community builds

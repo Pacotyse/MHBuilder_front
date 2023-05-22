@@ -1,5 +1,3 @@
-import { useState } from 'react';
-import BuilderPage from '../BuilderPage';
 import './styles.scss';
 import FirstSection from '../../components/Main/FirstSection';
 import SecondSection from '../../components/Main/SecondSection';

@@ -5,7 +5,7 @@ import './FirstSection.scss';
 function FirstSection() {
   return (
     <div className="goToBuilder-container">
-      <h1 className="goToBuilder-h1">Créer votre ensemble</h1>
+      <h1 className="goToBuilder-h1">Build a new set</h1>
       <p className="goToBuilder-p">lorem</p>
       <div className="goToBuilder-btn">
         <button type="button" className="goToBuilder-btn-button">
