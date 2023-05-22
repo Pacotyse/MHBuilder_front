@@ -69,7 +69,7 @@ function LoginForm({
           />
           <Field
             disabled={isLoading}
-            type={passwordShown ? 'password' : 'text'}
+            type={passwordShown ? 'text' : 'password'}
             placeholder="Mot de passe"
             onChange={handleChangeField('password')}
             value={password}
