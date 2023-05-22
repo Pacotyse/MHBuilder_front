@@ -54,6 +54,10 @@ function BuilderPage() {
     dispatch(getBuilderStats());
   }, [dispatch, weapon, arms, head, chest, legs, waist]);
 
+  function handleSaveLoadout(): void {
+    // to refer to action POST on /loadouts when API is OK
+  }
+
   return (
     <main className="builder-main main">
 
@@ -89,7 +93,7 @@ function BuilderPage() {
         <SkillStats />
         <ArmorStats />
         <button type="button" className="section-stats__button" onClick={handleResetBuilder}>Reset builder</button>
-        <button type="button" className="section-stats__button">Save and share this loadout</button>
+        <button type="button" className="section-stats__button" onClick={handleSaveLoadout}>Save and share this loadout</button>
       </section>
     </main>
   );

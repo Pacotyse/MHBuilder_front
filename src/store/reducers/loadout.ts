@@ -18,6 +18,24 @@ export const fetchLoadouts = createAppAsyncThunk(
   },
 );
 
+export const saveLoadout = createAppAsyncThunk(
+  'loadout/SAVE_LOADOUT',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const {
+      weapon, arms, chest, head, legs, waist,
+    } = state.builder;
+    const { data } = await axiosInstance.post('/loadout', {
+      weapon,
+      head,
+      chest,
+      arms,
+      waist,
+      legs,
+    });
+    return data;
+  },
+);
 export const initialState: LoadoutState = {
   loadouts: null,
   isLoading: false,
