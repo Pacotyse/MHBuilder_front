@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
   clearArmorList,
-  clearWeaponList, fetchArmorsByType, getBuilderStats,
+  clearWeaponList, fetchArmorsByType, getBuilderStats, resetBuilder,
 } from '../../store/reducers/builder';
 import AddItem from '../../components/AddItem';
 import './styles.scss';
@@ -45,6 +45,10 @@ function BuilderPage() {
     }
   };
 
+  function handleResetBuilder(): void {
+    dispatch(resetBuilder());
+  }
+
   // Get stats from the API on every builder update
   useEffect(() => {
     dispatch(getBuilderStats());
@@ -84,6 +88,8 @@ function BuilderPage() {
         <AttackStatsContainer />
         <SkillStats />
         <ArmorStats />
+        <button type="button" className="section-stats__button" onClick={handleResetBuilder}>Reset builder</button>
+        <button type="button" className="section-stats__button">Save and share this loadout</button>
       </section>
     </main>
   );

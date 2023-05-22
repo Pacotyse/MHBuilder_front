@@ -28,6 +28,7 @@ export const clearWeaponList = createAction('builder/CLEAR_WEAPON_LIST');
 export const clearArmorList = createAction('builder/CLEAR_ARMOR_LIST');
 export const setBuilderWeapon = createAction<IWeapon>('builder/SET_WEAPON');
 export const setBuilderArmor = createAction<IArmor>('builder/SET_ARMOR');
+export const resetBuilder = createAction('builder/RESET_BUILDER');
 
 export const fetchWeaponsByType = createAppAsyncThunk(
   'builder/FETCH_WEAPONS_BY_TYPE',
@@ -124,6 +125,14 @@ const builderReducer = createReducer(initialState, (builder) => {
     })
     .addCase(getBuilderStats.fulfilled, (state, action) => {
       state.buildStats = action.payload;
+    })
+    .addCase(resetBuilder, (state) => {
+      state.weapon = null;
+      state.arms = null;
+      state.head = null;
+      state.chest = null;
+      state.waist = null;
+      state.legs = null;
     });
 });
 

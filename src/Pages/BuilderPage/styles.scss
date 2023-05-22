@@ -26,6 +26,19 @@
   max-width: 400px;
   margin: 1rem auto;
   padding: vars.$gap-s;
+
+  &__button {
+    background-color: transparent;
+    border: vars.$white solid 2px;
+    color: vars.$white;
+    font-size: 1.1rem;
+    border-radius: vars.$radius-m;
+
+    &:hover {
+      background-color: vars.$white;
+      color: vars.$dark-grey;
+    }
+  }
   }
 }
 .builder-main {
