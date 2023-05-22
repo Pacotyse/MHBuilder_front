@@ -21,9 +21,6 @@ interface ArmorCardProps {
 function ArmorCard({ armor, showModal, isSelected }: ArmorCardProps) {
   const dispatch = useAppDispatch();
   const [showExtra, setShowExtra] = useState(false);
-  const armorType = armor.type;
-  // set the right format to get the icon
-  const armorTypeIcon = `${armorType}_${armor.rarity}`;
 
   function handleSetArmor(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
     event.stopPropagation();
@@ -42,7 +39,7 @@ function ArmorCard({ armor, showModal, isSelected }: ArmorCardProps) {
     <div className={containerClassnames} onClick={() => setShowExtra(!showExtra)}>
       <div className="item-card__header">
         <div className="item-card__header-identity">
-          <img src={getIconByKey(armorTypeIcon as keyof IIcons)} className="item__icon" alt="icon" />
+          <img src={getIconByKey(armor.icon as keyof IIcons)} className="item__icon" alt="icon" />
           <div className="item-card__header-title">{armor.name}</div>
         </div>
         <div className="item-card__header-decorations">

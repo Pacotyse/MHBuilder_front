@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { useAppDispatch } from '../../hooks/redux';
+import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
   clearArmorList,
-  clearWeaponList, fetchArmorsByType,
+  clearWeaponList, fetchArmorsByType, getBuilderStats,
 } from '../../store/reducers/builder';
 import AddItem from '../../components/AddItem';
 import './styles.scss';
@@ -22,6 +22,13 @@ function BuilderPage() {
   const [weaponSelectionModalShown, setWeaponSelectionModalShown] = useState(false);
   const [armorSelectionModalShown, setArmorSelectionModalShown] = useState(false);
 
+  const weapon = useAppSelector((state) => state.builder.weapon);
+  const arms = useAppSelector((state) => state.builder.arms);
+  const head = useAppSelector((state) => state.builder.head);
+  const chest = useAppSelector((state) => state.builder.chest);
+  const legs = useAppSelector((state) => state.builder.legs);
+  const waist = useAppSelector((state) => state.builder.waist);
+
   const handleShowModal = (itemType: 'weapon' | IArmorType) => {
     if (itemType === 'weapon') {
       // clear list of weapons
@@ -37,6 +44,12 @@ function BuilderPage() {
       dispatch(fetchArmorsByType(itemType));
     }
   };
+
+  // Get stats from the API on every builder update
+  useEffect(() => {
+    dispatch(getBuilderStats());
+  }, [dispatch, weapon, arms, head, chest, legs, waist]);
+
   return (
     <main className="builder-main main">
 

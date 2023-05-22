@@ -22,6 +22,7 @@ function App() {
         />
         <Route path="/sign-in" element={<h2>Sign-in</h2>} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/copyrights" element={<h2>Copyrights</h2>} />
         <Route path="*" element={<h2>404</h2>} />
       </Routes>
       <AppFooter />

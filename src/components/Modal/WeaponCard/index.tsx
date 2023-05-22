@@ -22,9 +22,6 @@ interface WeaponCardProps {
 }
 function WeaponCard({ weapon, showModal, isSelected }: WeaponCardProps) {
   const dispatch = useAppDispatch();
-  const weaponType = weapon.type.split('-').join('_');
-  // set format to get the icon
-  const weaponTypeIcon = `${weaponType}_${weapon.rarity}`;
 
   // when click on a weapon, shows extra information
   const [showExtra, setShowExtra] = useState(false);
@@ -44,7 +41,7 @@ function WeaponCard({ weapon, showModal, isSelected }: WeaponCardProps) {
     <div className={containerClassnames} onClick={() => setShowExtra(!showExtra)}>
       <div className="item-card__header">
         <div className="item-card__header-identity">
-          <img src={getIconByKey(weaponTypeIcon as keyof IIcons)} className="item__icon" alt="icon" />
+          <img src={getIconByKey(weapon.icon as keyof IIcons)} className="item__icon" alt="icon" />
           <div className="item-card__header-title">{weapon.name}</div>
         </div>
         <div className="item-card__header-decorations">
@@ -60,7 +57,7 @@ function WeaponCard({ weapon, showModal, isSelected }: WeaponCardProps) {
             <div className="item-stats__value">{weapon.attack}</div>
           </div>
           <div className="item-stats__elements">
-            {weapon.element.map((element) => (
+            {weapon.elements.map((element) => (
               <div key={element.name} className="item-stats__elements-one">
                 <img src={getIconByKey(`element_${element.name}` as keyof IIcons)} alt={element.name} />
                 <div>{element.value}</div>
