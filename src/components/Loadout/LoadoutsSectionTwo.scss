@@ -1,0 +1,30 @@
+.loadouts {
+    
+    &-filters {
+    display:flex;
+    flex-direction: column;
+    object-fit: contain;
+    background-color: rgb(255, 255, 255);
+    height: 40vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+        &-btn{
+            
+            margin-left: 1em;
+    }   
+        &-name{
+            
+            margin-left: 1rem;
+    }
+        &-rated{
+            
+    }
+        &-latest{
+            
+    }
+
+}
+
+}

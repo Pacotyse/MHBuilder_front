@@ -1,0 +1,38 @@
+.loadouts {
+    
+    &-container{
+    display:flex;
+    flex-direction: column;
+    object-fit: contain;
+    background-color: rgb(223, 163, 33);
+    height: 40vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+&-h1{
+
+    color:white;
+    font-size:50px;
+}
+
+&-p {
+
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    color: white;
+    font-size: 22px;
+}
+&-searchbar {
+
+    display:flex;
+    flex-direction: center;
+    
+
+}
+&-btn {
+
+    margin-top: 1em;
+}
+    }
