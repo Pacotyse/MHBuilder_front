@@ -1,0 +1,11 @@
+.cardsContainer {
+    
+    display:flex;
+    flex-direction: column;
+    object-fit: contain;
+    background-color: rgb(223, 163, 33);
+    height: 40vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}

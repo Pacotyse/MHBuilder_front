@@ -12,19 +12,31 @@
 
         &-btn{
             
-            margin-left: 1em;
-    }   
+            display: flex;
+            flex-direction: row;
+ 
+            object-fit: contain;
+            align-items: center;
+            justify-content: center;
+        
+        }   
         &-name{
             
-            margin-left: 1rem;
+            margin-left: 0.5em;
     }
         &-rated{
-            
+            margin-left: 0.5em;
     }
         &-latest{
-            
+            margin-left: 0.5em;
     }
+
 
 }
 
+&-searchbar{
+
+    margin-top: 1rem;
+
+}
 }

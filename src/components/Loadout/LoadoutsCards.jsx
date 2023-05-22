@@ -3,7 +3,7 @@ import './LoadoutsCards.scss';
 
 function LoadoutsCards() {
   return (
-    <div>Cards</div>
+    <div className="cardsContainer">Cards</div>
   );
 }
 

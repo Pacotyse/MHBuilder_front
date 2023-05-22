@@ -18,12 +18,13 @@ function LoadoutsSectionTwo() {
         <button type="button" className="loadouts-filters-latest">
           Latest
         </button>
-        <div className="loadouts-searchbar">
-          <input
-            type="text"
-            placeholder="Search items here"
-          />
-        </div>
+      </div>
+
+      <div className="loadouts-searchbar">
+        <input
+          type="text"
+          placeholder="Search items here"
+        />
       </div>
     </div>
   );
