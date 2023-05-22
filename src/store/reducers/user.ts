@@ -21,6 +21,11 @@ interface UserState {
     passwordConfirm: string
     username: string
   },
+  editCredentials: {
+    password: string
+    passwordConfirm: string
+    username: string
+  }
 }
 
 const userData = getUserDataFromLocalStorage();
@@ -43,6 +48,11 @@ export const initialState: UserState = {
     passwordConfirm: '',
     username: '',
   },
+  editCredentials: {
+    password: '',
+    passwordConfirm: '',
+    username: '',
+  },
   // If user data in the localStorage already exist, set it in the initial state
   ...userData,
 };
@@ -55,9 +65,16 @@ export const changeLoginCredentialsField = createAction<{
 
 export const changeRegisterCredentialsField = createAction<{
   value: string;
-  // keyof registerCredentials can be 'email' or 'password or 'username'
+  // keyof registerCredentials can be 'email' or 'password' or 'passwordConfirm' or 'username'
   field: keyof UserState['registerCredentials'];
 }>('user/CHANGE_REGISTER_CREDENTIALS_FIELD');
+
+export const changeEditCredentialsField = createAction<{
+  value: string;
+  field: keyof UserState['editCredentials'];
+}>('user/CHANGE_EDIT_CREDENTIALS_FIELD');
+
+export const resetEditForm = createAction('user/RESET_EDIT_CREDENTIALS');
 
 export const login = createAppAsyncThunk(
   'user/LOGIN',
@@ -106,6 +123,19 @@ export const deleteUser = createAppAsyncThunk(
     return data;
   },
 );
+export const editUser = createAppAsyncThunk(
+  'user/EDIT_USER',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const { id } = state.user;
+    const { password, username } = state.user.editCredentials;
+    const { data } = await axiosInstance.put(`/users/${id}`, {
+      password,
+      username,
+    });
+    return data;
+  },
+);
 
 const userReducer = createReducer(initialState, (builder) => {
   builder
@@ -116,6 +146,13 @@ const userReducer = createReducer(initialState, (builder) => {
     .addCase(changeRegisterCredentialsField, (state, action) => {
       const { field, value } = action.payload;
       state.registerCredentials[field] = value;
+    })
+    .addCase(changeEditCredentialsField, (state, action) => {
+      const { field, value } = action.payload;
+      state.editCredentials[field] = value;
+    })
+    .addCase(resetEditForm, (state) => {
+      state.editCredentials = initialState.editCredentials;
     })
     .addCase(register.fulfilled, (state) => {
       state.registerCredentials = initialState.registerCredentials;

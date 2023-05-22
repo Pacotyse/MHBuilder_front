@@ -3,12 +3,15 @@ import { Navigate } from 'react-router-dom';
 import { BiLoaderCircle } from 'react-icons/bi';
 import { FiSettings, FiLogOut } from 'react-icons/fi';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { deleteUser, logout } from '../../store/reducers/user';
+import {
+  changeEditCredentialsField, deleteUser, editUser, logout, resetEditForm,
+} from '../../store/reducers/user';
 import './styles.scss';
 import getIconByKey from '../../utils/icons';
 import Modal from '../../components/Modal';
 import { fetchLoadouts } from '../../store/reducers/loadout';
 import Loadout from '../../components/Loadout';
+import EditForm from '../../components/EditForm';
 
 function ProfilePage() {
   const dispatch = useAppDispatch();
@@ -17,8 +20,13 @@ function ProfilePage() {
   const loadouts = useAppSelector((state) => state.loadout.loadouts);
   const isLoading = useAppSelector((state) => state.loadout.isLoading);
 
+  const passwordEdit = useAppSelector((state) => state.user.editCredentials.password);
+  const passwordConfirmEdit = useAppSelector((state) => state.user.editCredentials.passwordConfirm);
+  const usernameEdit = useAppSelector((state) => state.user.editCredentials.username);
+
   const [showSettings, setShowSettings] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
 
   const handleDeleteUser = () => {
     dispatch(deleteUser());
@@ -28,18 +36,31 @@ function ProfilePage() {
   };
 
   const handleEditUser = () => {
-    // to create user reducer action PUT
+    dispatch(editUser());
   };
 
-  const handleCloseModal = () => {
+  const handleCloseDeleteModal = () => {
     setShowConfirmModal(false);
     setShowSettings(false);
+  };
+
+  const handleCloseEditModal = () => {
+    setShowEditModal(false);
+    setShowSettings(false);
+    dispatch(resetEditForm());
   };
 
   // Automatic fetch loadouts when reach /profile
   useEffect(() => {
     dispatch(fetchLoadouts());
   }, [dispatch]);
+
+  const handleChangeEditCredentials = (value: string, name: 'password' | 'passwordConfirm' | 'username') => {
+    dispatch(changeEditCredentialsField({
+      value,
+      field: name,
+    }));
+  };
 
   return (
     <main className="main">
@@ -68,23 +89,41 @@ function ProfilePage() {
                   {showSettings
                     && (
                       <div className="profile-header__settings-actions">
-                        <button type="button" className="profile-header__settings-actions__edit" onClick={handleEditUser}>Edit Profile</button>
+                        <button type="button" className="profile-header__settings-actions__edit" onClick={() => setShowEditModal(true)}>Edit Profile</button>
                         <button type="button" className="profile-header__settings-actions__delete" onClick={() => setShowConfirmModal(true)}>Delete Profile</button>
                       </div>
                     )}
 
+                  {/* Delete profile */}
                   <Modal
                     modalXl={false}
                     shown={showConfirmModal}
-                    close={handleCloseModal}
+                    close={handleCloseDeleteModal}
                   >
                     <div className="profile__modal-content">
                       <p className="profile__modal-text">If you confirm, you will lose all informations related.</p>
                       <p className="profile__modal-text">Do you still want to delete?</p>
                       <div className="profile__modal-confirm">
                         <button type="button" className="profile__modal__button-delete" onClick={handleDeleteUser}>Delete</button>
-                        <button type="button" className="profile__modal__button-cancel" onClick={handleCloseModal}>Cancel</button>
+                        <button type="button" className="profile__modal__button-cancel" onClick={handleCloseDeleteModal}>Cancel</button>
                       </div>
+                    </div>
+                  </Modal>
+
+                  {/* Edit profile */}
+                  <Modal
+                    modalXl={false}
+                    shown={showEditModal}
+                    close={handleCloseEditModal}
+                  >
+                    <div className="profile__modal-content">
+                      <EditForm
+                        password={passwordEdit}
+                        passwordConfirm={passwordConfirmEdit}
+                        username={usernameEdit}
+                        changeField={handleChangeEditCredentials}
+                        handleEdit={handleEditUser}
+                      />
                     </div>
                   </Modal>
 
