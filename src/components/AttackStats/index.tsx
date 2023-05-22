@@ -2,7 +2,7 @@ import { useAppSelector } from '../../hooks/redux';
 import './styles.scss';
 
 function AttackStats() {
-  const weapon = useAppSelector((state) => state.builder.weapon);
+  const stats = useAppSelector((state) => state.builder.buildStats?.stats);
   return (
     <div className="stats-container">
       <h3 className="stats-title">Attack stats</h3>
@@ -10,69 +10,80 @@ function AttackStats() {
         Neutral attack :
         {' '}
         <span className="stats-value">
-          {weapon?.attack}
+          {stats?.attack}
         </span>
       </div>
-      {weapon?.element.fire && (
-        <div>
-          Fire attack:
-          {' '}
+      {/* back to be modify */}
+      {/* {stats?.elements?.map((element) => (
+        <div key={element.name}>
+          {`${element.name} : `}
           <span className="stats-value">
-            {weapon.element.fire}
+            {element.value}
           </span>
         </div>
+      ))} */}
+
+      {Boolean(stats?.elements.fire)
+      && (
+      <div>
+        {'Fire : '}
+        <span className="stats-value">
+          {stats?.elements.fire}
+        </span>
+      </div>
       )}
-      {weapon?.element.ice && (
-        <div>
-          Ice attack:
-          {' '}
-          <span className="stats-value">
-            {weapon.element.ice}
-          </span>
-        </div>
+      {Boolean(stats?.elements.water)
+      && (
+      <div>
+        {'Water : '}
+        <span className="stats-value">
+          {stats?.elements.water}
+        </span>
+      </div>
       )}
-      {weapon?.element.thunder && (
-        <div>
-          Thunder attack:
-          {' '}
-          <span className="stats-value">
-            {weapon.element.thunder}
-          </span>
-        </div>
+      {Boolean(stats?.elements.thunder)
+      && (
+      <div>
+        {'Thunder : '}
+        <span className="stats-value">
+          {stats?.elements.thunder}
+        </span>
+      </div>
       )}
-      {weapon?.element.water && (
-        <div>
-          Water attack:
-          {' '}
-          <span className="stats-value">
-            {weapon.element.water}
-          </span>
-        </div>
+      {Boolean(stats?.elements.ice)
+      && (
+      <div>
+        {'Ice : '}
+        <span className="stats-value">
+          {stats?.elements.ice}
+        </span>
+      </div>
       )}
-      {weapon?.element.dragon && (
-        <div>
-          Dragon attack:
-          {' '}
-          <span className="stats-value">
-            {weapon.element.dragon}
-          </span>
-        </div>
+      {Boolean(stats?.elements.dragon)
+      && (
+      <div>
+        {'Dragon : '}
+        <span className="stats-value">
+          {stats?.elements.dragon}
+        </span>
+      </div>
       )}
       <div>
         Affinity :
         {' '}
         <span className="stats-value">
-          {weapon?.affinity}
+          {stats?.affinity}
           %
         </span>
       </div>
-      <div>
+      {/* no secret effect ? */}
+      {/* <div>
         Secret effect :
         {' '}
         <span className="stats-value">
-          {weapon?.secret_effect}
+          {stats?.secret_effect}
         </span>
-      </div>
+      </div> */}
     </div>
   );
 }
