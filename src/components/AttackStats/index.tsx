@@ -13,61 +13,17 @@ function AttackStats() {
           {stats?.attack}
         </span>
       </div>
-      {/* back to be modify */}
-      {/* {stats?.elements?.map((element) => (
-        <div key={element.name}>
-          {`${element.name} : `}
-          <span className="stats-value">
-            {element.value}
-          </span>
-        </div>
-      ))} */}
 
-      {Boolean(stats?.elements.fire)
-      && (
-      <div>
-        {'Fire : '}
-        <span className="stats-value">
-          {stats?.elements.fire}
-        </span>
-      </div>
-      )}
-      {Boolean(stats?.elements.water)
-      && (
-      <div>
-        {'Water : '}
-        <span className="stats-value">
-          {stats?.elements.water}
-        </span>
-      </div>
-      )}
-      {Boolean(stats?.elements.thunder)
-      && (
-      <div>
-        {'Thunder : '}
-        <span className="stats-value">
-          {stats?.elements.thunder}
-        </span>
-      </div>
-      )}
-      {Boolean(stats?.elements.ice)
-      && (
-      <div>
-        {'Ice : '}
-        <span className="stats-value">
-          {stats?.elements.ice}
-        </span>
-      </div>
-      )}
-      {Boolean(stats?.elements.dragon)
-      && (
-      <div>
-        {'Dragon : '}
-        <span className="stats-value">
-          {stats?.elements.dragon}
-        </span>
-      </div>
-      )}
+      {stats?.elements
+        && stats?.elements.map((element) => (
+          <div key={element.name}>
+            {`${element.name} : `}
+            <span className="stats-value">
+              {element.value}
+            </span>
+          </div>
+        ))}
+
       <div>
         Affinity :
         {' '}
@@ -76,14 +32,6 @@ function AttackStats() {
           %
         </span>
       </div>
-      {/* no secret effect ? */}
-      {/* <div>
-        Secret effect :
-        {' '}
-        <span className="stats-value">
-          {stats?.secret_effect}
-        </span>
-      </div> */}
     </div>
   );
 }

@@ -13,13 +13,13 @@ export interface IWeapon {
 }
 
 export interface Sharpness {
-  red: number | null
-  orange: number | null
-  yellow: number | null
-  green: number | null
-  blue: number | null
-  white: number | null
-  purple: number | null
+  red: number
+  orange: number
+  yellow: number
+  green: number
+  blue: number
+  white: number
+  purple: number
 }
 
 export interface Element {

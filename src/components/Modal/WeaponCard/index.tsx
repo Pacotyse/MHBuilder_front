@@ -78,30 +78,21 @@ function WeaponCard({ weapon, showModal, isSelected }: WeaponCardProps) {
       </div>
       <div className="item-card__footer">
         <div className="sharpness">
-          {/* first checking if sharpness value is not null */}
-          {weapon.sharpness.red
-            && (
-              // Then set the width of the sharpness
-              <div className="sharpness-red" style={{ width: setSharpnessWidth(weapon.sharpness.red) }} />
-            )}
-          {weapon.sharpness.orange
-          && (<div className="sharpness-orange" style={{ width: setSharpnessWidth(weapon.sharpness.orange) }} />
-          )}
-          {weapon.sharpness.yellow
-          && (<div className="sharpness-yellow" style={{ width: setSharpnessWidth(weapon.sharpness.yellow) }} />
-          )}
-          {weapon.sharpness.green
-          && (<div className="sharpness-green" style={{ width: setSharpnessWidth(weapon.sharpness.green) }} />
-          )}
-          {weapon.sharpness.blue
-          && (<div className="sharpness-blue" style={{ width: setSharpnessWidth(weapon.sharpness.blue) }} />
-          )}
-          {weapon.sharpness.white
-          && (<div className="sharpness-white" style={{ width: setSharpnessWidth(weapon.sharpness.white) }} />
-          )}
-          {weapon.sharpness.purple
-          && (<div className="sharpness-purple" style={{ width: setSharpnessWidth(weapon.sharpness.purple) }} />
-          )}
+
+          {/* // Then set the width of the sharpness */}
+          <div className="sharpness-red" style={{ width: `${setSharpnessWidth(weapon.sharpness.red)}%` }} />
+          <div className="sharpness-orange" style={{ width: `${setSharpnessWidth(weapon.sharpness.orange)}%` }} />
+
+          <div className="sharpness-yellow" style={{ width: `${setSharpnessWidth(weapon.sharpness.yellow)}%` }} />
+
+          <div className="sharpness-green" style={{ width: `${setSharpnessWidth(weapon.sharpness.green)}%` }} />
+
+          <div className="sharpness-blue" style={{ width: `${setSharpnessWidth(weapon.sharpness.blue)}%` }} />
+
+          <div className="sharpness-white" style={{ width: `${setSharpnessWidth(weapon.sharpness.white)}%` }} />
+
+          <div className="sharpness-purple" style={{ width: `${setSharpnessWidth(weapon.sharpness.purple)}%` }} />
+
         </div>
         {!isSelected
           && (

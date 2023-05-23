@@ -5,7 +5,7 @@ export interface IStats {
 export interface IBuildStats {
   attack: number
   affinity: number
-  elements: IResistanceStats
+  elements: IElementStats[]
   sharpness: ISharpness
   defense: number
   resistances: IResistanceStats
@@ -26,6 +26,10 @@ export interface IResistanceStats {
   thunder: number
   ice: number
   dragon: number
+}
+export interface IElementStats {
+  name: string
+  value: number
 }
 
 export interface ISharpness {
