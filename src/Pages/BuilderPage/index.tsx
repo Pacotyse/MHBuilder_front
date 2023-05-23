@@ -15,7 +15,6 @@ import ArmorStats from '../../components/ArmorStats';
 import SkillStats from '../../components/SkillStats';
 import { IArmorType } from '../../@types/armor';
 import Modal from '../../components/Modal';
-import Field from '../../components/LoginForm/Field';
 import { changeLoadoutCredentialsField, saveLoadout } from '../../store/reducers/loadout';
 
 function BuilderPage() {

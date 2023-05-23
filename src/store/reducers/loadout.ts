@@ -18,10 +18,12 @@ export const changeLoadoutCredentialsField = createAction<{
   field: keyof LoadoutState['loadoutCredentials'];
 }>('loadout/SET_LOADOUT_CREDENTIALS_FIELD');
 
-export const fetchLoadouts = createAppAsyncThunk(
-  'loadout/FETCH_ALL_LOADOUTS',
-  async () => {
-    const { data: loadouts } = await axiosInstance.get('/loadouts');
+export const fetchUserLoadouts = createAppAsyncThunk(
+  'loadout/FETCH_USER_LOADOUTS',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const userId = state.user.id;
+    const { data: loadouts } = await axiosInstance.get(`/loadouts/user/${userId}`);
     return loadouts as ILoadout[];
   },
 );
@@ -61,15 +63,15 @@ export const initialState: LoadoutState = {
 
 const loadoutReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(fetchLoadouts.pending, (state) => {
+    .addCase(fetchUserLoadouts.pending, (state) => {
       state.isLoading = true;
       state.errorMessage = '';
     })
-    .addCase(fetchLoadouts.fulfilled, (state, action) => {
+    .addCase(fetchUserLoadouts.fulfilled, (state, action) => {
       state.isLoading = false;
       state.loadouts = action.payload;
     })
-    .addCase(fetchLoadouts.rejected, (state) => {
+    .addCase(fetchUserLoadouts.rejected, (state) => {
       state.errorMessage = 'Server error, Failed to get data';
     })
     .addCase(clearLoadouts, (state) => {
