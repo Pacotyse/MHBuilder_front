@@ -3,7 +3,7 @@
 .goToBuilder {
 
     &-container{
-    background-color: rgb(223, 163, 33);
+    background-color: #d7ccc8;
     height: 40vh;
     width: 100%;
     display: flex;
@@ -15,7 +15,7 @@
 
     &-h1{
 
-        color:white;
+        color:rgb(68, 68, 68);
         font-size:50px;
         margin-top: -50px;
 
@@ -24,7 +24,7 @@
     &-p {
 
         margin-top: 8px;
-        color: white;
+        color: black;
         font-size: 22px;
     }
 
@@ -37,13 +37,13 @@
 @media (max-width: 769px) {
     .goToBuilder{
         &-container {
-            background-color: rgb(223, 163, 33);
+            background-color: #d7ccc8;
             
         }
 
             &-h1{
 
-        color:white;
+        color:rgb(68, 68, 68);
         font-size:30px;
         margin-top: -50px;
 
@@ -52,8 +52,8 @@
     &-p {
 
         margin-top: 5px;
-        color: white;
-        font-size: 22px;
+        color: black(68, 68, 68);
+        font-size: 14px;
     }
 
     &-btn {

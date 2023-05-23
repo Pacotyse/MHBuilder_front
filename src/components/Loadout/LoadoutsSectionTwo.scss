@@ -5,7 +5,7 @@
     flex-direction: column;
     object-fit: contain;
     background-color: rgb(255, 255, 255);
-    height: 40vh;
+    height: 60vh;
     width: 100%;
     align-items: center;
     justify-content: center;
@@ -13,11 +13,7 @@
         &-btn{
             
             display: flex;
-            flex-direction: row;
- 
-            object-fit: contain;
-            align-items: center;
-            justify-content: center;
+    
         
         }   
         &-name{
@@ -36,7 +32,7 @@
 
 &-searchbar{
 
-    margin-top: 1rem;
+    margin-top: 1em;
 
 }
 }
