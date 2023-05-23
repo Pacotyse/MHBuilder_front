@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
   clearArmorList,
@@ -14,6 +14,9 @@ import AttackStatsContainer from '../../components/AttackStats';
 import ArmorStats from '../../components/ArmorStats';
 import SkillStats from '../../components/SkillStats';
 import { IArmorType } from '../../@types/armor';
+import Modal from '../../components/Modal';
+import Field from '../../components/LoginForm/Field';
+import { changeLoadoutCredentialsField, saveLoadout } from '../../store/reducers/loadout';
 
 function BuilderPage() {
   const dispatch = useAppDispatch();
@@ -21,6 +24,7 @@ function BuilderPage() {
   const [weaponTypeModalShown, setWeaponTypeModalShown] = useState(false);
   const [weaponSelectionModalShown, setWeaponSelectionModalShown] = useState(false);
   const [armorSelectionModalShown, setArmorSelectionModalShown] = useState(false);
+  const [showSaveLoadoutModal, setShowSaveLoadoutModal] = useState(false);
 
   const weapon = useAppSelector((state) => state.builder.weapon);
   const arms = useAppSelector((state) => state.builder.arms);
@@ -28,6 +32,11 @@ function BuilderPage() {
   const chest = useAppSelector((state) => state.builder.chest);
   const legs = useAppSelector((state) => state.builder.legs);
   const waist = useAppSelector((state) => state.builder.waist);
+
+  const userIsLogged = useAppSelector((state) => state.user.isLogged);
+  const loadoutTitle = useAppSelector((state) => state.loadout.loadoutCredentials.title);
+  // eslint-disable-next-line max-len
+  const loadoutDescription = useAppSelector((state) => state.loadout.loadoutCredentials.description);
 
   const handleShowModal = (itemType: 'weapon' | IArmorType) => {
     if (itemType === 'weapon') {
@@ -45,17 +54,39 @@ function BuilderPage() {
     }
   };
 
-  function handleResetBuilder(): void {
+  const handleResetBuilder = () => {
     dispatch(resetBuilder());
-  }
+  };
 
   // Get stats from the API on every builder update
   useEffect(() => {
     dispatch(getBuilderStats());
   }, [dispatch, weapon, arms, head, chest, legs, waist]);
 
-  function handleSaveLoadout(): void {
-    // to refer to action POST on /loadouts when API is OK
+  const handleSaveLoadout = () => {
+    if (
+      weapon
+      && arms
+      && head
+      && chest
+      && waist
+      && legs
+      && loadoutTitle
+      && userIsLogged
+    ) {
+      dispatch(saveLoadout());
+    }
+  };
+
+  const handleChangeField = (name: 'title' | 'description') => (event: ChangeEvent<HTMLInputElement>) => {
+    dispatch(changeLoadoutCredentialsField({
+      value: event.target.value,
+      field: name,
+    }));
+  };
+
+  function handleCloseSaveLoadoutModal() {
+    setShowSaveLoadoutModal(false);
   }
 
   return (
@@ -93,8 +124,33 @@ function BuilderPage() {
         <SkillStats />
         <ArmorStats />
         <button type="button" className="section-stats__button" onClick={handleResetBuilder}>Reset builder</button>
-        <button type="button" className="section-stats__button" onClick={handleSaveLoadout}>Save and share this loadout</button>
+        <button type="button" className="section-stats__button" onClick={() => setShowSaveLoadoutModal(true)}>Save and share this loadout</button>
       </section>
+
+      <Modal
+        modalXl={false}
+        shown={showSaveLoadoutModal}
+        close={() => setShowSaveLoadoutModal(false)}
+      >
+        <form>
+          <input
+            type="text"
+            placeholder="Loadout title"
+            required
+            value={loadoutTitle}
+            onChange={handleChangeField('title')}
+          />
+          <input
+            type="text"
+            placeholder="Description"
+            value={loadoutDescription}
+            onChange={handleChangeField('description')}
+          />
+        </form>
+        <button type="button" onClick={handleSaveLoadout}>Save</button>
+        <button type="button" onClick={handleCloseSaveLoadoutModal}>Cancel</button>
+      </Modal>
+
     </main>
   );
 }

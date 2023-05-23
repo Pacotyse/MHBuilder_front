@@ -1,5 +1,3 @@
-// == Import : npm
-// == Import : local
 import { ChangeEvent, useId } from 'react';
 import './styles.scss';
 
@@ -11,7 +9,7 @@ interface FieldProps {
   onChange: (value: string) => void;
   children?: React.ReactNode;
 }
-// == Composant
+
 function Field({
   disabled,
   value,
@@ -32,7 +30,7 @@ function Field({
         // React - state
         value={value}
         onChange={handleChange}
-        // infos de base
+        // base infos
         id={inputId}
         type={type}
         className="field-input"
@@ -51,11 +49,9 @@ function Field({
   );
 }
 
-// Valeurs par défaut pour les props
 Field.defaultProps = {
   type: 'text',
   children: undefined,
 };
 
-// == Export
 export default Field;

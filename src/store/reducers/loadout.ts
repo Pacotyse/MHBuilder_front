@@ -7,8 +7,16 @@ export interface LoadoutState {
   loadouts: ILoadout[] | null
   isLoading: boolean
   errorMessage: string
+  loadoutCredentials: {
+    title: string
+    description: string
+  }
 }
 export const clearLoadouts = createAction('loadouts/CLEAR_LIST');
+export const changeLoadoutCredentialsField = createAction<{
+  value: string
+  field: keyof LoadoutState['loadoutCredentials'];
+}>('loadout/SET_LOADOUT_CREDENTIALS_FIELD');
 
 export const fetchLoadouts = createAppAsyncThunk(
   'loadout/FETCH_ALL_LOADOUTS',
@@ -22,16 +30,21 @@ export const saveLoadout = createAppAsyncThunk(
   'loadout/SAVE_LOADOUT',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
+    const userId = state.user.id;
     const {
       weapon, arms, chest, head, legs, waist,
     } = state.builder;
-    const { data } = await axiosInstance.post('/loadout', {
-      weapon,
-      head,
-      chest,
-      arms,
-      waist,
-      legs,
+    const { title, description } = state.loadout.loadoutCredentials;
+    const { data } = await axiosInstance.post('/loadouts', {
+      name: title,
+      description,
+      user_id: userId,
+      weapon_id: weapon?.id,
+      head_id: head?.id,
+      chest_id: chest?.id,
+      arms_id: arms?.id,
+      waist_id: waist?.id,
+      legs_id: legs?.id,
     });
     return data;
   },
@@ -40,6 +53,10 @@ export const initialState: LoadoutState = {
   loadouts: null,
   isLoading: false,
   errorMessage: '',
+  loadoutCredentials: {
+    title: '',
+    description: '',
+  },
 };
 
 const loadoutReducer = createReducer(initialState, (builder) => {
@@ -57,6 +74,10 @@ const loadoutReducer = createReducer(initialState, (builder) => {
     })
     .addCase(clearLoadouts, (state) => {
       state.loadouts = null;
+    })
+    .addCase(changeLoadoutCredentialsField, (state, action) => {
+      const { field, value } = action.payload;
+      state.loadoutCredentials[field] = value;
     });
 });
 
