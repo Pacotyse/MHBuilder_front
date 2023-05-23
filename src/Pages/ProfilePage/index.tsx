@@ -4,12 +4,12 @@ import { BiLoaderCircle } from 'react-icons/bi';
 import { FiSettings, FiLogOut } from 'react-icons/fi';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
-  changeEditCredentialsField, deleteUser, editUser, logout, resetEditForm,
+  changeEditCredentialsField, checkTokenValidity, deleteUser, editUser, logout, resetEditForm,
 } from '../../store/reducers/user';
 import './styles.scss';
 import getIconByKey from '../../utils/icons';
 import Modal from '../../components/Modal';
-import { fetchLoadouts } from '../../store/reducers/loadout';
+import { fetchUserLoadouts } from '../../store/reducers/loadout';
 import Loadout from '../../components/Loadout';
 import EditForm from '../../components/EditForm';
 
@@ -52,7 +52,12 @@ function ProfilePage() {
 
   // Automatic fetch loadouts when reach /profile
   useEffect(() => {
-    dispatch(fetchLoadouts());
+    dispatch(fetchUserLoadouts());
+  }, [dispatch]);
+
+  // This function will check if token is still valid. if not, will be automatically disconnected.
+  useEffect(() => {
+    dispatch(checkTokenValidity());
   }, [dispatch]);
 
   const handleChangeEditCredentials = (value: string, name: 'password' | 'passwordConfirm' | 'username') => {

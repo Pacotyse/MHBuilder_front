@@ -57,6 +57,15 @@ export const initialState: UserState = {
   ...userData,
 };
 
+export const checkTokenValidity = createAppAsyncThunk(
+  'user/CHECK_TOKEN_VALIDITY',
+  async () => {
+    const { data: tokenIsValid } = await axiosInstance.post('/users/logged');
+
+    return tokenIsValid as boolean;
+  },
+);
+
 export const changeLoginCredentialsField = createAction<{
   value: string;
   // keyof credentials can be 'email' or 'password
@@ -190,6 +199,13 @@ const userReducer = createReducer(initialState, (builder) => {
     })
     .addCase(deleteUser.rejected, (state) => {
       state.errorMessage = 'Failed to delete user.';
+    })
+    .addCase(checkTokenValidity.rejected, (state) => {
+      state.isLogged = false;
+      state.id = null;
+      state.token = '';
+      state.username = '';
+      removeUserDataFromLocalStorage();
     });
 });
 
