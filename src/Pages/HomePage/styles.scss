@@ -1,6 +1,6 @@
 
 
-.container {
+.main {
     
 display:flex;
 flex-direction: column;
@@ -15,9 +15,6 @@ object-fit: contain;
     padding-bottom: 5em;
     align-items: center;
     object-fit: contain;
-    // background: url('nergi_home.jpg');
-    // background: url('../../assets/images/nergi_home.jpg');
-    //background-repeat: round no-repeat;
 
     &-h2{
         
@@ -49,6 +46,67 @@ object-fit: contain;
  }
  
 }
+
+//? Code de kevin, à prendre modifier ou supprimer en fonction de toi
+// .goToBuilder {
+
+//     &-container{
+//     // background-color: rgb(223, 163, 33);
+//     background-image: url('./../../assets/mhsb_background.jpg');
+//     background-size: cover;
+//     background-repeat: no-repeat;
+//     background-position: center;
+//     flex-direction: column;
+//         align-items: center;
+//         justify-content: center;
+//     }
+
+//     &-container-text{
+//         width: 50%;
+//         margin: 10vh auto;
+//         > *:not(:last-child) {
+//             margin-bottom: 15px;
+//         }
+//     }
+
+
+//     &-h1{
+//         color:white;
+//         font-size:24px;
+//     }
+
+//     &-p {
+//         color: white;
+//         font-size: 18px;
+//     }
+// }
+
+// @media (max-width: 769px) {
+//     .goToBuilder{
+
+//         &-container-text{
+//             width: 75%;
+//         }
+    
+//     }
+// }
+
+
+
+//========================
+//? COMMUNITY
+//========================
+
+
+//TODO A coller ton code scss ici si tu en a besoin, puis supprimer le dossier component/Main quand t'en a plus besoin
+
+
+
+//========================
+//? COMMUNITY
+//========================
+
+
 .communityBuild{
     background-color: white;
     display:flex;
@@ -105,6 +163,11 @@ object-fit: contain;
    
 }
 
+
+//=====================
+//? DISCORD
+//====================
+
 .discord{
     display:flex;
     background-color: #ed9a34;
@@ -122,6 +185,37 @@ object-fit: contain;
 
 }
 
+//? Code de kevin, à prendre modifier ou supprimer en fonction de toi
+// .discord{
+
+//     &-container{
+//         background-color: rgb(223, 163, 33);
+//         height: 40vh;
+//         width: 100%;
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+//         justify-content: center;
+// }
+
+// &-h1{
+
+//         color:rgb(0, 0, 0);
+//         font-size:30px;
+//         margin-top: -50px;
+
+//     }
+
+//     &-p {
+
+//         margin-top: 8px;
+//         color: black;
+//         font-size: 22px;
+//     }
+
+// }
+
+
 .lastestUpdate{
 
     display:flex;
@@ -138,3 +232,34 @@ object-fit: contain;
 
 
 }
+
+//? Code de kevin, à prendre modifier ou supprimer en fonction de toi
+// .latestUpdate{
+
+// &-container{
+//     background-color: white;
+//     height: 40vh;
+//     width: 100%;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     justify-content: center;
+//     }
+
+//     &-h1{
+
+//         color:rgb(0, 0, 0);
+//         font-size:30px;
+//         margin-top: -50px;
+
+//     }
+
+//     &-p {
+
+//         margin-top: 8px;
+//         color: black;
+//         font-size: 15px;
+//     }
+
+
+// }
