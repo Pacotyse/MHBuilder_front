@@ -6,7 +6,7 @@ import { CgCloseO } from 'react-icons/cg';
 import './styles.scss';
 
 interface ModalProps {
-  children: JSX.Element | JSX.Element[]
+  children: React.ReactNode
   modalXl: boolean
   shown: boolean
   close: () => void
