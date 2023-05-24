@@ -7,6 +7,7 @@ import {
 import { IStats } from '../../@types/stats';
 import { createAppAsyncThunk } from '../../utils/redux';
 import { axiosInstance } from '../../utils/axios';
+import { ILoadout } from '../../@types/loadout';
 
 export interface BuilderState {
   weaponList: IWeapon[] | null
@@ -62,6 +63,16 @@ export const getBuilderStats = createAppAsyncThunk(
       legs,
     });
     return stats as IStats;
+  },
+);
+
+export const fetchLoadoutById = createAppAsyncThunk(
+  'builder/FETCH_ONE_LOADOUT',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const loadoutId = state.loadout.loadoutCode;
+    const { data: loadout } = await axiosInstance.get(`/loadouts/${loadoutId}`);
+    return loadout as ILoadout;
   },
 );
 
@@ -133,6 +144,17 @@ const builderReducer = createReducer(initialState, (builder) => {
       state.chest = null;
       state.waist = null;
       state.legs = null;
+    })
+    .addCase(fetchLoadoutById.fulfilled, (state, action) => {
+      const {
+        weapon, arms, chest, head, waist, legs,
+      } = action.payload;
+      state.weapon = weapon;
+      state.arms = arms;
+      state.head = head;
+      state.chest = chest;
+      state.waist = waist;
+      state.legs = legs;
     });
 });
 

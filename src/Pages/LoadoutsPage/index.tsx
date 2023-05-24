@@ -1,21 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { ChangeEvent, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './styles.scss';
 
 import { BiLoaderCircle } from 'react-icons/bi';
 import Loadout from '../../components/Loadout';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { fetchAllLoadouts } from '../../store/reducers/loadout';
+import { fetchAllLoadouts, setLoadoutCodeField } from '../../store/reducers/loadout';
+import { fetchLoadoutById } from '../../store/reducers/builder';
 
 function Loadouts() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const loadouts = useAppSelector((state) => state.loadout.loadouts);
   const errorMessage = useAppSelector((state) => state.loadout.errorMessage);
   const isLoading = useAppSelector((state) => state.loadout.isLoading);
+  const loadoutCode = useAppSelector((state) => state.loadout.loadoutCode);
 
   useEffect(() => {
     dispatch(fetchAllLoadouts());
   }, [dispatch]);
+
+  function handleGetOneLoadout() {
+    dispatch(fetchLoadoutById());
+    navigate('/builder');
+  }
 
   return (
     <main className="main-loadout">
@@ -26,8 +35,15 @@ function Loadouts() {
         <p className="loadouts-search__description">Got loadout codes? Paste them below to get them to the builder and see details!</p>
 
         <form className="loadouts-search__form">
-          <input type="text" placeholder="Past your code here" />
-          <button type="button" className="loadouts-search__submit-button">Go</button>
+          <input
+            type="text"
+            placeholder="Past your code here"
+            value={loadoutCode}
+            onChange={(event: ChangeEvent<HTMLInputElement>) => {
+              dispatch(setLoadoutCodeField(event.target.value));
+            }}
+          />
+          <button type="button" className="loadouts-search__submit-button" onClick={handleGetOneLoadout}>Go</button>
         </form>
       </div>
       {/* //? SECTION all loadouts and filter */}

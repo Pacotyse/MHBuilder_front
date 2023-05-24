@@ -11,12 +11,15 @@ export interface LoadoutState {
     title: string
     description: string
   }
+  loadoutCode: string
 }
 export const clearLoadouts = createAction('loadouts/CLEAR_LIST');
 export const changeLoadoutCredentialsField = createAction<{
   value: string
   field: keyof LoadoutState['loadoutCredentials'];
 }>('loadout/SET_LOADOUT_CREDENTIALS_FIELD');
+
+export const setLoadoutCodeField = createAction<string>('loadout/SET_LOADOUT_CODE_FIELD');
 
 export const fetchUserLoadouts = createAppAsyncThunk(
   'loadout/FETCH_USER_LOADOUTS',
@@ -76,6 +79,7 @@ export const initialState: LoadoutState = {
     title: '',
     description: '',
   },
+  loadoutCode: '',
 };
 
 const loadoutReducer = createReducer(initialState, (builder) => {
@@ -113,6 +117,9 @@ const loadoutReducer = createReducer(initialState, (builder) => {
     })
     .addCase(deleteLoadout.rejected, (state) => {
       state.errorMessage = 'Failed to delete loadout';
+    })
+    .addCase(setLoadoutCodeField, (state, action) => {
+      state.loadoutCode = action.payload;
     });
 });
 
