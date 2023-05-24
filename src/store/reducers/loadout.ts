@@ -59,6 +59,15 @@ export const saveLoadout = createAppAsyncThunk(
     return data;
   },
 );
+
+export const deleteLoadout = createAppAsyncThunk(
+  'loadout/DELETE_LOADOUT',
+  async (id: string) => {
+    const { data } = await axiosInstance.delete(`/loadouts/${id}`, {
+    });
+    return data;
+  },
+);
 export const initialState: LoadoutState = {
   loadouts: null,
   isLoading: false,
@@ -101,6 +110,9 @@ const loadoutReducer = createReducer(initialState, (builder) => {
     .addCase(fetchAllLoadouts.rejected, (state) => {
       state.isLoading = false;
       state.errorMessage = 'Server error, Failed to get data';
+    })
+    .addCase(deleteLoadout.rejected, (state) => {
+      state.errorMessage = 'Failed to delete loadout';
     });
 });
 

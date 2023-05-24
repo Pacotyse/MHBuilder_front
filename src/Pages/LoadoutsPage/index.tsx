@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import './styles.scss';
 
-import Loadout from '../../components/Loadout/index';
+import { BiLoaderCircle } from 'react-icons/bi';
+import Loadout from '../../components/Loadout';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchAllLoadouts } from '../../store/reducers/loadout';
-import { BiLoaderCircle } from 'react-icons/bi';
 
 function Loadouts() {
   const dispatch = useAppDispatch();
@@ -49,7 +49,9 @@ function Loadouts() {
         <ul className="loadouts-list">
           {isLoading && <BiLoaderCircle className="loadouts-list__loader" />}
           {errorMessage && <span className="loadouts-list__error">{errorMessage}</span>}
-          {loadouts?.map((loadout) => <Loadout key={loadout.id} loadout={loadout} />)}
+          {loadouts?.map((loadout) => (
+            <Loadout key={loadout.id} loadout={loadout} isOnProfilePage={false} />
+          ))}
         </ul>
       </div>
     </main>

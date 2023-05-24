@@ -140,7 +140,8 @@ function ProfilePage() {
               && (
                 <ul className="profile-content__list">
                   {loadouts && loadouts.map((loadout) => (
-                    <Loadout key={loadout.id} loadout={loadout} />
+                    <Loadout key={loadout.id} loadout={loadout} isOnProfilePage />
+
                   ))}
                 </ul>
               )}
