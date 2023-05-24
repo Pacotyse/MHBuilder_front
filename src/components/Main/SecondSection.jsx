@@ -6,13 +6,22 @@ function SecondSection() {
   return (
 
     <div className="secondSection-container">
-      <div className="communityBuild-container">
-        <div className="communityBuild-container-text">
-          <h1 className="communityBuild-h1">Community&apos;s Build</h1>
-          <p className="communityBuild-p">Explore the loadouts created by the community to discover the best optimizations proposed by fellow players. Gain insights, inspiration, and strategies from experienced hunters to enhance your gameplay and achieve new heights in your Monster Hunter adventures.</p>
-          <button type="button" className="communityBuild-btn">
-            Go community builds
-          </button>
+      <div className="secondSection-container-left">
+        <div className="communityBuild-container">
+          <div className="communityBuild-container-text">
+            <h2 className="communityBuild-h2">Community&apos;s Build</h2>
+            <p className="communityBuild-p">Explore the loadouts created by the community to discover the best optimizations proposed by fellow players. Gain insights, inspiration, and strategies from experienced hunters to enhance your gameplay and achieve new heights in your Monster Hunter adventures.</p>
+            <button type="button" className="communityBuild-btn">
+              Go community builds
+            </button>
+          </div>
+        </div>
+        <div className="discord-container">
+
+          {/* <iframe src="https://discord.com/widget?id=1110701136249356378&theme=dark" frameBorder="0" width="250" height="300" allowtransparency="true"  /> */}
+
+          <h1 className="discord-h1"> Join our discord</h1>
+
         </div>
       </div>
 
