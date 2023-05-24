@@ -202,6 +202,7 @@ import element_sleep from '../assets/icons/elements/element_sleep.png';
 import element_paralyzis from '../assets/icons/elements/element_paralyzis.png';
 import element_poison from '../assets/icons/elements/element_poison.png';
 import element_blast from '../assets/icons/elements/element_blast.png';
+import villager from '../assets/icons/villager.png';
 import { IIcons } from '../@types/icons';
 
 // Listing all the images in an object
@@ -409,6 +410,7 @@ const icons: IIcons = {
   element_paralyzis,
   element_poison,
   element_blast,
+  villager,
 };
 
 // This fonction will return the image based on the key passed

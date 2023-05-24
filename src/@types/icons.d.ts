@@ -3,6 +3,7 @@ export interface IIcons {
   attack: string
   defense: string
   affinity: string
+  villager: string
   element_fire: string
   element_ice: string
   element_water: string
