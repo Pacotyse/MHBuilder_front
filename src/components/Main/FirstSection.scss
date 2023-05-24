@@ -3,62 +3,42 @@
 .goToBuilder {
 
     &-container{
-    background-color: rgb(223, 163, 33);
-    height: 40vh;
-    width: 100%;
-    display: flex;
+    // background-color: rgb(223, 163, 33);
+    background-image: url('./../../assets/mhsb_background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &-container-text{
+        width: 50%;
+        margin: 10vh auto;
+        > *:not(:last-child) {
+            margin-bottom: 15px;
+        }
     }
 
 
     &-h1{
-
         color:white;
-        font-size:50px;
-        margin-top: -50px;
-
+        font-size:24px;
     }
 
     &-p {
-
-        margin-top: 8px;
         color: white;
-        font-size: 22px;
-    }
-
-    &-btn {
-
-        margin-top: 1em;
+        font-size: 18px;
     }
 }
 
 @media (max-width: 769px) {
     .goToBuilder{
-        &-container {
-            background-color: rgb(223, 163, 33);
-            
+
+        &-container-text{
+            width: 75%;
         }
-
-            &-h1{
-
-        color:white;
-        font-size:30px;
-        margin-top: -50px;
-
-    }
-
-    &-p {
-
-        margin-top: 5px;
-        color: white;
-        font-size: 22px;
-    }
-
-    &-btn {
-
-        margin-top: 1em;
-    }
+    
     }
 }

@@ -7,6 +7,8 @@ function DiscordSection() {
 
     <div className="discord-container">
 
+      {/* <iframe src="https://discord.com/widget?id=1110701136249356378&theme=dark" width="700" height="300" allowtransparency="true" frameBorder="0" /> */}
+
       <h1 className="discord-h1"> Join our discord</h1>
       <div className="apiDiscord" />
 
