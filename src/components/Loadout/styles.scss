@@ -23,6 +23,38 @@
   &-author {
     font-size: vars.$font-s;
   }
+  &-code {
+    display: flex;
+    align-items: center;
+    gap: vars.$gap-s;
+
+    &__description {
+      font-size: vars.$font-s;
+    }
+
+    &__copy-button {
+      background-color: transparent;
+      color: vars.$white;
+      border: none;
+      position: relative;
+
+      &:hover::before {
+        content: "Copy code";
+        width: 5rem;
+        border-radius: 5px;
+        position: absolute;
+        right: -5rem;
+        top: -.5rem;
+        background-color: #000000c0;
+        padding: .5rem vars.$gap-s;
+      }
+    }
+
+    & .clicked {
+      color: vars.$primary;
+    }
+  }
+
   &-description {
     font-size: vars.$font-s;
   }

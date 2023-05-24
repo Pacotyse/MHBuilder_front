@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import cn from 'classnames';
+import { MdContentCopy } from 'react-icons/md';
 import { IIcons } from '../../@types/icons';
 import { ILoadout } from '../../@types/loadout';
 import getIconByKey from '../../utils/icons';
@@ -7,6 +10,10 @@ interface LoadoutProps {
   loadout: ILoadout
 }
 function Loadout({ loadout }: LoadoutProps) {
+  const [clicked, setClicked] = useState(false);
+  const copyButtonClassnames = cn('loadout-code__copy-button', {
+    clicked,
+  });
   return (
     <li className="loadout-container">
       <div className="loadout__main">
@@ -15,7 +22,19 @@ function Loadout({ loadout }: LoadoutProps) {
           <div className="loadout__header-identity">
             <div className="loadout__header-title">{loadout.name}</div>
             <span className="loadout-author">Author</span>
-            <p className="loadout-description">{`Code: ${loadout.id}`}</p>
+            <div className="loadout-code">
+              <p className="loadout-code__description">{`Code: ${loadout.id}`}</p>
+              {/* button below can copy loadout code to clipboard */}
+              <button
+                type="button"
+                className={copyButtonClassnames}
+                onClick={() => navigator.clipboard.writeText(loadout.id)}
+                onMouseDown={() => setClicked(true)}
+                onMouseUp={() => setClicked(false)}
+              >
+                <MdContentCopy />
+              </button>
+            </div>
             <p className="loadout-description">{`Note: " ${loadout.description} "`}</p>
           </div>
         </div>

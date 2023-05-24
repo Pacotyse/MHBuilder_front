@@ -4,7 +4,7 @@ import {
 } from './armor';
 
 export interface ILoadout {
-  id: number
+  id: string
   name: string
   description: string
   weapon: IWeapon
