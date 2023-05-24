@@ -28,6 +28,14 @@ export const fetchUserLoadouts = createAppAsyncThunk(
   },
 );
 
+export const fetchAllLoadouts = createAppAsyncThunk(
+  'loadout/FETCH_ALL_LOADOUTS',
+  async () => {
+    const { data: loadouts } = await axiosInstance.get('/loadouts');
+    return loadouts as ILoadout[];
+  },
+);
+
 export const saveLoadout = createAppAsyncThunk(
   'loadout/SAVE_LOADOUT',
   async (_, thunkAPI) => {
@@ -80,6 +88,9 @@ const loadoutReducer = createReducer(initialState, (builder) => {
     .addCase(changeLoadoutCredentialsField, (state, action) => {
       const { field, value } = action.payload;
       state.loadoutCredentials[field] = value;
+    })
+    .addCase(fetchAllLoadouts.fulfilled, (state, action) => {
+      state.loadouts = action.payload;
     });
 });
 

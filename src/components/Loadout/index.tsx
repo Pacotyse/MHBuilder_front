@@ -15,7 +15,8 @@ function Loadout({ loadout }: LoadoutProps) {
           <div className="loadout__header-identity">
             <div className="loadout__header-title">{loadout.name}</div>
             <span className="loadout-author">Author</span>
-            <p className="loadout-description">{loadout.description}</p>
+            <p className="loadout-description">{`Code: ${loadout.id}`}</p>
+            <p className="loadout-description">{`Note: " ${loadout.description} "`}</p>
           </div>
         </div>
 
