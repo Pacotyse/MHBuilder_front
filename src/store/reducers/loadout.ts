@@ -89,8 +89,18 @@ const loadoutReducer = createReducer(initialState, (builder) => {
       const { field, value } = action.payload;
       state.loadoutCredentials[field] = value;
     })
+    .addCase(fetchAllLoadouts.pending, (state) => {
+      state.loadouts = null;
+      state.isLoading = true;
+      state.errorMessage = '';
+    })
     .addCase(fetchAllLoadouts.fulfilled, (state, action) => {
+      state.isLoading = false;
       state.loadouts = action.payload;
+    })
+    .addCase(fetchAllLoadouts.rejected, (state) => {
+      state.isLoading = false;
+      state.errorMessage = 'Server error, Failed to get data';
     });
 });
 

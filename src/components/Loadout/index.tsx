@@ -21,7 +21,7 @@ function Loadout({ loadout }: LoadoutProps) {
           <img src={getIconByKey(`${loadout.weapon.type.split('-').join('_')}_1` as keyof IIcons)} className="loadout__weapon-icon" alt="icon" />
           <div className="loadout__header-identity">
             <div className="loadout__header-title">{loadout.name}</div>
-            <span className="loadout-author">Author</span>
+            <span className="loadout-author">{loadout.user_id}</span>
             <div className="loadout-code">
               <p className="loadout-code__description">{`Code: ${loadout.id}`}</p>
               {/* button below can copy loadout code to clipboard */}

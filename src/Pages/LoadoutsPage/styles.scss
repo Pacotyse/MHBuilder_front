@@ -40,10 +40,22 @@
         gap: vars.$gap-m;
         object-fit: contain;
         width: 100%;
+        min-height: 50vh;
         align-items: center;
         justify-content: center;
         padding: vars.$gap-m vars.$gap-s;
 
+        &__loader {
+            width: 3rem;
+            height: 3rem;
+            animation: rotation 3s linear;
+        }
+
+        &__error {
+            background-color: vars.$error;
+            padding: vars.$gap-s vars.$gap-l;
+            border-radius: vars.$radius-m;
+        }
         &__container {
             display:flex;
             flex-direction: column;

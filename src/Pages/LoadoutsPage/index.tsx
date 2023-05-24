@@ -4,11 +4,14 @@ import './styles.scss';
 import Loadout from '../../components/Loadout/index';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchAllLoadouts } from '../../store/reducers/loadout';
+import { BiLoaderCircle } from 'react-icons/bi';
 
 function Loadouts() {
   const dispatch = useAppDispatch();
 
   const loadouts = useAppSelector((state) => state.loadout.loadouts);
+  const errorMessage = useAppSelector((state) => state.loadout.errorMessage);
+  const isLoading = useAppSelector((state) => state.loadout.isLoading);
 
   useEffect(() => {
     dispatch(fetchAllLoadouts());
@@ -44,6 +47,8 @@ function Loadouts() {
         </div>
 
         <ul className="loadouts-list">
+          {isLoading && <BiLoaderCircle className="loadouts-list__loader" />}
+          {errorMessage && <span className="loadouts-list__error">{errorMessage}</span>}
           {loadouts?.map((loadout) => <Loadout key={loadout.id} loadout={loadout} />)}
         </ul>
       </div>
