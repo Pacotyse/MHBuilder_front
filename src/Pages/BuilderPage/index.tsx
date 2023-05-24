@@ -24,6 +24,7 @@ function BuilderPage() {
   const [weaponSelectionModalShown, setWeaponSelectionModalShown] = useState(false);
   const [armorSelectionModalShown, setArmorSelectionModalShown] = useState(false);
   const [showSaveLoadoutModal, setShowSaveLoadoutModal] = useState(false);
+  const [errorSaveLoadout, setErrorSaveLoadout] = useState<string>('');
 
   const weapon = useAppSelector((state) => state.builder.weapon);
   const arms = useAppSelector((state) => state.builder.arms);
@@ -56,6 +57,10 @@ function BuilderPage() {
   const handleResetBuilder = () => {
     dispatch(resetBuilder());
   };
+  const handleShowSaveModal = () => {
+    setErrorSaveLoadout('');
+    setShowSaveLoadoutModal(true);
+  };
 
   // Get stats from the API on every builder update
   useEffect(() => {
@@ -74,6 +79,9 @@ function BuilderPage() {
       && userIsLogged
     ) {
       dispatch(saveLoadout());
+      setShowSaveLoadoutModal(false);
+    } else {
+      setErrorSaveLoadout('Make sure to set all the items and be authentified to save a loadout.');
     }
   };
 
@@ -123,7 +131,7 @@ function BuilderPage() {
         <SkillStats />
         <ArmorStats />
         <button type="button" className="section-stats__button" onClick={handleResetBuilder}>Reset builder</button>
-        <button type="button" className="section-stats__button" onClick={() => setShowSaveLoadoutModal(true)}>Save and share this loadout</button>
+        <button type="button" className="section-stats__button" onClick={handleShowSaveModal}>Save and share this loadout</button>
       </section>
 
       <Modal
@@ -131,23 +139,36 @@ function BuilderPage() {
         shown={showSaveLoadoutModal}
         close={() => setShowSaveLoadoutModal(false)}
       >
-        <form>
-          <input
-            type="text"
-            placeholder="Loadout title"
-            required
-            value={loadoutTitle}
-            onChange={handleChangeField('title')}
-          />
-          <input
-            type="text"
-            placeholder="Description"
-            value={loadoutDescription}
-            onChange={handleChangeField('description')}
-          />
-        </form>
-        <button type="button" onClick={handleSaveLoadout}>Save</button>
-        <button type="button" onClick={handleCloseSaveLoadoutModal}>Cancel</button>
+        {Boolean(errorSaveLoadout)
+          && (
+          <div>
+            <p>{errorSaveLoadout}</p>
+            <button type="button" onClick={() => setErrorSaveLoadout('')}>Ok</button>
+          </div>
+          )}
+        {Boolean(!errorSaveLoadout)
+          && (
+          <div>
+
+            <form>
+              <input
+                type="text"
+                placeholder="Loadout title"
+                required
+                value={loadoutTitle}
+                onChange={handleChangeField('title')}
+              />
+              <input
+                type="text"
+                placeholder="Description"
+                value={loadoutDescription}
+                onChange={handleChangeField('description')}
+              />
+            </form>
+            <button type="button" onClick={handleSaveLoadout}>Save</button>
+            <button type="button" onClick={handleCloseSaveLoadoutModal}>Cancel</button>
+          </div>
+          )}
       </Modal>
 
     </main>
