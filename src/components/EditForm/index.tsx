@@ -3,16 +3,14 @@ import Field from '../LoginForm/Field';
 import { useAppSelector } from '../../hooks/redux';
 
 interface EditFormProps {
-  password: string
-  passwordConfirm: string
+
   username: string
-  changeField: (value: string, name: 'password' | 'username' | 'passwordConfirm') => void
+  changeField: (value: string) => void
   handleEdit: () => void
 }
 
 function EditForm({
-  password,
-  passwordConfirm,
+
   username,
   changeField,
   handleEdit,
@@ -24,8 +22,8 @@ function EditForm({
     handleEdit();
   };
 
-  const handleChangeField = (name: 'password' | 'username' | 'passwordConfirm') => (value: string) => {
-    changeField(value, name);
+  const handleChangeField = (value: string) => {
+    changeField(value);
   };
 
   return (
@@ -36,23 +34,9 @@ function EditForm({
         <h3 className="login-form-title">Edit</h3>
         <Field
           disabled={isLoading}
-          type="password"
-          placeholder="Password"
-          onChange={handleChangeField('password')}
-          value={password}
-        />
-        <Field
-          disabled={isLoading}
-          type="password"
-          placeholder="Confirm password"
-          onChange={handleChangeField('passwordConfirm')}
-          value={passwordConfirm}
-        />
-        <Field
-          disabled={isLoading}
           type="text"
           placeholder="Username"
-          onChange={handleChangeField('username')}
+          onChange={handleChangeField}
           value={username}
         />
         <button

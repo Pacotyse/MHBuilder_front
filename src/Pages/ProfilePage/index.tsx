@@ -20,8 +20,6 @@ function ProfilePage() {
   const loadouts = useAppSelector((state) => state.loadout.loadouts);
   const isLoading = useAppSelector((state) => state.loadout.isLoading);
 
-  const passwordEdit = useAppSelector((state) => state.user.editCredentials.password);
-  const passwordConfirmEdit = useAppSelector((state) => state.user.editCredentials.passwordConfirm);
   const usernameEdit = useAppSelector((state) => state.user.editCredentials.username);
 
   const [showSettings, setShowSettings] = useState(false);
@@ -37,6 +35,7 @@ function ProfilePage() {
 
   const handleEditUser = () => {
     dispatch(editUser());
+    setShowEditModal(false);
   };
 
   const handleCloseDeleteModal = () => {
@@ -60,10 +59,10 @@ function ProfilePage() {
     dispatch(checkTokenValidity());
   }, [dispatch]);
 
-  const handleChangeEditCredentials = (value: string, name: 'password' | 'passwordConfirm' | 'username') => {
+  const handleChangeEditCredentials = (value: string) => {
     dispatch(changeEditCredentialsField({
       value,
-      field: name,
+      // field: name,
     }));
   };
 
@@ -76,7 +75,7 @@ function ProfilePage() {
               <h2 className="profile-title">Profile Page</h2>
               <div className="profile-header">
                 <div className="profile-header__identity">
-                  <img src={getIconByKey('affinity')} alt="Profile avatar" className="profile-header__avatar" />
+                  <img src={getIconByKey('villager')} alt="Profile avatar" className="profile-header__avatar" />
                   <h3 className="profile-pseudo">{username}</h3>
                 </div>
                 <div className="profile-header__actions">
@@ -123,8 +122,6 @@ function ProfilePage() {
                   >
                     <div className="profile__modal-content">
                       <EditForm
-                        password={passwordEdit}
-                        passwordConfirm={passwordConfirmEdit}
                         username={usernameEdit}
                         changeField={handleChangeEditCredentials}
                         handleEdit={handleEditUser}
