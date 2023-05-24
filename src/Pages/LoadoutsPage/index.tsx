@@ -16,61 +16,38 @@ function Loadouts() {
 
   return (
     <main className="main-loadout">
-      {/* //! SECTION 1 */}
+      {/* //? SECTION Search by code */}
 
       <div className="loadouts-search">
-        <h2 className="loadouts-search_title">Entrez votre code d&apos;armure</h2>
-        <p className="loadouts-search__description">Les codes d&apos;armures sont obtenus en créant un ensemble d&apos;armure </p>
-        <div className="loadouts-searchbar">
-          <input
-            type="text"
-            placeholder="Past your code here"
-          />
-        </div>
-        <div className="loadouts-btn">
-          <button type="button" className="loadouts-button">
-            Go to
-          </button>
-        </div>
+        <h2 className="loadouts-search_title">FIND BY CODE</h2>
+        <p className="loadouts-search__description">Got loadout codes? Paste them below to get them to the builder and see details!</p>
 
+        <form className="loadouts-search__form">
+          <input type="text" placeholder="Past your code here" />
+          <button type="button" className="loadouts-search__submit-button">Go</button>
+        </form>
       </div>
-      {/* //! SECTION 2 */}
-      <div className="loadouts-filters">
+      {/* //? SECTION all loadouts and filter */}
+      <div className="loadouts-list__container">
 
-        <div className="loadouts-filters-btn">
-
-          <button type="button" className="loadouts-filters-name">
-            Name
-          </button>
-
-          <button type="button" className="loadouts-filters-rated">
-            Rated
-          </button>
-
-          <button type="button" className="loadouts-filters-latest">
-            Latest
-          </button>
+        <div className="loadouts-list__filters">
+          <button type="button" className="loadouts-list__name">Name</button>
+          <button type="button" className="loadouts-list__-rated">Rated</button>
+          <button type="button" className="loadouts-list__latest">Latest</button>
+          <div className="loadouts-searchbar">
+            <input
+              type="text"
+              placeholder="Loadout name"
+            />
+            <button type="submit">Ok</button>
+          </div>
         </div>
 
-        <div className="loadouts-searchbar">
-          <input
-            type="text"
-            placeholder="Search items here"
-          />
-        </div>
-      </div>
-
-      {/* //! SECTION CARDS */}
-
-      <div className="cardsContainer">
-        <ul className="loadout-list">
+        <ul className="loadouts-list">
           {loadouts?.map((loadout) => <Loadout key={loadout.id} loadout={loadout} />)}
         </ul>
-
       </div>
-
     </main>
-
   );
 }
 
