@@ -126,4 +126,31 @@
       color: vars.$error;
     }
   }
+  &__edit {
+    position: absolute;
+    right: -1.5rem;
+    top: 1.6rem;
+    translate: -50% -50%;
+    background-color: vars.$grey;
+    border: none;
+    padding: 3px;
+
+    &:hover::after {
+      content: "Edit";
+      width: 5rem;
+      border-radius: 5px;
+      position: absolute;
+      right: -5rem;
+      top: -.5rem;
+      background-color: #000000c0;
+      color: vars.$white;
+      padding: .5rem vars.$gap-s;
+    }
+
+    &-icon {
+      width: 1.2rem;
+      height: 1.2rem;
+      color: rgb(132, 69, 250);
+    }
+  }
 }

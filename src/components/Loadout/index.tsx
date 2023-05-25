@@ -1,7 +1,8 @@
-import { ReactNode, useState } from 'react';
+import { useState } from 'react';
 import cn from 'classnames';
 import { MdContentCopy } from 'react-icons/md';
 import { FiTrash2 } from 'react-icons/fi';
+import { FaEdit } from 'react-icons/fa';
 import { IIcons } from '../../@types/icons';
 import { ILoadout } from '../../@types/loadout';
 import getIconByKey from '../../utils/icons';
@@ -92,6 +93,12 @@ function Loadout({ loadout, isOnProfilePage }: LoadoutProps) {
         && (
           <button type="button" className="loadout__delete" onClick={() => setDeleteLoadoutModalShown(true)}>
             <FiTrash2 className="loadout__delete-icon" />
+          </button>
+        )}
+      {isOnProfilePage
+        && (
+          <button type="button" className="loadout__edit" onClick={() => setDeleteLoadoutModalShown(true)}>
+            <FaEdit className="loadout__edit-icon" />
           </button>
         )}
       <Modal
