@@ -23,6 +23,7 @@ function Loadouts() {
 
   function handleGetOneLoadout() {
     dispatch(fetchLoadoutById());
+    // go to builder page
     navigate('/builder');
   }
 

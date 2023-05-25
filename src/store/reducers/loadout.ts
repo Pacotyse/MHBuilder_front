@@ -45,7 +45,7 @@ export const saveLoadout = createAppAsyncThunk(
     const state = thunkAPI.getState();
     const userId = state.user.id;
     const {
-      weapon, arms, chest, head, legs, waist,
+      weapon, arms, chest, head, legs, waist, buildStats,
     } = state.builder;
     const { title, description } = state.loadout.loadoutCredentials;
     const { data } = await axiosInstance.post('/loadouts', {
@@ -58,6 +58,7 @@ export const saveLoadout = createAppAsyncThunk(
       arms_id: arms?.id,
       waist_id: waist?.id,
       legs_id: legs?.id,
+      stats: buildStats?.stats,
     });
     return data;
   },
