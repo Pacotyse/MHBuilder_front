@@ -11,7 +11,7 @@ export interface IIcons {
   element_dragon: string
   element_sleep: string
   element_poison: string
-  element_paralyzis: string
+  element_paralisys: string
   element_blast: string
   head_1: string
   head_2: string

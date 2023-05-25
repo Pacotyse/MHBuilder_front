@@ -2,7 +2,7 @@ import { useAppSelector } from '../../hooks/redux';
 import './styles.scss';
 
 function AttackStats() {
-  const stats = useAppSelector((state) => state.builder.buildStats?.stats);
+  const stats = useAppSelector((state) => state.builder.stats);
 
   return (
     <div className="stats-container">
@@ -15,19 +15,14 @@ function AttackStats() {
         </span>
       </div>
 
-      {stats?.elements?.map((element) => {
-        if (element.name !== null) {
-          return (
-            <div key={element.name}>
-              {`Element ${element.name} : `}
-              <span className="stats-value">
-                {Math.round(element.value)}
-              </span>
-            </div>
-          );
-        }
-        return false;
-      })}
+      {stats?.elements?.map((element) => (
+        <div key={element?.name}>
+          {`Element ${element?.name} : `}
+          <span className="stats-value">
+            {Math.round(Number(element?.value))}
+          </span>
+        </div>
+      ))}
 
       <div>
         Affinity :

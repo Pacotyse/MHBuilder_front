@@ -199,7 +199,7 @@ import element_water from '../assets/icons/elements/element_water.png';
 import element_thunder from '../assets/icons/elements/element_thunder.png';
 import element_dragon from '../assets/icons/elements/element_dragon.png';
 import element_sleep from '../assets/icons/elements/element_sleep.png';
-import element_paralyzis from '../assets/icons/elements/element_paralyzis.png';
+import element_paralisys from '../assets/icons/elements/element_paralyzis.png';
 import element_poison from '../assets/icons/elements/element_poison.png';
 import element_blast from '../assets/icons/elements/element_blast.png';
 import villager from '../assets/icons/villager.png';
@@ -407,7 +407,7 @@ const icons: IIcons = {
   element_thunder,
   element_dragon,
   element_sleep,
-  element_paralyzis,
+  element_paralisys,
   element_poison,
   element_blast,
   villager,

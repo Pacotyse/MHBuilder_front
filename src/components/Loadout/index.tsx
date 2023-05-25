@@ -87,20 +87,15 @@ function Loadout({ loadout, isOnProfilePage }: LoadoutProps) {
 
         <div className="loadout__footer">
           <ul className="loadout__footer__skill-list">
-            {loadout.stats.skills?.map((skill) => {
-              if (skill) {
-                return (
-                  <li
-                    key={skill?.id}
-                    className="loadout__footer__skill-tag"
-                    style={{ backgroundColor: `${skill.color}`, color: '#ffffff' }}
-                  >
-                    {`${skill?.name} ${skill?.level}`}
-                  </li>
-                );
-              }
-              return false;
-            })}
+            {loadout.stats.skills?.map((skill) => (
+              <li
+                key={skill?.id}
+                className="loadout__footer__skill-tag"
+                style={{ backgroundColor: `${skill.color}`, color: '#ffffff' }}
+              >
+                {`${skill?.name} ${skill?.level}`}
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -109,7 +104,7 @@ function Loadout({ loadout, isOnProfilePage }: LoadoutProps) {
       <div className="loadout-aside">
         <div className="loadout__stats">
           <img src={getIconByKey('attack')} alt="attack icon" className="loadout__stats-icon" />
-          <div className="loadout__stats-value">{loadout.stats.attack}</div>
+          <div className="loadout__stats-value">{Math.round(Number(loadout.stats.attack))}</div>
         </div>
         <div className="loadout__stats">
           <img src={getIconByKey('affinity')} alt="affinity icon" className="loadout__stats-icon" />

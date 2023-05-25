@@ -56,7 +56,7 @@ export const initialState: UserState = {
 export const checkTokenValidity = createAppAsyncThunk(
   'user/CHECK_TOKEN_VALIDITY',
   async () => {
-    const { data: tokenIsValid } = await axiosInstance.post('/users/logged');
+    const { data: tokenIsValid } = await axiosInstance.post('/logged');
 
     return tokenIsValid as boolean;
   },
@@ -88,7 +88,7 @@ export const login = createAppAsyncThunk(
     // Extract email and password from credentials
     const { email, password } = state.user.loginCredentials;
     // Send data to back
-    const { data } = await axiosInstance.post('/users/login', {
+    const { data } = await axiosInstance.post('/login', {
       email,
       password,
     });
@@ -107,7 +107,7 @@ export const register = createAppAsyncThunk(
     // Extract email and password and username from registerCredentials
     const { email, password, username } = state.user.registerCredentials;
     // Send data to back
-    const { data } = await axiosInstance.post('/users/register', {
+    const { data } = await axiosInstance.post('/register', {
       email,
       password,
       username,

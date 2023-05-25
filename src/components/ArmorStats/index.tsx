@@ -4,7 +4,7 @@ import getIconByKey from '../../utils/icons';
 import './styles.scss';
 
 function ArmorStats() {
-  const stats = useAppSelector((state) => state.builder.buildStats?.stats);
+  const stats = useAppSelector((state) => state.builder.stats);
   const res = stats?.resistances;
 
   const elements = [

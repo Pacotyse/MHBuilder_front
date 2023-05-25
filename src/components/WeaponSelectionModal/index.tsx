@@ -47,6 +47,7 @@ function WeaponSelectionModal(
             <button type="button" className="item-list__empty__button-back" onClick={handleGoBack}>Go back</button>
           </div>
           )}
+        
         {
           weaponList && weaponList.map((weapon) => (
             <WeaponCard
