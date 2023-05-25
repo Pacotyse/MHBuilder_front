@@ -10,7 +10,7 @@ import getIconByKey from '../../utils/icons';
 import './styles.scss';
 import Modal from '../Modal';
 import { useAppDispatch } from '../../hooks/redux';
-import { deleteLoadout, fetchUserLoadouts } from '../../store/reducers/loadout';
+import { deleteLoadout, fetchUserLoadouts, setEditMode } from '../../store/reducers/loadout';
 import { importLoadoutById } from '../../store/reducers/builder';
 
 interface LoadoutProps {
@@ -34,6 +34,7 @@ function Loadout({ loadout, isOnProfilePage }: LoadoutProps) {
   }
   function handleEditLoadout(): void {
     dispatch(importLoadoutById(loadout.id));
+    dispatch(setEditMode({ isEditMode: true, editLoadoutId: loadout.id }));
     navigate('/builder');
   }
 

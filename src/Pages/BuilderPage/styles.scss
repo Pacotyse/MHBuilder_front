@@ -38,6 +38,10 @@
       background-color: vars.$white;
       color: vars.$dark-grey;
     }
+
+    &-edit__code {
+      color: vars.$error;
+    }
   }
   }
 }

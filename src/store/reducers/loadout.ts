@@ -12,6 +12,10 @@ export interface LoadoutState {
     description: string
   }
   loadoutCode: string
+  edit: {
+    editLoadoutId: string
+    isEditMode : boolean
+  }
 }
 export const clearLoadouts = createAction('loadouts/CLEAR_LIST');
 export const changeLoadoutCredentialsField = createAction<{
@@ -64,6 +68,34 @@ export const saveLoadout = createAppAsyncThunk(
   },
 );
 
+export const setEditMode = createAction<{
+  isEditMode: boolean,
+  editLoadoutId: string
+}>('loadout/SET_EDIT_MODE');
+
+export const editLoadout = createAppAsyncThunk(
+  'loadout/EDIT_LOADOUT',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const {
+      weapon, arms, chest, head, legs, waist, buildStats,
+    } = state.builder;
+    const { title, description } = state.loadout.loadoutCredentials;
+    const { data } = await axiosInstance.post('/loadouts', {
+      name: title,
+      description,
+      weapon_id: weapon?.id,
+      head_id: head?.id,
+      chest_id: chest?.id,
+      arms_id: arms?.id,
+      waist_id: waist?.id,
+      legs_id: legs?.id,
+      stats: buildStats?.stats,
+    });
+    return data;
+  },
+);
+
 export const deleteLoadout = createAppAsyncThunk(
   'loadout/DELETE_LOADOUT',
   async (id: string) => {
@@ -81,6 +113,10 @@ export const initialState: LoadoutState = {
     description: '',
   },
   loadoutCode: '',
+  edit: {
+    editLoadoutId: '',
+    isEditMode: false,
+  },
 };
 
 const loadoutReducer = createReducer(initialState, (builder) => {
@@ -121,6 +157,10 @@ const loadoutReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setLoadoutCodeField, (state, action) => {
       state.loadoutCode = action.payload;
+    })
+    .addCase(setEditMode, (state, action) => {
+      state.edit.isEditMode = action.payload.isEditMode;
+      state.edit.editLoadoutId = action.payload.editLoadoutId;
     });
 });
 

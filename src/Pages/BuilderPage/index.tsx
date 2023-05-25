@@ -37,6 +37,7 @@ function BuilderPage() {
   const loadoutTitle = useAppSelector((state) => state.loadout.loadoutCredentials.title);
   // eslint-disable-next-line max-len
   const loadoutDescription = useAppSelector((state) => state.loadout.loadoutCredentials.description);
+  const loadoutEdit = useAppSelector((state) => state.loadout.edit);
 
   const handleShowModal = (itemType: 'weapon' | IArmorType) => {
     if (itemType === 'weapon') {
@@ -131,7 +132,15 @@ function BuilderPage() {
         <SkillStats />
         <ArmorStats />
         <button type="button" className="section-stats__button" onClick={handleResetBuilder}>Reset builder</button>
-        <button type="button" className="section-stats__button" onClick={handleShowSaveModal}>Save and share this loadout</button>
+        <button type="button" className="section-stats__button" onClick={handleShowSaveModal}>Save as new loadout</button>
+        {loadoutEdit.isEditMode
+          && (
+          <button type="button" className="section-stats__button">
+            Save edit on loadout
+            {' '}
+            <span className="section-stats__button-edit__code">{loadoutEdit.editLoadoutId}</span>
+          </button>
+          )}
       </section>
 
       <Modal
@@ -170,7 +179,6 @@ function BuilderPage() {
           </div>
           )}
       </Modal>
-
     </main>
   );
 }
