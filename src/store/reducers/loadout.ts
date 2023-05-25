@@ -14,7 +14,9 @@ export interface LoadoutState {
   loadoutCode: string
   edit: {
     editLoadoutId: string
-    isEditMode : boolean
+    isEditMode: boolean
+    title: string
+    description: string
   }
 }
 export const clearLoadouts = createAction('loadouts/CLEAR_LIST');
@@ -70,18 +72,20 @@ export const saveLoadout = createAppAsyncThunk(
 
 export const setEditMode = createAction<{
   isEditMode: boolean,
-  editLoadoutId: string
+  editLoadoutId: string,
+  title: string,
+  description: string,
 }>('loadout/SET_EDIT_MODE');
 
 export const editLoadout = createAppAsyncThunk(
   'loadout/EDIT_LOADOUT',
-  async (_, thunkAPI) => {
+  async (id: string, thunkAPI) => {
     const state = thunkAPI.getState();
     const {
       weapon, arms, chest, head, legs, waist, buildStats,
     } = state.builder;
     const { title, description } = state.loadout.loadoutCredentials;
-    const { data } = await axiosInstance.post('/loadouts', {
+    const { data } = await axiosInstance.put(`/loadouts/${id}`, {
       name: title,
       description,
       weapon_id: weapon?.id,
@@ -116,6 +120,8 @@ export const initialState: LoadoutState = {
   edit: {
     editLoadoutId: '',
     isEditMode: false,
+    title: '',
+    description: '',
   },
 };
 
@@ -161,6 +167,8 @@ const loadoutReducer = createReducer(initialState, (builder) => {
     .addCase(setEditMode, (state, action) => {
       state.edit.isEditMode = action.payload.isEditMode;
       state.edit.editLoadoutId = action.payload.editLoadoutId;
+      state.edit.title = action.payload.title;
+      state.edit.description = action.payload.description;
     });
 });
 

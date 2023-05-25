@@ -1,4 +1,5 @@
 import { ChangeEvent, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
   clearArmorList,
@@ -15,7 +16,9 @@ import ArmorStats from '../../components/ArmorStats';
 import SkillStats from '../../components/SkillStats';
 import { IArmorType } from '../../@types/armor';
 import Modal from '../../components/Modal';
-import { changeLoadoutCredentialsField, saveLoadout } from '../../store/reducers/loadout';
+import {
+  changeLoadoutCredentialsField, editLoadout, saveLoadout, setEditMode,
+} from '../../store/reducers/loadout';
 
 function BuilderPage() {
   const dispatch = useAppDispatch();
@@ -24,7 +27,8 @@ function BuilderPage() {
   const [weaponSelectionModalShown, setWeaponSelectionModalShown] = useState(false);
   const [armorSelectionModalShown, setArmorSelectionModalShown] = useState(false);
   const [showSaveLoadoutModal, setShowSaveLoadoutModal] = useState(false);
-  const [errorSaveLoadout, setErrorSaveLoadout] = useState<string>('');
+  const [errorLoadout, setErrorLoadout] = useState<string>('');
+  const [editLoadoutModalShown, setEditLoadoutModalShown] = useState(false);
 
   const weapon = useAppSelector((state) => state.builder.weapon);
   const arms = useAppSelector((state) => state.builder.arms);
@@ -59,7 +63,7 @@ function BuilderPage() {
     dispatch(resetBuilder());
   };
   const handleShowSaveModal = () => {
-    setErrorSaveLoadout('');
+    setErrorLoadout('');
     setShowSaveLoadoutModal(true);
   };
 
@@ -80,9 +84,15 @@ function BuilderPage() {
       && userIsLogged
     ) {
       dispatch(saveLoadout());
+      dispatch(setEditMode({
+        isEditMode: false,
+        editLoadoutId: '',
+        title: '',
+        description: '',
+      }));
       setShowSaveLoadoutModal(false);
     } else {
-      setErrorSaveLoadout('Make sure to set all the items and be authentified to save a loadout.');
+      setErrorLoadout('Make sure to set all the items and be authentified to save a loadout.');
     }
   };
 
@@ -95,6 +105,29 @@ function BuilderPage() {
 
   function handleCloseSaveLoadoutModal() {
     setShowSaveLoadoutModal(false);
+  }
+
+  function handleShowEditLoadoutModal(): void {
+    setEditLoadoutModalShown(true);
+    dispatch(changeLoadoutCredentialsField({ value: loadoutEdit.title, field: 'title' }));
+    dispatch(changeLoadoutCredentialsField({ value: loadoutEdit.description, field: 'description' }));
+  }
+  function handleEditLoadout() {
+    if (
+      weapon
+      && arms
+      && head
+      && chest
+      && waist
+      && legs
+      && loadoutTitle
+      && userIsLogged
+    ) {
+      dispatch(editLoadout(loadoutEdit.editLoadoutId));
+      setEditLoadoutModalShown(false);
+    } else {
+      setErrorLoadout('Make sure to set all the items and be authentified to save a loadout.');
+    }
   }
 
   return (
@@ -135,7 +168,7 @@ function BuilderPage() {
         <button type="button" className="section-stats__button" onClick={handleShowSaveModal}>Save as new loadout</button>
         {loadoutEdit.isEditMode
           && (
-          <button type="button" className="section-stats__button">
+          <button type="button" className="section-stats__button" onClick={handleShowEditLoadoutModal}>
             Save edit on loadout
             {' '}
             <span className="section-stats__button-edit__code">{loadoutEdit.editLoadoutId}</span>
@@ -148,14 +181,28 @@ function BuilderPage() {
         shown={showSaveLoadoutModal}
         close={() => setShowSaveLoadoutModal(false)}
       >
-        {Boolean(errorSaveLoadout)
+        {Boolean(errorLoadout)
           && (
           <div>
-            <p>{errorSaveLoadout}</p>
-            <button type="button" onClick={() => setErrorSaveLoadout('')}>Ok</button>
+            <p>{errorLoadout}</p>
+            {!userIsLogged
+              && (
+              <Link
+                to="/login"
+                style={{
+                  padding: '3px 6px',
+                  backgroundColor: 'white',
+                  color: 'black',
+                  borderRadius: '10px',
+                }}
+              >
+                Login
+              </Link>
+              )}
+            <button type="button" onClick={() => setErrorLoadout('')}>Ok</button>
           </div>
           )}
-        {Boolean(!errorSaveLoadout)
+        {Boolean(!errorLoadout)
           && (
           <div>
 
@@ -178,6 +225,38 @@ function BuilderPage() {
             <button type="button" onClick={handleCloseSaveLoadoutModal}>Cancel</button>
           </div>
           )}
+      </Modal>
+      <Modal
+        modalXl={false}
+        shown={editLoadoutModalShown}
+        close={() => setEditLoadoutModalShown(false)}
+      >
+        {Boolean(errorLoadout)
+          && (
+          <div>
+            <p>{errorLoadout}</p>
+            <button type="button" onClick={() => setErrorLoadout('')}>Ok</button>
+          </div>
+          )}
+        <div>
+          <form>
+            <input
+              type="text"
+              placeholder="Loadout title"
+              required
+              value={loadoutTitle}
+              onChange={handleChangeField('title')}
+            />
+            <input
+              type="text"
+              placeholder="Description"
+              value={loadoutDescription}
+              onChange={handleChangeField('description')}
+            />
+          </form>
+          <button type="button" onClick={handleEditLoadout}>Save</button>
+          <button type="button" onClick={() => setEditLoadoutModalShown(false)}>Cancel</button>
+        </div>
       </Modal>
     </main>
   );

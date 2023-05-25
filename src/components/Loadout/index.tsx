@@ -34,7 +34,12 @@ function Loadout({ loadout, isOnProfilePage }: LoadoutProps) {
   }
   function handleEditLoadout(): void {
     dispatch(importLoadoutById(loadout.id));
-    dispatch(setEditMode({ isEditMode: true, editLoadoutId: loadout.id }));
+    dispatch(setEditMode({
+      isEditMode: true,
+      editLoadoutId: loadout.id,
+      title: loadout.name,
+      description: loadout.description,
+    }));
     navigate('/builder');
   }
 
