@@ -9,7 +9,7 @@ export interface IWeapon {
   defense_bonus: number
   secret_effect: string
   sharpness: Sharpness
-  elements: Element[]
+  elements: Element[] | null[]
 }
 
 export interface Sharpness {

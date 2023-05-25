@@ -3,6 +3,7 @@
 .loadout{ 
   &-container {
     width: 100%;
+    min-width: 320px;
     max-width: 450px;
     display: flex;
     justify-content: space-between;
@@ -11,6 +12,11 @@
     border-radius: vars.$radius-s;
     position: relative;
   }
+  
+  &__main {
+    width: 80%;
+  }
+
   &__header {
     display: flex;
     gap: vars.$gap-s;
@@ -18,8 +24,17 @@
     &-identity {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 5px;
+      width: 100%;
+      min-width: 200px;
     }
+  }
+
+  &-aside {
+    display: flex;
+    flex-direction: column;
+    min-width: 80px;
+    gap: vars.$gap-s;
   }
   &-author {
     font-size: vars.$font-s;

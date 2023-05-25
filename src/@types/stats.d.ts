@@ -5,7 +5,7 @@ export interface IStats {
 export interface IBuildStats {
   attack: number
   affinity: number
-  elements: IElementStats[]
+  elements: IElementStats[] | null[]
   sharpness: ISharpness
   defense: number
   resistances: IResistanceStats

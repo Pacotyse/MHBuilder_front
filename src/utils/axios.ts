@@ -6,7 +6,7 @@ import { getUserDataFromLocalStorage } from './user';
 
 // eslint-disable-next-line import/prefer-default-export
 export const axiosInstance = axios.create({
-  baseURL: 'https://monster-hunter-builder-back-production-0b8a.up.railway.app',
+  baseURL: 'https://monster-hunter-builder-back-production-bf65.up.railway.app',
 });
 // Add an action BEFORE a request
 axiosInstance.interceptors.request.use((config) => {

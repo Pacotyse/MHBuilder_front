@@ -12,6 +12,7 @@ import Modal from '../Modal';
 import { useAppDispatch } from '../../hooks/redux';
 import { deleteLoadout, fetchUserLoadouts, setEditMode } from '../../store/reducers/loadout';
 import { importLoadoutById } from '../../store/reducers/builder';
+import { setSharpnessWidth } from '../../utils/weapon';
 
 interface LoadoutProps {
   loadout: ILoadout
@@ -47,10 +48,10 @@ function Loadout({ loadout, isOnProfilePage }: LoadoutProps) {
     <li className="loadout-container">
       <div className="loadout__main">
         <div className="loadout__header">
-          <img src={getIconByKey(`${loadout.weapon.type.split('-').join('_')}_1` as keyof IIcons)} className="loadout__weapon-icon" alt="icon" />
+          <img src={getIconByKey(loadout.icon as keyof IIcons)} className="loadout__weapon-icon" alt="icon" />
           <div className="loadout__header-identity">
             <div className="loadout__header-title">{loadout.name}</div>
-            <span className="loadout-author">{loadout.user_id}</span>
+            <span className="loadout-author">{loadout.username}</span>
             <div className="loadout-code">
               <p className="loadout-code__description">{`Code: ${loadout.id}`}</p>
               {/* button below can copy loadout code to clipboard */}
@@ -64,17 +65,42 @@ function Loadout({ loadout, isOnProfilePage }: LoadoutProps) {
                 <MdContentCopy />
               </button>
             </div>
-            <p className="loadout-description">{`Note: " ${loadout.description} "`}</p>
+            <div className="sharpness">
+
+              {/* // Then set the width of the sharpness */}
+              <div className="sharpness-red" style={{ width: `${setSharpnessWidth(loadout.stats.sharpness.red)}%` }} />
+              <div className="sharpness-orange" style={{ width: `${setSharpnessWidth(loadout.stats.sharpness.orange)}%` }} />
+
+              <div className="sharpness-yellow" style={{ width: `${setSharpnessWidth(loadout.stats.sharpness.yellow)}%` }} />
+
+              <div className="sharpness-green" style={{ width: `${setSharpnessWidth(loadout.stats.sharpness.green)}%` }} />
+
+              <div className="sharpness-blue" style={{ width: `${setSharpnessWidth(loadout.stats.sharpness.blue)}%` }} />
+
+              <div className="sharpness-white" style={{ width: `${setSharpnessWidth(loadout.stats.sharpness.white)}%` }} />
+
+              <div className="sharpness-purple" style={{ width: `${setSharpnessWidth(loadout.stats.sharpness.purple)}%` }} />
+
+            </div>
           </div>
         </div>
 
         <div className="loadout__footer">
           <ul className="loadout__footer__skill-list">
-            <li className="loadout__footer__skill-tag">skill</li>
-            <li className="loadout__footer__skill-tag">skill +</li>
-            <li className="loadout__footer__skill-tag">skill mieux</li>
-            <li className="loadout__footer__skill-tag">skill bis</li>
-            <li className="loadout__footer__skill-tag">skill encore</li>
+            {loadout.stats.skills?.map((skill) => {
+              if (skill) {
+                return (
+                  <li
+                    key={skill?.id}
+                    className="loadout__footer__skill-tag"
+                    style={{ backgroundColor: `${skill.color}`, color: '#ffffff' }}
+                  >
+                    {`${skill?.name} ${skill?.level}`}
+                  </li>
+                );
+              }
+              return false;
+            })}
           </ul>
         </div>
 
@@ -83,24 +109,30 @@ function Loadout({ loadout, isOnProfilePage }: LoadoutProps) {
       <div className="loadout-aside">
         <div className="loadout__stats">
           <img src={getIconByKey('attack')} alt="attack icon" className="loadout__stats-icon" />
-          <div className="loadout__stats-value">210</div>
+          <div className="loadout__stats-value">{loadout.stats.attack}</div>
         </div>
         <div className="loadout__stats">
           <img src={getIconByKey('affinity')} alt="affinity icon" className="loadout__stats-icon" />
           <div className="loadout__value">
-            {loadout.weapon.affinity}
+            {loadout.stats.affinity}
             %
           </div>
         </div>
-        <div className="loadout__stats">
-          <img src={getIconByKey('element_thunder')} alt="thunder icon" className="loadout__stats-icon" />
-          <div className="loadout__value">140</div>
-        </div>
+        {loadout.stats.elements.map((element) => {
+          if (element) {
+            return (
+              <div key={element?.name} className="loadout__stats">
+                <img src={getIconByKey(`element_${element?.name}` as keyof IIcons)} alt={`${element?.name} icon`} className="loadout__stats-icon" />
+                <div className="loadout__value">{element?.value}</div>
+              </div>
+            );
+          }
+          return false;
+        })}
         <div className="loadout__stats">
           <img src={getIconByKey('defense')} alt="defense icon" className="loadout__stats-icon" />
-          <div className="loadout__value">413</div>
+          <div className="loadout__value">{loadout.stats.defense}</div>
         </div>
-        <div className="loadout__sharpness">sharpness</div>
       </div>
       {isOnProfilePage
         && (

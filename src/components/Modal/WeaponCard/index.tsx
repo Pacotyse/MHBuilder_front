@@ -57,10 +57,10 @@ function WeaponCard({ weapon, showModal, isSelected }: WeaponCardProps) {
             <div className="item-stats__value">{weapon.attack}</div>
           </div>
           <div className="item-stats__elements">
-            {weapon.elements.map((element) => (
-              <div key={element.name} className="item-stats__elements-one">
-                <img src={getIconByKey(`element_${element.name}` as keyof IIcons)} alt={element.name} />
-                <div>{element.value}</div>
+            {weapon.elements?.map((element) => (
+              <div key={element?.name} className="item-stats__elements-one">
+                <img src={getIconByKey(`element_${element?.name}` as keyof IIcons)} alt={element?.name} />
+                <div>{element?.value}</div>
               </div>
             ))}
           </div>

@@ -78,16 +78,20 @@ function ArmorCard({ armor, showModal, isSelected }: ArmorCardProps) {
       </div>
       <div className="item-card__footer">
         <div className="item-card__footer__skill-list">
-          {armor.skills.map((skill) => (
-            <div
-              key={skill.id}
-              className={cn('item-card__footer__skill-tag', {
-                'skill-red': skill.color === 'red',
-              })}
-            >
-              {`${skill.name} ${skill.level}`}
-            </div>
-          ))}
+          {armor.skills?.map((skill) => {
+            if (skill) {
+              return (
+                <div
+                  key={skill?.id}
+                  className={cn('item-card__footer__skill-tag')}
+                  style={{ backgroundColor: `${skill.color}`, color: '#ffffff' }}
+                >
+                  {`${skill?.name} ${skill?.level}`}
+                </div>
+              );
+            }
+            return false;
+          })}
         </div>
         {!isSelected
         && (

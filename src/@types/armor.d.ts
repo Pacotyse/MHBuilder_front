@@ -8,7 +8,7 @@ export interface IArmor {
   rarity: number
   defense: number
   resistances: Resistances
-  skills: Skill[]
+  skills: Skill[] | null[]
 }
 
 export interface IHead {
