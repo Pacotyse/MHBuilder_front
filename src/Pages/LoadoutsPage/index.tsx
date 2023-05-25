@@ -6,7 +6,7 @@ import { BiLoaderCircle } from 'react-icons/bi';
 import Loadout from '../../components/Loadout';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchAllLoadouts, setLoadoutCodeField } from '../../store/reducers/loadout';
-import { fetchLoadoutById } from '../../store/reducers/builder';
+import { importLoadoutById } from '../../store/reducers/builder';
 
 function Loadouts() {
   const dispatch = useAppDispatch();
@@ -22,7 +22,7 @@ function Loadouts() {
   }, [dispatch]);
 
   function handleGetOneLoadout() {
-    dispatch(fetchLoadoutById());
+    dispatch(importLoadoutById());
     // go to builder page
     navigate('/builder');
   }

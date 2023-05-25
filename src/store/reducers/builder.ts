@@ -66,12 +66,18 @@ export const getBuilderStats = createAppAsyncThunk(
   },
 );
 
-export const fetchLoadoutById = createAppAsyncThunk(
-  'builder/FETCH_ONE_LOADOUT',
-  async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const loadoutId = state.loadout.loadoutCode;
-    const { data: loadout } = await axiosInstance.get(`/loadouts/${loadoutId}`);
+export const importLoadoutById = createAppAsyncThunk(
+  'builder/IMPORT_ONE_LOADOUT',
+  async (id: string | undefined, thunkAPI) => {
+    // if no id, it means that we are getting the loadout through loadout page with a code
+    if (!id) {
+      const state = thunkAPI.getState();
+      const loadoutId = state.loadout.loadoutCode;
+      const { data: loadout } = await axiosInstance.get(`/loadouts/${loadoutId}`);
+      return loadout as ILoadout;
+    }
+    // if id, means we are getting loadout from edit loadout action in profile page
+    const { data: loadout } = await axiosInstance.get(`/loadouts/${id}`);
     return loadout as ILoadout;
   },
 );
@@ -145,7 +151,7 @@ const builderReducer = createReducer(initialState, (builder) => {
       state.waist = null;
       state.legs = null;
     })
-    .addCase(fetchLoadoutById.fulfilled, (state, action) => {
+    .addCase(importLoadoutById.fulfilled, (state, action) => {
       const {
         weapon, arms, chest, head, waist, legs,
       } = action.payload;

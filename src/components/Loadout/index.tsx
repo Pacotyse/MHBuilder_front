@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import { MdContentCopy } from 'react-icons/md';
 import { FiTrash2 } from 'react-icons/fi';
@@ -10,6 +11,7 @@ import './styles.scss';
 import Modal from '../Modal';
 import { useAppDispatch } from '../../hooks/redux';
 import { deleteLoadout, fetchUserLoadouts } from '../../store/reducers/loadout';
+import { importLoadoutById } from '../../store/reducers/builder';
 
 interface LoadoutProps {
   loadout: ILoadout
@@ -17,6 +19,7 @@ interface LoadoutProps {
 }
 function Loadout({ loadout, isOnProfilePage }: LoadoutProps) {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const [clicked, setClicked] = useState(false);
   const [deleteLoadoutModalShown, setDeleteLoadoutModalShown] = useState(false);
@@ -28,6 +31,10 @@ function Loadout({ loadout, isOnProfilePage }: LoadoutProps) {
     dispatch(deleteLoadout(loadout.id));
     setDeleteLoadoutModalShown(false);
     dispatch(fetchUserLoadouts());
+  }
+  function handleEditLoadout(): void {
+    dispatch(importLoadoutById(loadout.id));
+    navigate('/builder');
   }
 
   return (
@@ -97,7 +104,7 @@ function Loadout({ loadout, isOnProfilePage }: LoadoutProps) {
         )}
       {isOnProfilePage
         && (
-          <button type="button" className="loadout__edit" onClick={() => setDeleteLoadoutModalShown(true)}>
+          <button type="button" className="loadout__edit" onClick={handleEditLoadout}>
             <FaEdit className="loadout__edit-icon" />
           </button>
         )}
