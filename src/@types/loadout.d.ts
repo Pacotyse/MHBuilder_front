@@ -8,19 +8,19 @@ export interface ILoadout {
   username: string
   weapon_id: number
   icon: string
-  head_id: number
-  chest_id: number
-  arms_id: number
-  waist_id: number
-  legs_id: number
+  head_id: number | null
+  chest_id: number | null
+  arms_id: number | null
+  waist_id: number | null
+  legs_id: number | null
   stats: IBuildStats
 }
 
 export interface IFetchLoadout {
   weaponId: number
-  headId: number
-  chestId: number
-  armsId: number
-  waistId: number
-  legsId: number
+  headId: number | null
+  chestId: number | null
+  armsId: number | null
+  waistId: number | null
+  legsId: number | null
 }

@@ -43,11 +43,11 @@ function Loadout({ loadout, isOnProfilePage }: LoadoutProps) {
   function handleEditLoadout(): void {
     dispatch(fetchLoadoutItems({
       weaponId: loadout.weapon_id,
-      headId: loadout.head_id,
-      chestId: loadout.chest_id,
-      armsId: loadout.arms_id,
-      waistId: loadout.waist_id,
-      legsId: loadout.legs_id,
+      headId: loadout.head_id || 0,
+      chestId: loadout.chest_id || 0,
+      armsId: loadout.arms_id || 0,
+      waistId: loadout.waist_id || 0,
+      legsId: loadout.legs_id || 0,
     }));
     // dispatch(importLoadoutById(loadout.id));
     dispatch(setEditMode({

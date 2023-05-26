@@ -116,11 +116,6 @@ function BuilderPage() {
   function handleEditLoadout() {
     if (
       weapon
-      && arms
-      && head
-      && chest
-      && waist
-      && legs
       && loadoutTitle
       && userIsLogged
     ) {
