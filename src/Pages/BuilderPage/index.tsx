@@ -61,6 +61,12 @@ function BuilderPage() {
 
   const handleResetBuilder = () => {
     dispatch(resetBuilder());
+    dispatch(setEditMode({
+      isEditMode: false,
+      editLoadoutId: '',
+      title: '',
+      description: '',
+    }));
   };
   const handleShowSaveModal = () => {
     setErrorLoadout('');

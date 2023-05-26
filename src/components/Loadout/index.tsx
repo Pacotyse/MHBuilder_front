@@ -11,7 +11,7 @@ import './styles.scss';
 import Modal from '../Modal';
 import { useAppDispatch } from '../../hooks/redux';
 import { deleteLoadout, fetchUserLoadouts, setEditMode } from '../../store/reducers/loadout';
-import { fetchLoadoutItems } from '../../store/reducers/builder';
+import { fetchLoadoutItems, resetBuilder } from '../../store/reducers/builder';
 import { setSharpnessWidth } from '../../utils/weapon';
 
 interface LoadoutProps {
@@ -32,6 +32,13 @@ function Loadout({ loadout, isOnProfilePage }: LoadoutProps) {
     dispatch(deleteLoadout(loadout.id));
     setDeleteLoadoutModalShown(false);
     dispatch(fetchUserLoadouts());
+    dispatch(setEditMode({
+      isEditMode: false,
+      editLoadoutId: '',
+      title: '',
+      description: '',
+    }));
+    dispatch(resetBuilder());
   }
   function handleEditLoadout(): void {
     dispatch(fetchLoadoutItems({
