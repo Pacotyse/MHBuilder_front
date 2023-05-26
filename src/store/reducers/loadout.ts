@@ -51,7 +51,7 @@ export const fetchOneLoadoutById = createAppAsyncThunk(
     const state = thunkAPI.getState();
     const loadoutId = state.loadout.loadoutCode;
     const { data: loadout } = await axiosInstance.get(`/loadouts/${loadoutId}`);
-    return loadout as ILoadout;
+    return loadout as ILoadout | null;
   },
 );
 
@@ -167,7 +167,9 @@ const loadoutReducer = createReducer(initialState, (builder) => {
       state.errorMessage = 'Server error, Failed to get data';
     })
     .addCase(fetchOneLoadoutById.fulfilled, (state, action) => {
-      state.loadouts = [action.payload];
+      if (action.payload) {
+        state.loadouts = [action.payload];
+      }
     })
     .addCase(deleteLoadout.rejected, (state) => {
       state.errorMessage = 'Failed to delete loadout';

@@ -1,4 +1,6 @@
-import React, { ChangeEvent, FormEvent, useEffect } from 'react';
+import React, {
+  ChangeEvent, FormEvent, useEffect, useState,
+} from 'react';
 import './styles.scss';
 
 import { BiLoaderCircle } from 'react-icons/bi';
@@ -9,6 +11,7 @@ import { fetchAllLoadouts, fetchOneLoadoutById, setLoadoutCodeField } from '../.
 function Loadouts() {
   const dispatch = useAppDispatch();
 
+  const [backButtonShown, setBackButtonShown] = useState(false);
   const loadouts = useAppSelector((state) => state.loadout.loadouts);
   const errorMessage = useAppSelector((state) => state.loadout.errorMessage);
   const isLoading = useAppSelector((state) => state.loadout.isLoading);
@@ -21,7 +24,16 @@ function Loadouts() {
 
   function handleGetOneLoadout(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    dispatch(fetchOneLoadoutById());
+    if (loadoutCode) {
+      dispatch(fetchOneLoadoutById());
+      dispatch(setLoadoutCodeField(''));
+      setBackButtonShown(true);
+    }
+  }
+
+  function handleBackToAllLoadouts() {
+    setBackButtonShown(false);
+    dispatch(fetchAllLoadouts());
   }
 
   return (
@@ -52,7 +64,6 @@ function Loadouts() {
 
         <div className="loadouts-list__filters">
           <button type="button" className="loadouts-list__name">Name</button>
-          <button type="button" className="loadouts-list__-rated">Rated</button>
           <button type="button" className="loadouts-list__latest">Latest</button>
           <div className="loadouts-searchbar">
             <input
@@ -66,6 +77,7 @@ function Loadouts() {
         <ul className="loadouts-list">
           {isLoading && <BiLoaderCircle className="loadouts-list__loader" />}
           {errorMessage && <span className="loadouts-list__error">{errorMessage}</span>}
+          {backButtonShown && <button type="button" onClick={handleBackToAllLoadouts}>Back</button>}
           {loadouts?.map((loadout) => (
             <Loadout key={loadout.id} loadout={loadout} isOnProfilePage={false} />
           ))}
