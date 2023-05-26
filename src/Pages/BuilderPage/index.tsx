@@ -75,11 +75,6 @@ function BuilderPage() {
   const handleSaveLoadout = () => {
     if (
       weapon
-      && arms
-      && head
-      && chest
-      && waist
-      && legs
       && loadoutTitle
       && userIsLogged
     ) {
@@ -92,7 +87,7 @@ function BuilderPage() {
       }));
       setShowSaveLoadoutModal(false);
     } else {
-      setErrorLoadout('Make sure to set all the items and be authentified to save a loadout.');
+      setErrorLoadout('Make sure to set at least a weapon, set a title and be authentified to save a loadout.');
     }
   };
 
