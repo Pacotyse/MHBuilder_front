@@ -1,140 +1,245 @@
+@use './../../styles/vars';
 
+.main-homepage {
 
-.container {
-    
-display:flex;
-flex-direction: column;
-object-fit: contain;
-
-}
-
-.goTobuilder{
-    display:flex;
+    display: flex;
     flex-direction: column;
-    background-color: black;
-    padding-bottom: 5em;
-    align-items: center;
-    object-fit: contain;
-    // background: url('nergi_home.jpg');
-    // background: url('../../assets/images/nergi_home.jpg');
-    //background-repeat: round no-repeat;
 
-    &-h1{
-        
-        color: white;
-        font-size: 50px;
-        margin-top : 1em;
-        margin-bottom: 0.3em;
-    }
-
-    &-p{
-
-        display:flex;
-        align-items: center;
-
-        margin-top:1em;
-        color: white;
-        font-size: 1em;
-        margin-bottom: 0.4em;
-    }
-
-        &-btn-button{
-            
-            --button_radius: 0.75em;
-            --button_color: #e8e8e8;
-            --button_outline_color: #b11f1f;
-            font-size: 17px;
-            font-weight: bold;
-             border: none;
- }
- 
 }
-.communityBuild{
-    background-color: white;
-    display:flex;
-    flex-wrap: nowrap;
- 
-    &-main{
 
-        align-items: center;
+.h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: vars.$dark-grey;
+}
+
+.h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: vars.$dark-grey;
+}
+
+.h4 {
+    font-size: 20px;
+    color: vars.$dark-grey;
+}
+
+.p {
+    font-size: 16px;
+    color: vars.$dark-grey;
+}
+
+.btn {
+    font-size: 17px;
+    font-weight: bold;
+    color: vars.$dark-grey;
+    padding: 5px;
+    border: solid vars.$dark-grey 1px;
+    border-radius: 5px;
+}
+
+.goToBuilder {
+
+    &-container {
+        background-image: url('./../../assets/mhsb_background.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+
+        min-height: 50vh;
+
+        display: flex;
         justify-content: center;
-        padding-left: 1em;
-        padding-top: 3em;
-    }
-    
-   
-    &-h1{
-        color: rgb(31, 46, 114);
-        font-size: 30px;
-        
-    }
-
-    &-p{
-        margin-top: 1em;
-    }
-
-    &-btn{
-        margin-top: 1em;
-    }
-
-    &__lastestBuild{
-
-        display:flex;
-        background-color: rgb(255, 166, 0);
-        padding-top: 3em;
-        height: 40vh;
-        flex-direction: column;
         align-items: center;
-        object-fit: contain;
-           
-    }
-    
-    &__lastestBuild-h1{
 
-        color: rgb(31, 46, 114);
-        font-size: 30px;
-        
-    }
-    
-    &__lastestBuild-p{
+        &-content {
+            width: 50%;
+            margin: 50px auto;
 
-        margin-top: 1em;
-        margin-left: 1em;
-        padding-left: 1em;
+            >*:not(:last-child) {
+                margin-bottom: 20px;
+            }
+
+            &-h2 {
+                color: white;
+            }
+
+            &-p {
+                font-size: 16px;
+            }
+
+            &-btn {
+                color: white;
+                border-color: white;
+            }
+        }
     }
-   
 }
 
-.discord{
-    display:flex;
-    background-color: #ed9a34;
-    height: 30vh;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-   object-fit: contain;
+.community {
+    
 
-   &-h1{
-    color: rgb(31, 46, 114);
-    font-size: 30px;
+    &-container {
+        display: flex;
+        background-color: rgb(80, 64, 171);
+        &-left {
+            width: 50%;
+            background-color: #fff;
 
-   }
+            &-goToCommunity {
+                
+                display: flex;
+                justify-content: center;
+                
+                
+
+                &-content {
+                    width: 75%;
+                    margin: 50px auto;
+                    >*:not(:last-child) {
+                        margin-bottom: 20px;
+                    }
+
+                    &-btn {
+                        color: black;
+                    }
+                }
+
+            }
+
+            &-goToDiscord {
+                display: flex;
+                justify-content: center;
+                background-color: rgb(80, 64, 171);
+                border-top-right-radius: 15px;
+                // box-shadow: inset -4px 3px 15px rgba(0, 0, 0, 0.2);
+
+                &-content {
+                    width: 75%;
+                    margin: 50px auto;
+
+                    >*:not(:last-child) {
+                        margin-bottom: 20px;
+                    }
+
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+
+                    &-h2 {
+                        color: #fff;
+                    }
+
+                    &-p {
+                        color: white;
+                    }
+                    &-api {
+                        height: 40vh;
+                        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+                }
+                }
+
+                
+            }
+        }
+
+        &-right{
+            width: 50%;
+            background-color: #fff;
+            border-bottom-left-radius: 15px;
+            display: flex;
+            justify-content: center;
+            
+
+            &-content {
+                width: 75%;
+                margin: 50px auto;
+            }
+        }
+    }
+}
+
+.lastestUpdate {
+    &-container {
+        background-color: rgb(80, 64, 171);
+
+        &-content {
+            width: 85%;
+            margin: 50px auto;
+
+            >*:not(:last-child) {
+                margin-bottom: 20px;
+            }
+
+            &-h2 {
+                color: white;
+            }
+
+            &-h3 {
+                color: white;
+            }
+
+            &-h4 {
+                color: white;
+            }
+
+            &-p {
+                color: white
+            }
+
+            &-list {
+
+                &-feature {
+                    color: white;
+            }
+            }
+            
+
+        }
+    }
 
 }
 
-.lastestUpdate{
+@media (max-width: 769px) {
+    .goToBuilder {
 
-    display:flex;
-    background-color: grey;
-    height: 40vh;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-   object-fit: contain;
+        &-container {
 
-   &-p{
-    color:black;
-   }
+            &-content {
+                width: 75%;
+            }
+        }
+    }
 
+    .community {
+    
+        &-container {
+            display: flex;
+            flex-direction: column;
+            
+            &-left {
+                width: 100%;
+    
+                &-goToDiscord {
+                    border-top-right-radius: 0px;    
+                }
+            }
+    
+            &-right{
+                width: 100%;
+                border-bottom-left-radius: 0px;
+            }
+        }
+    }
+}
+
+.lastestUpdate {
+    &-container {
+        background-color: rgb(80, 64, 171);
+
+        &-content {
+            width: 75%;
+        }
+    }
 
 }
