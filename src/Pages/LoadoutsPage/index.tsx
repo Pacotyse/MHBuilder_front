@@ -1,0 +1,90 @@
+import React, {
+  ChangeEvent, FormEvent, useEffect, useState,
+} from 'react';
+import './styles.scss';
+
+import { BiLoaderCircle } from 'react-icons/bi';
+import Loadout from '../../components/Loadout';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { fetchAllLoadouts, fetchOneLoadoutById, setLoadoutCodeField } from '../../store/reducers/loadout';
+
+function Loadouts() {
+  const dispatch = useAppDispatch();
+
+  const [backButtonShown, setBackButtonShown] = useState(false);
+  const loadouts = useAppSelector((state) => state.loadout.loadouts);
+  const errorMessage = useAppSelector((state) => state.loadout.errorMessage);
+  const isLoading = useAppSelector((state) => state.loadout.isLoading);
+  const loadoutCode = useAppSelector((state) => state.loadout.loadoutCode);
+  // const loadoutItemsids = useAppSelector((state) => state.builder.editLoadoutIds);
+
+  useEffect(() => {
+    dispatch(fetchAllLoadouts());
+  }, [dispatch]);
+
+  function handleGetOneLoadout(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (loadoutCode) {
+      dispatch(fetchOneLoadoutById());
+      dispatch(setLoadoutCodeField(''));
+      setBackButtonShown(true);
+    }
+  }
+
+  function handleBackToAllLoadouts() {
+    setBackButtonShown(false);
+    dispatch(fetchAllLoadouts());
+  }
+
+  return (
+    <main className="main-loadout">
+      {/* //? SECTION Search by code */}
+
+      <div className="loadouts-search">
+        <h2 className="loadouts-search_title">FIND BY CODE</h2>
+        <p className="loadouts-search__description">Got friend&apos;s loadout code? Paste it below !</p>
+
+        <form
+          className="loadouts-search__form"
+          onSubmit={handleGetOneLoadout}
+        >
+          <input
+            type="text"
+            placeholder="e.g. : AB1X9Z2"
+            value={loadoutCode}
+            onChange={(event: ChangeEvent<HTMLInputElement>) => {
+              dispatch(setLoadoutCodeField(event.target.value));
+            }}
+          />
+          <button type="submit" className="loadouts-search__submit-button">Go</button>
+        </form>
+      </div>
+      {/* //? SECTION all loadouts and filter */}
+      <div className="loadouts-list__container">
+
+        <div className="loadouts-list__filters">
+          <button type="button" className="loadouts-list__name">Name</button>
+          <button type="button" className="loadouts-list__latest">Latest</button>
+          <div className="loadouts-searchbar">
+            <input
+              type="text"
+              placeholder="Loadout name"
+            />
+            <button type="submit">Ok</button>
+          </div>
+        </div>
+
+        <ul className="loadouts-list">
+          {isLoading && <BiLoaderCircle className="loadouts-list__loader" />}
+          {errorMessage && <span className="loadouts-list__error">{errorMessage}</span>}
+          {backButtonShown && <button type="button" onClick={handleBackToAllLoadouts}>Back</button>}
+          {loadouts?.map((loadout) => (
+            <Loadout key={loadout.id} loadout={loadout} isOnProfilePage={false} />
+          ))}
+        </ul>
+      </div>
+    </main>
+  );
+}
+
+export default Loadouts;

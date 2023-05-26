@@ -2,10 +2,9 @@ import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import { TiThMenu, TiTimes } from 'react-icons/ti';
-import logoBones from '../../assets/icons/bones.png';
 import './styles.scss';
 import { useAppSelector } from '../../hooks/redux';
-import { getUserDataFromLocalStorage } from '../../utils/user';
+import getIconByKey from '../../utils/icons';
 
 function AppHeader() {
   const [menuShown, setMenuShown] = useState(false);
@@ -22,7 +21,7 @@ function AppHeader() {
     <header className="header">
       <div className="header__main">
         <div className="header__title-container">
-          <img src={logoBones} alt="logo" className="header__logo" />
+          <img src={getIconByKey('bones')} alt="logo" className="header__logo" />
           <h1 className="header__title">Monster Hunter Builder</h1>
         </div>
         <button type="button" className="header__button-menu" onClick={() => setMenuShown(!menuShown)}>
@@ -68,7 +67,7 @@ function AppHeader() {
                 onClick={() => setMenuShown(false)}
               >
                 <div className="menu__link-profile">
-                  <img src={logoBones} alt="img" className="menu__link-profile__icon" />
+                  <img src={getIconByKey('villager')} alt="img" className="menu__link-profile__icon" />
                   <span>Profile</span>
                 </div>
               </NavLink>

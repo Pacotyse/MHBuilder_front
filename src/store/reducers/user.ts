@@ -22,8 +22,6 @@ interface UserState {
     username: string
   },
   editCredentials: {
-    password: string
-    passwordConfirm: string
     username: string
   }
 }
@@ -49,8 +47,6 @@ export const initialState: UserState = {
     username: '',
   },
   editCredentials: {
-    password: '',
-    passwordConfirm: '',
     username: '',
   },
   // If user data in the localStorage already exist, set it in the initial state
@@ -60,7 +56,7 @@ export const initialState: UserState = {
 export const checkTokenValidity = createAppAsyncThunk(
   'user/CHECK_TOKEN_VALIDITY',
   async () => {
-    const { data: tokenIsValid } = await axiosInstance.post('/users/logged');
+    const { data: tokenIsValid } = await axiosInstance.post('/logged');
 
     return tokenIsValid as boolean;
   },
@@ -80,7 +76,6 @@ export const changeRegisterCredentialsField = createAction<{
 
 export const changeEditCredentialsField = createAction<{
   value: string;
-  field: keyof UserState['editCredentials'];
 }>('user/CHANGE_EDIT_CREDENTIALS_FIELD');
 
 export const resetEditForm = createAction('user/RESET_EDIT_CREDENTIALS');
@@ -93,7 +88,7 @@ export const login = createAppAsyncThunk(
     // Extract email and password from credentials
     const { email, password } = state.user.loginCredentials;
     // Send data to back
-    const { data } = await axiosInstance.post('/users/login', {
+    const { data } = await axiosInstance.post('/login', {
       email,
       password,
     });
@@ -112,7 +107,7 @@ export const register = createAppAsyncThunk(
     // Extract email and password and username from registerCredentials
     const { email, password, username } = state.user.registerCredentials;
     // Send data to back
-    const { data } = await axiosInstance.post('/users/register', {
+    const { data } = await axiosInstance.post('/register', {
       email,
       password,
       username,
@@ -137,9 +132,8 @@ export const editUser = createAppAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const { id } = state.user;
-    const { password, username } = state.user.editCredentials;
+    const { username } = state.user.editCredentials;
     const { data } = await axiosInstance.put(`/users/${id}`, {
-      password,
       username,
     });
     return data;
@@ -157,8 +151,7 @@ const userReducer = createReducer(initialState, (builder) => {
       state.registerCredentials[field] = value;
     })
     .addCase(changeEditCredentialsField, (state, action) => {
-      const { field, value } = action.payload;
-      state.editCredentials[field] = value;
+      state.editCredentials.username = action.payload.value;
     })
     .addCase(resetEditForm, (state) => {
       state.editCredentials = initialState.editCredentials;
@@ -199,6 +192,10 @@ const userReducer = createReducer(initialState, (builder) => {
     })
     .addCase(deleteUser.rejected, (state) => {
       state.errorMessage = 'Failed to delete user.';
+    })
+    .addCase(editUser.fulfilled, (state, action) => {
+      state.username = action.payload.username;
+      state.editCredentials.username = '';
     })
     .addCase(checkTokenValidity.rejected, (state) => {
       state.isLogged = false;

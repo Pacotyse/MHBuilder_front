@@ -1,16 +1,26 @@
-import { IWeapon } from './weapon';
-import {
-  IHead, IArms, IChest, ILegs, IWaist,
-} from './armor';
+import { IBuildStats } from './stats';
 
 export interface ILoadout {
-  id: number
+  id: string
   name: string
   description: string
-  weapon: IWeapon
-  head: IHead
-  chest: IChest
-  waist: IWaist
-  arms: IArms
-  legs: ILegs
+  user_id: number
+  username: string
+  weapon_id: number
+  icon: string
+  head_id: number
+  chest_id: number
+  arms_id: number
+  waist_id: number
+  legs_id: number
+  stats: IBuildStats
+}
+
+export interface IFetchLoadout {
+  weaponId: number
+  headId: number
+  chestId: number
+  armsId: number
+  waistId: number
+  legsId: number
 }

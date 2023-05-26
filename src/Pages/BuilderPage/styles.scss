@@ -38,6 +38,10 @@
       background-color: vars.$white;
       color: vars.$dark-grey;
     }
+
+    &-edit__code {
+      color: vars.$error;
+    }
   }
   }
 }
@@ -100,6 +104,7 @@
     position: relative;
     overflow-y: scroll;
 
+
     &__description {
       position: sticky;
       top: 0;
@@ -107,6 +112,8 @@
       text-align: center;
       border-bottom: solid 2px vars.$dark-grey;
       padding: vars.$gap-s;
+      background-color: vars.$grey;
+      z-index: 1;
     }
 
     & .modal {

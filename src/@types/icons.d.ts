@@ -3,6 +3,8 @@ export interface IIcons {
   attack: string
   defense: string
   affinity: string
+  villager: string
+  bones: string
   element_fire: string
   element_ice: string
   element_water: string
@@ -10,7 +12,7 @@ export interface IIcons {
   element_dragon: string
   element_sleep: string
   element_poison: string
-  element_paralyzis: string
+  element_paralisys: string
   element_blast: string
   head_1: string
   head_2: string

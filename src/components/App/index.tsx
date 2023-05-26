@@ -6,6 +6,7 @@ import HomePage from '../../Pages/HomePage';
 import LoginPage from '../../Pages/LoginPage';
 import ProfilePage from '../../Pages/ProfilePage';
 import AppFooter from '../AppFooter';
+import Loadouts from '../../Pages/LoadoutsPage';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/builder" element={<BuilderPage />} />
-        <Route path="/loadouts" element={<h2>Loadouts</h2>} />
+        <Route path="/loadouts" element={<Loadouts />} />
         <Route
           path="/login"
           element={<LoginPage />}

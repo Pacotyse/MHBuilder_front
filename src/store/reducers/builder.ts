@@ -4,9 +4,10 @@ import {
   IArmor,
   IArms, IChest, IHead, ILegs, IWaist,
 } from '../../@types/armor';
-import { IStats } from '../../@types/stats';
+import { IBuildStats, IStats } from '../../@types/stats';
 import { createAppAsyncThunk } from '../../utils/redux';
 import { axiosInstance } from '../../utils/axios';
+import { IFetchLoadout } from '../../@types/loadout';
 
 export interface BuilderState {
   weaponList: IWeapon[] | null
@@ -20,7 +21,7 @@ export interface BuilderState {
   legs: ILegs | null
   isLoading: boolean
   errorMessage: string
-  buildStats: IStats | null
+  stats: IBuildStats | null
 }
 
 export const setWeaponType = createAction<string>('builder/SET_WEAPON_TYPE');
@@ -47,21 +48,44 @@ export const fetchArmorsByType = createAppAsyncThunk(
 );
 
 export const getBuilderStats = createAppAsyncThunk(
-  'builder/GET_LOADOUT_STATS',
+  'builder/GET_BUILDER_STATS',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const {
       weapon, head, chest, arms, waist, legs,
     } = state.builder;
-    const { data: stats } = await axiosInstance.post('/loadouts/details', {
-      weapon,
-      head,
-      chest,
-      arms,
-      waist,
-      legs,
+    const { data: stats } = await axiosInstance.post('/loadouts/stats', {
+      weapon_id: weapon?.id,
+      head_id: head?.id,
+      chest_id: chest?.id,
+      arms_id: arms?.id,
+      waist_id: waist?.id,
+      legs_id: legs?.id,
     });
     return stats as IStats;
+  },
+);
+
+export const fetchLoadoutItems = createAppAsyncThunk(
+  'builder/FETCH_LOADOUT_ITEMS',
+  async ({
+    weaponId,
+    headId,
+    chestId,
+    armsId,
+    waistId,
+    legsId,
+  }: IFetchLoadout) => {
+    const { data: weapon } = await axiosInstance.get(`/weapons/${weaponId}`);
+    const { data: head } = await axiosInstance.get(`/armors/${headId}`);
+    const { data: chest } = await axiosInstance.get(`/armors/${chestId}`);
+    const { data: arms } = await axiosInstance.get(`/armors/${armsId}`);
+    const { data: waist } = await axiosInstance.get(`/armors/${waistId}`);
+    const { data: legs } = await axiosInstance.get(`/armors/${legsId}`);
+
+    return {
+      weapon, head, chest, arms, waist, legs,
+    };
   },
 );
 
@@ -77,7 +101,7 @@ export const initialState: BuilderState = {
   legs: null,
   isLoading: false,
   errorMessage: '',
-  buildStats: null,
+  stats: null,
 };
 
 const builderReducer = createReducer(initialState, (builder) => {
@@ -124,7 +148,7 @@ const builderReducer = createReducer(initialState, (builder) => {
       state[action.payload.type] = action.payload;
     })
     .addCase(getBuilderStats.fulfilled, (state, action) => {
-      state.buildStats = action.payload;
+      state.stats = action.payload.stats;
     })
     .addCase(resetBuilder, (state) => {
       state.weapon = null;
@@ -133,6 +157,17 @@ const builderReducer = createReducer(initialState, (builder) => {
       state.chest = null;
       state.waist = null;
       state.legs = null;
+    })
+    .addCase(fetchLoadoutItems.fulfilled, (state, action) => {
+      const {
+        weapon, head, chest, arms, waist, legs,
+      } = action.payload;
+      state.weapon = weapon;
+      state.arms = arms;
+      state.head = head;
+      state.chest = chest;
+      state.waist = waist;
+      state.legs = legs;
     });
 });
 

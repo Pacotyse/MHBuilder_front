@@ -19,3 +19,10 @@
     }
   }
 }
+
+.skill {
+  &-red {
+    background-color: vars.$skill-red;
+    color: vars.$white;
+  }
+}

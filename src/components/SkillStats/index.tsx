@@ -3,7 +3,7 @@ import { useAppSelector } from '../../hooks/redux';
 import './styles.scss';
 
 function SkillStats() {
-  const stats = useAppSelector((state) => state.builder.buildStats?.stats);
+  const stats = useAppSelector((state) => state.builder.stats);
   const skills = stats?.skills;
 
   return (

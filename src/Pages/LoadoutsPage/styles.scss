@@ -1,0 +1,101 @@
+@use '../../styles/vars';
+
+.main-loadout {
+  width: 100%;
+}
+
+.loadouts {
+    
+    &-search{
+        display:flex;
+        flex-direction: column;
+        object-fit: contain;
+        background-color: #D7CCC8;
+        max-height: 50vh;
+        width: 100%;
+        padding: 2rem vars.$gap-m;
+        align-items: center;
+        justify-content: center;
+        
+        &_title{
+            text-align: center;
+            color: vars.$grey;
+            font-size: 2.3rem;
+        }
+
+        &__description {
+            text-align: center;
+            max-width: 80%;
+            line-height: 1.2rem;
+            margin-top: 2em;
+            margin-bottom: 1em;
+            color: rgb(0, 0, 0);
+            font-size: 15px;
+        }
+    }
+
+    &-list {
+        display:flex;
+        flex-direction: column;
+        gap: vars.$gap-m;
+        object-fit: contain;
+        width: 100%;
+        min-height: 50vh;
+        align-items: center;
+        justify-content: center;
+        padding: vars.$gap-m vars.$gap-s;
+
+        &__loader {
+            width: 3rem;
+            height: 3rem;
+            animation: rotation 3s linear;
+        }
+
+        &__error {
+            background-color: vars.$error;
+            padding: vars.$gap-s vars.$gap-l;
+            border-radius: vars.$radius-m;
+        }
+        &__container {
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: vars.$grey;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            padding: vars.$gap-s;
+        }
+
+        &__filters {
+            display: flex;
+            gap: vars.$gap-s;
+        }   
+
+        &-name{
+            margin-left: 0.5em;
+        }
+        
+        &-rated{
+            margin-left: 0.5em;
+        }
+        
+        &-latest{
+            margin-left: 0.5em;
+        }
+    }
+}
+
+@media (min-width: 769px){
+
+    .loadouts {
+        &-list{
+
+            & .loadout-container {
+
+                
+            }
+        }
+    }
+}
+
