@@ -17,8 +17,9 @@ import SkillStats from '../../components/SkillStats';
 import { IArmorType } from '../../@types/armor';
 import Modal from '../../components/Modal';
 import {
-  changeLoadoutCredentialsField, editLoadout, saveLoadout, setEditMode,
+  changeLoadoutCredentialsField, closeLoadoutPopUp, editLoadout, saveLoadout, setEditMode,
 } from '../../store/reducers/loadout';
+import PopUpMessage from '../../components/PopUpMessage';
 
 function BuilderPage() {
   const dispatch = useAppDispatch();
@@ -37,6 +38,7 @@ function BuilderPage() {
   const legs = useAppSelector((state) => state.builder.legs);
   const waist = useAppSelector((state) => state.builder.waist);
 
+  const loadoutPopUp = useAppSelector((state) => state.loadout.popUp);
   const userIsLogged = useAppSelector((state) => state.user.isLogged);
   const loadoutTitle = useAppSelector((state) => state.loadout.loadoutCredentials.title);
   // eslint-disable-next-line max-len
@@ -121,6 +123,13 @@ function BuilderPage() {
     ) {
       dispatch(editLoadout(loadoutEdit.editLoadoutId));
       setEditLoadoutModalShown(false);
+      dispatch(setEditMode({
+        isEditMode: false,
+        editLoadoutId: '',
+        title: '',
+        description: '',
+      }));
+      dispatch(resetBuilder());
     } else {
       setErrorLoadout('Make sure to set all the items and be authentified to save a loadout.');
     }
@@ -129,6 +138,12 @@ function BuilderPage() {
   return (
     <main className="builder-main main">
 
+      <PopUpMessage
+        shown={loadoutPopUp.shown}
+        message={loadoutPopUp.message}
+        type={loadoutPopUp.type}
+        close={() => dispatch(closeLoadoutPopUp())}
+      />
       <section className="section-items">
         <p className="section-items__description">Set your items</p>
         <AddItem itemType="weapon" icon={getIconByKey('great_sword_1')} openModal={handleShowModal} />

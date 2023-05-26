@@ -18,8 +18,15 @@ export interface LoadoutState {
     title: string
     description: string
   }
+  popUp: {
+    shown: boolean
+    message: string
+    type: 'error' | 'success' | 'neutral'
+  }
 }
 export const clearLoadouts = createAction('loadouts/CLEAR_LIST');
+export const closeLoadoutPopUp = createAction('loadout/CLOSE_POPUP');
+
 export const changeLoadoutCredentialsField = createAction<{
   value: string
   field: keyof LoadoutState['loadoutCredentials'];
@@ -104,6 +111,9 @@ export const editLoadout = createAppAsyncThunk(
       waist_id: waist?.id,
       legs_id: legs?.id,
     });
+    setTimeout(() => {
+      thunkAPI.dispatch(closeLoadoutPopUp());
+    }, 2000);
     return data;
   },
 );
@@ -130,6 +140,11 @@ export const initialState: LoadoutState = {
     isEditMode: false,
     title: '',
     description: '',
+  },
+  popUp: {
+    shown: false,
+    message: '',
+    type: 'success',
   },
 };
 
@@ -182,6 +197,23 @@ const loadoutReducer = createReducer(initialState, (builder) => {
       state.edit.editLoadoutId = action.payload.editLoadoutId;
       state.edit.title = action.payload.title;
       state.edit.description = action.payload.description;
+    })
+    .addCase(editLoadout.fulfilled, (state, action) => {
+      state.popUp = {
+        shown: true,
+        message: 'Loadout updated',
+        type: 'success',
+      };
+    })
+    .addCase(editLoadout.rejected, (state, action) => {
+      state.popUp = {
+        shown: true,
+        message: 'Update failed',
+        type: 'error',
+      };
+    })
+    .addCase(closeLoadoutPopUp, (state) => {
+      state.popUp.shown = false;
     });
 });
 

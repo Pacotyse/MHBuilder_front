@@ -22,6 +22,11 @@ export interface BuilderState {
   isLoading: boolean
   errorMessage: string
   stats: IBuildStats | null
+  popUp: {
+    shown: boolean
+    message: string
+    type: 'error' | 'success' | 'neutral'
+  }
 }
 
 export const setWeaponType = createAction<string>('builder/SET_WEAPON_TYPE');
@@ -30,6 +35,7 @@ export const clearArmorList = createAction('builder/CLEAR_ARMOR_LIST');
 export const setBuilderWeapon = createAction<IWeapon>('builder/SET_WEAPON');
 export const setBuilderArmor = createAction<IArmor>('builder/SET_ARMOR');
 export const resetBuilder = createAction('builder/RESET_BUILDER');
+export const closeBuilderPopUp = createAction('builder/CLOSE_POPUP');
 
 export const fetchWeaponsByType = createAppAsyncThunk(
   'builder/FETCH_WEAPONS_BY_TYPE',
@@ -102,6 +108,11 @@ export const initialState: BuilderState = {
   isLoading: false,
   errorMessage: '',
   stats: null,
+  popUp: {
+    shown: false,
+    message: '',
+    type: 'success',
+  },
 };
 
 const builderReducer = createReducer(initialState, (builder) => {
@@ -168,6 +179,9 @@ const builderReducer = createReducer(initialState, (builder) => {
       state.chest = chest;
       state.waist = waist;
       state.legs = legs;
+    })
+    .addCase(closeBuilderPopUp, (state) => {
+      state.popUp.shown = false;
     });
 });
 
