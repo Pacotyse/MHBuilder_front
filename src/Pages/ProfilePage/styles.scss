@@ -54,11 +54,11 @@
 
     &__settings-actions {
       position: absolute;
-      bottom: -8rem;
+      bottom: -11rem;
       display: flex;
       flex-direction: column;
       gap: vars.$gap-m;
-      background-color: #000000b0;
+      background-color: vars.$grey;
       border: vars.$white solid 2px;
       border-radius: vars.$radius-m;
       padding: vars.$gap-s;
@@ -82,6 +82,16 @@
         color: vars.$error;
         border: vars.$error solid 2px;
         border-radius: none;
+      }
+      &__cancel {
+        color: vars.$white;
+        border: vars.$dark-grey solid 2px;
+        background-color: vars.$grey;
+
+        &:hover {
+          background-color: vars.$white;
+          color: vars.$dark-grey;
+        }
       }
     }
 

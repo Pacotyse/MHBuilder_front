@@ -95,6 +95,7 @@ function ProfilePage() {
                       <div className="profile-header__settings-actions">
                         <button type="button" className="profile-header__settings-actions__edit" onClick={() => setShowEditModal(true)}>Edit Profile</button>
                         <button type="button" className="profile-header__settings-actions__delete" onClick={() => setShowConfirmModal(true)}>Delete Profile</button>
+                        <button type="button" className="profile-header__settings-actions__cancel" onClick={() => setShowSettings(false)}>Cancel</button>
                       </div>
                     )}
 
