@@ -81,7 +81,7 @@
 
     &-container {
         display: flex;
-        background-color: rgb(80, 64, 171);
+        background-color: vars.$purple;
         &-left {
             width: 50%;
             background-color: #fff;
@@ -110,7 +110,7 @@
             &-goToDiscord {
                 display: flex;
                 justify-content: center;
-                background-color: rgb(80, 64, 171);
+                background-color: vars.$purple;
                 border-top-right-radius: 15px;
                 // box-shadow: inset -4px 3px 15px rgba(0, 0, 0, 0.2);
 
@@ -157,28 +157,32 @@
                 margin: 50px auto;
                 display: flex;
                 flex-direction: column;
-                justify-content: space-around;
+                justify-content: space-between;
 
                 &-list {
-                    border: vars.$light-grey solid 2px;
-                    border-radius: vars.$radius-m;
-                    padding: vars.$gap-s;
-                    max-height: 600px;
-                    height: 90%;
-                    width: 100%;
-                    overflow-y: scroll;
-
-                    & ul {
                         display: flex;
                         flex-direction: column;
                         align-items: center;
                         gap: vars.$gap-s;
                         margin: auto;
+
+                    &-container {
+                        border: rgb(217, 197, 240) solid 2px;
+                        border-radius: vars.$radius-m;
+                        padding: vars.$gap-s;
+                        max-height: 650px;
+                        height: 90%;
+                        width: 100%;
+                        overflow-y: scroll;
                     }
 
                     & .loadout-container {
-                        color: #000;
-                        border: solid rgb(80, 64, 171) 2px;
+                        border: solid vars.$purple 2px;
+                        background-color: vars.$purple ;
+
+                        & .sharpness {
+                            background-color: vars.$light-grey;
+                        }
                     }
                 }
             }
@@ -188,7 +192,7 @@
 
 .lastestUpdate {
     &-container {
-        background-color: rgb(80, 64, 171);
+        background-color: vars.$purple;
 
         &-content {
             width: 85%;
@@ -262,7 +266,7 @@
 
 .lastestUpdate {
     &-container {
-        background-color: rgb(80, 64, 171);
+        background-color: vars.$purple;
 
         &-content {
             width: 75%;
