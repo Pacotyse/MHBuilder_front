@@ -1,4 +1,4 @@
-import { IBuildStats, IStats } from './stats';
+import { IBuildStats } from './stats';
 
 export interface ILoadout {
   id: string
@@ -14,4 +14,13 @@ export interface ILoadout {
   waist_id: number
   legs_id: number
   stats: IBuildStats
+}
+
+export interface IFetchLoadout {
+  weaponId: number
+  headId: number
+  chestId: number
+  armsId: number
+  waistId: number
+  legsId: number
 }

@@ -1,21 +1,19 @@
 import React, { ChangeEvent, FormEvent, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './styles.scss';
 
 import { BiLoaderCircle } from 'react-icons/bi';
 import Loadout from '../../components/Loadout';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { fetchAllLoadouts, setLoadoutCodeField } from '../../store/reducers/loadout';
-import { importLoadoutById } from '../../store/reducers/builder';
+import { fetchAllLoadouts, fetchOneLoadoutById, setLoadoutCodeField } from '../../store/reducers/loadout';
 
 function Loadouts() {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const loadouts = useAppSelector((state) => state.loadout.loadouts);
   const errorMessage = useAppSelector((state) => state.loadout.errorMessage);
   const isLoading = useAppSelector((state) => state.loadout.isLoading);
   const loadoutCode = useAppSelector((state) => state.loadout.loadoutCode);
+  // const loadoutItemsids = useAppSelector((state) => state.builder.editLoadoutIds);
 
   useEffect(() => {
     dispatch(fetchAllLoadouts());
@@ -23,9 +21,7 @@ function Loadouts() {
 
   function handleGetOneLoadout(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    dispatch(importLoadoutById());
-    // go to builder page
-    navigate('/builder');
+    dispatch(fetchOneLoadoutById());
   }
 
   return (
@@ -34,7 +30,7 @@ function Loadouts() {
 
       <div className="loadouts-search">
         <h2 className="loadouts-search_title">FIND BY CODE</h2>
-        <p className="loadouts-search__description">Got loadout codes? Paste them below to get them to the builder and see details!</p>
+        <p className="loadouts-search__description">Got friend&apos;s loadout code? Paste it below !</p>
 
         <form
           className="loadouts-search__form"
@@ -42,7 +38,7 @@ function Loadouts() {
         >
           <input
             type="text"
-            placeholder="Past your code here"
+            placeholder="e.g. : AB1X9Z2"
             value={loadoutCode}
             onChange={(event: ChangeEvent<HTMLInputElement>) => {
               dispatch(setLoadoutCodeField(event.target.value));

@@ -45,18 +45,28 @@ export const fetchAllLoadouts = createAppAsyncThunk(
   },
 );
 
+export const fetchOneLoadoutById = createAppAsyncThunk(
+  'loadout/FETCH_ONE_LOADOUT',
+  async (id: string | undefined, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const loadoutId = state.loadout.loadoutCode;
+    const { data: loadout } = await axiosInstance.get(`/loadouts/${loadoutId}`);
+    return loadout as ILoadout;
+  },
+);
+
 export const saveLoadout = createAppAsyncThunk(
   'loadout/SAVE_LOADOUT',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const userId = state.user.id;
     const {
-      weapon, arms, chest, head, legs, waist, buildStats,
+      weapon, arms, chest, head, legs, waist,
     } = state.builder;
     const { title, description } = state.loadout.loadoutCredentials;
     const { data } = await axiosInstance.post('/loadouts', {
       name: title,
-      description,
+      description: description || ' ',
       user_id: userId,
       weapon_id: weapon?.id,
       head_id: head?.id,
@@ -64,7 +74,6 @@ export const saveLoadout = createAppAsyncThunk(
       arms_id: arms?.id,
       waist_id: waist?.id,
       legs_id: legs?.id,
-      stats: buildStats?.stats,
     });
     return data;
   },
@@ -82,7 +91,7 @@ export const editLoadout = createAppAsyncThunk(
   async (id: string, thunkAPI) => {
     const state = thunkAPI.getState();
     const {
-      weapon, arms, chest, head, legs, waist, buildStats,
+      weapon, arms, chest, head, legs, waist,
     } = state.builder;
     const { title, description } = state.loadout.loadoutCredentials;
     const { data } = await axiosInstance.put(`/loadouts/${id}`, {
@@ -94,7 +103,6 @@ export const editLoadout = createAppAsyncThunk(
       arms_id: arms?.id,
       waist_id: waist?.id,
       legs_id: legs?.id,
-      stats: buildStats?.stats,
     });
     return data;
   },
@@ -157,6 +165,9 @@ const loadoutReducer = createReducer(initialState, (builder) => {
     .addCase(fetchAllLoadouts.rejected, (state) => {
       state.isLoading = false;
       state.errorMessage = 'Server error, Failed to get data';
+    })
+    .addCase(fetchOneLoadoutById.fulfilled, (state, action) => {
+      state.loadouts = [action.payload];
     })
     .addCase(deleteLoadout.rejected, (state) => {
       state.errorMessage = 'Failed to delete loadout';
