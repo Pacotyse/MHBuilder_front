@@ -4,6 +4,7 @@ export interface IIcons {
   defense: string
   affinity: string
   villager: string
+  bones: string
   element_fire: string
   element_ice: string
   element_water: string
