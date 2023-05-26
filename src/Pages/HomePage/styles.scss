@@ -152,8 +152,35 @@
             
 
             &-content {
-                width: 75%;
+                width: 90%;
+                max-width: 500px;
                 margin: 50px auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+
+                &-list {
+                    border: vars.$light-grey solid 2px;
+                    border-radius: vars.$radius-m;
+                    padding: vars.$gap-s;
+                    max-height: 600px;
+                    height: 90%;
+                    width: 100%;
+                    overflow-y: scroll;
+
+                    & ul {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: vars.$gap-s;
+                        margin: auto;
+                    }
+
+                    & .loadout-container {
+                        color: #000;
+                        border: solid rgb(80, 64, 171) 2px;
+                    }
+                }
             }
         }
     }
@@ -221,7 +248,7 @@
                 width: 100%;
     
                 &-goToDiscord {
-                    border-top-right-radius: 0px;    
+                    border-top-right-radius: 0px;
                 }
             }
     

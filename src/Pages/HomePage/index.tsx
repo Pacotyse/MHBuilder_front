@@ -4,6 +4,7 @@ import './styles.scss';
 import Footer from '../../components/Footer/Footer';
 import { checkTokenValidity } from '../../store/reducers/user';
 import { useAppDispatch } from '../../hooks/redux';
+import LatestBuild from '../../components/LatestBuilds';
 
 function HomePage() {
   const dispatch = useAppDispatch();
@@ -21,7 +22,7 @@ function HomePage() {
           <p className="goToBuilder-container-content-p">
             Create and optimize your own Monster Hunter armor set. Customize
             your loadout with the best armor pieces, skills, and weapons to
-            maximize your hunting potential. Whether you're a seasoned hunter or
+            maximize your hunting potential. Whether you&apos;re a seasoned hunter or
             just starting your journey, our builder allows you to tailor your
             loadout to fit your playstyle and tackle the toughest challenges
             that await you in the game.
@@ -68,6 +69,7 @@ function HomePage() {
                 discuss strategies, and embark on exciting hunts together.
               </p>
               <iframe
+                title="discord"
                 src="https://discord.com/widget?id=1110701136249356378&theme=dark"
                 className="community-container-left-goToDiscord-content-api"
               />
@@ -80,6 +82,9 @@ function HomePage() {
             <h2 className="community-container-right-content-h2 h2">
               Lastest Build
             </h2>
+            <div className="community-container-right-content-list">
+              <LatestBuild />
+            </div>
           </div>
         </div>
       </div>
@@ -91,7 +96,7 @@ function HomePage() {
           </h2>
           <p className="lastestUpdate-container-content-p p">
             Welcome to Monster Hunter Builder, your ultimate tool for optimizing
-            your armor sets in the world of Monster Hunter! Whether you're a
+            your armor sets in the world of Monster Hunter! Whether you&apos;re a
             seasoned hunter or just starting your journey, our platform offers a
             range of powerful features to help you create the perfect loadout
             and enhance your hunting experience.
