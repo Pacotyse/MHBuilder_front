@@ -92,9 +92,11 @@
         &-list{
             flex-direction: row;
             flex-wrap: wrap;
+            align-items: stretch;
 
             & .loadout-container {
                 width: 45%;
+                
             }
         }
     }
