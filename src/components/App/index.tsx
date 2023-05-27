@@ -9,6 +9,7 @@ import ProfilePage from '../../Pages/ProfilePage';
 import AppFooter from '../AppFooter';
 import Loadouts from '../../Pages/LoadoutsPage';
 import Err404 from '../../Pages/Err404';
+import Copyrights from '../../Pages/Copyrights';
 
 function App() {
   const location = useLocation();
@@ -27,12 +28,9 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/builder" element={<BuilderPage />} />
         <Route path="/loadouts" element={<Loadouts />} />
-        <Route
-          path="/login"
-          element={<LoginPage />}
-        />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/copyrights" element={<h2>Copyrights</h2>} />
+        <Route path="/copyrights" element={<Copyrights />} />
         <Route path="*" element={<Err404 />} />
       </Routes>
       <AppFooter />
