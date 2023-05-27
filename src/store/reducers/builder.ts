@@ -169,6 +169,20 @@ const builderReducer = createReducer(initialState, (builder) => {
       state.waist = null;
       state.legs = null;
     })
+    .addCase(fetchLoadoutItems.pending, (state) => {
+      state.popUp = {
+        shown: true,
+        message: 'Importing... Please wait',
+        type: 'neutral',
+      };
+    })
+    .addCase(fetchLoadoutItems.rejected, (state) => {
+      state.popUp = {
+        shown: true,
+        message: 'Failed to import items',
+        type: 'error',
+      };
+    })
     .addCase(fetchLoadoutItems.fulfilled, (state, action) => {
       const {
         weapon, head, chest, arms, waist, legs,
@@ -179,6 +193,11 @@ const builderReducer = createReducer(initialState, (builder) => {
       state.chest = chest;
       state.waist = waist;
       state.legs = legs;
+      state.popUp = {
+        shown: true,
+        message: 'Imported !',
+        type: 'success',
+      };
     })
     .addCase(closeBuilderPopUp, (state) => {
       state.popUp.shown = false;

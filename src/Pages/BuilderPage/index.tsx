@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
   clearArmorList,
-  clearWeaponList, fetchArmorsByType, getBuilderStats, resetBuilder,
+  clearWeaponList, closeBuilderPopUp, fetchArmorsByType, getBuilderStats, resetBuilder,
 } from '../../store/reducers/builder';
 import AddItem from '../../components/AddItem';
 import './styles.scss';
@@ -39,6 +39,7 @@ function BuilderPage() {
   const waist = useAppSelector((state) => state.builder.waist);
 
   const loadoutPopUp = useAppSelector((state) => state.loadout.popUp);
+  const builderPopUp = useAppSelector((state) => state.builder.popUp);
   const userIsLogged = useAppSelector((state) => state.user.isLogged);
   const loadoutTitle = useAppSelector((state) => state.loadout.loadoutCredentials.title);
   // eslint-disable-next-line max-len
@@ -75,7 +76,6 @@ function BuilderPage() {
     setShowSaveLoadoutModal(true);
   };
 
- 
   const handleSaveLoadout = () => {
     if (
       weapon
@@ -140,8 +140,9 @@ function BuilderPage() {
   useEffect(() => {
     setTimeout(() => {
       dispatch(closeLoadoutPopUp());
+      dispatch(closeBuilderPopUp());
     }, 2000);
-  }, [dispatch, loadoutPopUp.shown]);
+  }, [dispatch, loadoutPopUp.shown, builderPopUp.shown]);
 
   return (
     <main className="builder-main main">
@@ -151,6 +152,12 @@ function BuilderPage() {
         message={loadoutPopUp.message}
         type={loadoutPopUp.type}
         close={() => dispatch(closeLoadoutPopUp())}
+      />
+      <PopUpMessage
+        shown={builderPopUp.shown}
+        message={builderPopUp.message}
+        type={builderPopUp.type}
+        close={() => dispatch(closeBuilderPopUp())}
       />
       <section className="section-items">
         <p className="section-items__description">Set your items</p>

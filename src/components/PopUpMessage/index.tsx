@@ -15,6 +15,7 @@ function PopUpMessage({
     'popup-active': shown,
     'popup-error': type === 'error',
     'popup-success': type === 'success',
+    'popup-neutral': type === 'neutral',
   });
 
   return (

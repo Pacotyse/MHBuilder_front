@@ -183,11 +183,22 @@ const loadoutReducer = createReducer(initialState, (builder) => {
         state.loadouts = [action.payload];
       }
     })
-    .addCase(deleteLoadout.rejected, (state) => {
-      state.errorMessage = 'Failed to delete loadout';
-    })
     .addCase(setLoadoutCodeField, (state, action) => {
       state.loadoutCode = action.payload;
+    })
+    .addCase(saveLoadout.fulfilled, (state) => {
+      state.popUp = {
+        shown: true,
+        message: 'Loadout saved!',
+        type: 'success',
+      };
+    })
+    .addCase(saveLoadout.rejected, (state) => {
+      state.popUp = {
+        shown: true,
+        message: 'Failed to delete loadout',
+        type: 'error',
+      };
     })
     .addCase(setEditMode, (state, action) => {
       state.edit.isEditMode = action.payload.isEditMode;
@@ -195,19 +206,22 @@ const loadoutReducer = createReducer(initialState, (builder) => {
       state.edit.title = action.payload.title;
       state.edit.description = action.payload.description;
     })
-    .addCase(editLoadout.fulfilled, (state, action) => {
+    .addCase(editLoadout.fulfilled, (state) => {
       state.popUp = {
         shown: true,
         message: 'Loadout updated',
         type: 'success',
       };
     })
-    .addCase(editLoadout.rejected, (state, action) => {
+    .addCase(editLoadout.rejected, (state) => {
       state.popUp = {
         shown: true,
         message: 'Update failed',
         type: 'error',
       };
+    })
+    .addCase(deleteLoadout.rejected, (state) => {
+      state.errorMessage = 'Failed to delete loadout';
     })
     .addCase(closeLoadoutPopUp, (state) => {
       state.popUp.shown = false;
