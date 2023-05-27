@@ -1,5 +1,6 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import './styles.scss';
+import { useEffect } from 'react';
 import AppHeader from '../AppHeader';
 import BuilderPage from '../../Pages/BuilderPage';
 import HomePage from '../../Pages/HomePage';
@@ -9,6 +10,14 @@ import AppFooter from '../AppFooter';
 import Loadouts from '../../Pages/LoadoutsPage';
 
 function App() {
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo({
+      top: 100,
+      left: 100,
+      behavior: 'smooth',
+    });
+  }, [location]);
   return (
     <div className="app">
       <AppHeader />
