@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import felyne_cook from '../../../public/felyne_cook.gif';
 import './styles.scss';
-import catSound from '../../assets/sounds/cat_vo_nyatooon.mp3';
+import catSound from '../../assets/sounds/felyne_sound.mp3';
 import { useSound } from '../../hooks/sound';
 
 function Err404() {
@@ -27,9 +27,9 @@ function Err404() {
       </div>
 
       <p>
-        Eat this meal, but hurry up and go
+        Eat this meal, but hurry up and
         {' '}
-        <Link to="/" className="err404__back-homepage">BACK ON MISSION</Link>
+        <Link to="/" className="err404__back-homepage">GO BACK ON MISSION</Link>
       </p>
     </main>
   );

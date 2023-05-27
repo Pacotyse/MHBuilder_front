@@ -6,6 +6,8 @@
   max-width: 1250px;
   margin: auto;
   color: vars.$white;
+  display: flex;
+  flex-direction: column;
 
 
   & a {
