@@ -1,6 +1,7 @@
 import { FormEvent } from 'react';
 import Field from '../LoginForm/Field';
 import { useAppSelector } from '../../hooks/redux';
+import './styles.scss';
 
 interface EditFormProps {
 
@@ -27,26 +28,22 @@ function EditForm({
   };
 
   return (
-
-    <div className="login-form">
-
-      <form autoComplete="off" className="login-form-element" onSubmit={handleSubmit}>
-        <h3 className="login-form-title">Edit</h3>
-        <Field
-          disabled={isLoading}
-          type="text"
-          placeholder="Username"
-          onChange={handleChangeField}
-          value={username}
-        />
-        <button
-          type="submit"
-          className="login-form-button"
-        >
-          Confirm
-        </button>
-      </form>
-    </div>
+    <form autoComplete="off" className="edit-profile__form" onSubmit={handleSubmit}>
+      <h3 className="edit-profile__title">Edit</h3>
+      <Field
+        disabled={isLoading}
+        type="text"
+        placeholder="Username"
+        onChange={handleChangeField}
+        value={username}
+      />
+      <button
+        type="submit"
+        className="edit-profile__button"
+      >
+        Confirm
+      </button>
+    </form>
   );
 }
 

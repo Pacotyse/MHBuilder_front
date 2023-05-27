@@ -43,6 +43,10 @@ function ProfilePage() {
     setShowSettings(false);
   };
 
+  const handleShowEditModal = () => {
+    setShowEditModal(true);
+    dispatch(changeEditCredentialsField({ value: username }));
+  };
   const handleCloseEditModal = () => {
     setShowEditModal(false);
     setShowSettings(false);
@@ -93,9 +97,27 @@ function ProfilePage() {
                 {showSettings
                     && (
                       <div className="profile-header__settings-actions">
-                        <button type="button" className="profile-header__settings-actions__edit" onClick={() => setShowEditModal(true)}>Edit Profile</button>
-                        <button type="button" className="profile-header__settings-actions__delete" onClick={() => setShowConfirmModal(true)}>Delete Profile</button>
-                        <button type="button" className="profile-header__settings-actions__cancel" onClick={() => setShowSettings(false)}>Cancel</button>
+                        <button
+                          type="button"
+                          className="profile-header__settings-actions__edit"
+                          onClick={handleShowEditModal}
+                        >
+                          Edit Profile
+                        </button>
+                        <button
+                          type="button"
+                          className="profile-header__settings-actions__delete"
+                          onClick={() => setShowConfirmModal(true)}
+                        >
+                          Delete Profile
+                        </button>
+                        <button
+                          type="button"
+                          className="profile-header__settings-actions__cancel"
+                          onClick={() => setShowSettings(false)}
+                        >
+                          Cancel
+                        </button>
                       </div>
                     )}
 

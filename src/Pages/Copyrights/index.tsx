@@ -11,7 +11,7 @@ function Copyrights() {
         <ul className="copyrights__list">
           <li className="copyrights__list-category">
             <h4 className="copyrights__list-category__name">Ownership :</h4>
-            <p>The Capcom Monster Hunter franchise, including all associated icons and sound effects used on this website, is the intellectual property of Capcom Co., Ltd. ("Capcom") and its affiliates. The copyrights for these elements are protected by international copyright laws and treaties.</p>
+            <p>The Capcom Monster Hunter franchise, including all associated icons and sound effects used on this website, is the intellectual property of Capcom Co., Ltd. (&quot;Capcom&quot;) and its affiliates. The copyrights for these elements are protected by international copyright laws and treaties.</p>
           </li>
           <li className="copyrights__list-category">
             <h4 className="copyrights__list-category__name">Usage :</h4>
@@ -23,7 +23,7 @@ function Copyrights() {
           </li>
           <li className="copyrights__list-category">
             <h4 className="copyrights__list-category__name">Fair Use :</h4>
-            <p>The use of Capcom Monster Hunter icons and sound effects on this website falls within the concept of fair use under copyright law. It is used for the purpose of commentary, criticism, and educational content. This usage does not harm the market for Capcom's original works.</p>
+            <p>The use of Capcom Monster Hunter icons and sound effects on this website falls within the concept of fair use under copyright law. It is used for the purpose of commentary, criticism, and educational content. This usage does not harm the market for Capcom&apos;s original works.</p>
           </li>
           <li className="copyrights__list-category">
             <h4 className="copyrights__list-category__name">Attribution :</h4>

@@ -196,6 +196,8 @@ const userReducer = createReducer(initialState, (builder) => {
     .addCase(editUser.fulfilled, (state, action) => {
       state.username = action.payload.username;
       state.editCredentials.username = '';
+      // line below sets the new username to the localstorage
+      localStorage.setItem('user', JSON.stringify({ ...userData, username: action.payload.username }));
     })
     .addCase(checkTokenValidity.rejected, (state) => {
       state.isLogged = false;
