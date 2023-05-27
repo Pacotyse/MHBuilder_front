@@ -75,11 +75,7 @@ function BuilderPage() {
     setShowSaveLoadoutModal(true);
   };
 
-  // Get stats from the API on every builder update
-  useEffect(() => {
-    dispatch(getBuilderStats());
-  }, [dispatch, weapon, arms, head, chest, legs, waist]);
-
+ 
   const handleSaveLoadout = () => {
     if (
       weapon
@@ -134,6 +130,18 @@ function BuilderPage() {
       setErrorLoadout('Make sure to set all the items and be authentified to save a loadout.');
     }
   }
+
+  // Get stats from the API on every builder update
+  useEffect(() => {
+    dispatch(getBuilderStats());
+  }, [dispatch, weapon, arms, head, chest, legs, waist]);
+
+  // auto hide information popup after 2s shown
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(closeLoadoutPopUp());
+    }, 2000);
+  }, [dispatch, loadoutPopUp.shown]);
 
   return (
     <main className="builder-main main">

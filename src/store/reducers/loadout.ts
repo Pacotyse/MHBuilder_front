@@ -111,9 +111,6 @@ export const editLoadout = createAppAsyncThunk(
       waist_id: waist?.id,
       legs_id: legs?.id,
     });
-    setTimeout(() => {
-      thunkAPI.dispatch(closeLoadoutPopUp());
-    }, 2000);
     return data;
   },
 );
