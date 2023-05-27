@@ -8,13 +8,14 @@ import LoginPage from '../../Pages/LoginPage';
 import ProfilePage from '../../Pages/ProfilePage';
 import AppFooter from '../AppFooter';
 import Loadouts from '../../Pages/LoadoutsPage';
+import Err404 from '../../Pages/Err404';
 
 function App() {
   const location = useLocation();
   useEffect(() => {
     window.scrollTo({
-      top: 100,
-      left: 100,
+      top: 0,
+      left: 0,
       behavior: 'smooth',
     });
   }, [location]);
@@ -30,10 +31,9 @@ function App() {
           path="/login"
           element={<LoginPage />}
         />
-        <Route path="/sign-in" element={<h2>Sign-in</h2>} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/copyrights" element={<h2>Copyrights</h2>} />
-        <Route path="*" element={<h2>404</h2>} />
+        <Route path="*" element={<Err404 />} />
       </Routes>
       <AppFooter />
     </div>
