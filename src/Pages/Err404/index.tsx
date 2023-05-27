@@ -1,15 +1,25 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import felyne_cook from '../../../public/felyne_cook.gif';
 import './styles.scss';
+import catSound from '../../assets/sounds/cat_vo_nyatooon.mp3';
+import { useSound } from '../../hooks/sound';
 
 function Err404() {
+  const playsound = useSound(catSound);
+  // Plays the sound whenever reach 404 page
+  useEffect(() => {
+    playsound();
+  }, [playsound]);
+
   return (
     <main className="main_404">
       <h2 className="err404__status">404</h2>
       <h3 className="err404__title">
         Wait... You&apos;ve reached the
         {' '}
-        <span className="err404__title-campfire">campfire</span>!
+        <span className="err404__title-campfire">campfire</span>
+        !
       </h3>
       <div className="err404__gif">
         <p className="err404__gif-description">Well.. take a seat. This felyne cooked for us!</p>

@@ -7,6 +7,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  width: 100%;
   padding: 2rem;
   font-weight: bold;
 }
@@ -39,6 +40,8 @@
     background-color: rgb(216, 110, 18);
     padding: vars.$gap-s;
     border-radius: vars.$radius-l;
+    display: block;
+    margin-top: 1rem;
 
     &:hover {
       background-color: vars.$white;
