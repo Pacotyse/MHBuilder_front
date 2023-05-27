@@ -1,0 +1,14 @@
+@use '../../styles/vars';
+
+.stats-skill {
+  width: fit-content;
+  padding: vars.$gap-xs vars.$gap-s;
+  border-radius: vars.$radius-l;
+  
+  &__value {
+    background-color: vars.$white;
+    color: #000;
+    border-radius: vars.$radius-m;
+    padding: 0 vars.$gap-s;
+  }
+}
