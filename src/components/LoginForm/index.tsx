@@ -34,6 +34,7 @@ function LoginForm({
 
   const handleChangeField = (name: 'email' | 'password') => (value: string) => {
     changeField(value, name);
+    setPasswordShown(false);
   };
 
   const handleTogglePasswordShown = () => {
