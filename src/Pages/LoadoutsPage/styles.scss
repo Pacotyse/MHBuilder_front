@@ -32,6 +32,26 @@
             color: rgb(0, 0, 0);
             font-size: 15px;
         }
+
+        &__form {
+            display: flex;
+            gap: vars.$gap-s;
+            height: 2rem;
+            
+            &__input {
+                height: 100%;
+                font-size: 1rem;
+                width: 10rem;
+            }
+            &__submit-button {
+                font-size: 1rem;
+                padding: vars.$gap-xs vars.$gap-s;
+                background-color: vars.$white;
+                border: solid 1px vars.$grey;
+                border-radius: vars.$radius-s;
+                color: vars.$grey;
+            }
+        }
     }
 
     &-list {
@@ -86,16 +106,4 @@
     }
 }
 
-@media (min-width: 769px){
-
-    .loadouts {
-        &-list{
-
-            & .loadout-container {
-
-                
-            }
-        }
-    }
-}
 

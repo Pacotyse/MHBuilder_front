@@ -3,15 +3,15 @@ import { Navigate } from 'react-router-dom';
 import { BiLoaderCircle } from 'react-icons/bi';
 import { FiSettings, FiLogOut } from 'react-icons/fi';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import {
-  changeEditCredentialsField, checkTokenValidity, deleteUser, editUser, logout, resetEditForm,
-} from '../../store/reducers/user';
-import './styles.scss';
-import getIconByKey from '../../utils/icons';
-import Modal from '../../components/Modal';
 import { fetchUserLoadouts } from '../../store/reducers/loadout';
+import {
+  changeEditCredentialsField, checkTokenValidity, logout,
+} from '../../store/reducers/user';
+import getIconByKey from '../../utils/icons';
 import Loadout from '../../components/Loadout';
-import EditForm from '../../components/EditForm';
+import ProfileEditModal from './ProfileEditModal';
+import ProfileDeleteModal from './ProfileDeleteModal';
+import './styles.scss';
 
 function ProfilePage() {
   const dispatch = useAppDispatch();
@@ -20,37 +20,17 @@ function ProfilePage() {
   const loadouts = useAppSelector((state) => state.loadout.loadouts);
   const isLoading = useAppSelector((state) => state.loadout.isLoading);
 
-  const usernameEdit = useAppSelector((state) => state.user.editCredentials.username);
-
   const [showSettings, setShowSettings] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
 
-  const handleDeleteUser = () => {
-    dispatch(deleteUser());
-  };
   const handleLogout = () => {
     dispatch(logout());
-  };
-
-  const handleEditUser = () => {
-    dispatch(editUser());
-    setShowEditModal(false);
-  };
-
-  const handleCloseDeleteModal = () => {
-    setShowConfirmModal(false);
-    setShowSettings(false);
   };
 
   const handleShowEditModal = () => {
     setShowEditModal(true);
     dispatch(changeEditCredentialsField({ value: username }));
-  };
-  const handleCloseEditModal = () => {
-    setShowEditModal(false);
-    setShowSettings(false);
-    dispatch(resetEditForm());
   };
 
   // Automatic fetch loadouts when reach /profile
@@ -62,13 +42,6 @@ function ProfilePage() {
   useEffect(() => {
     dispatch(checkTokenValidity());
   }, [dispatch]);
-
-  const handleChangeEditCredentials = (value: string) => {
-    dispatch(changeEditCredentialsField({
-      value,
-      // field: name,
-    }));
-  };
 
   return (
     <main className="main">
@@ -122,36 +95,18 @@ function ProfilePage() {
                     )}
 
                 {/* Delete profile */}
-                <Modal
-                  modalXl={false}
-                  shown={showConfirmModal}
-                  close={handleCloseDeleteModal}
-                >
-                  <div className="profile__modal-content">
-                    <p className="profile__modal-text">If you confirm, you will lose all informations related.</p>
-                    <p className="profile__modal-text">Do you still want to delete?</p>
-                    <div className="profile__modal-confirm">
-                      <button type="button" className="profile__modal__button-delete" onClick={handleDeleteUser}>Delete</button>
-                      <button type="button" className="profile__modal__button-cancel" onClick={handleCloseDeleteModal}>Cancel</button>
-                    </div>
-                  </div>
-                </Modal>
+                <ProfileDeleteModal
+                  showConfirmModal={showConfirmModal}
+                  setShowConfirmModal={setShowConfirmModal}
+                  setShowSettings={setShowSettings}
+                />
 
                 {/* Edit profile */}
-                <Modal
-                  modalXl={false}
-                  shown={showEditModal}
-                  close={handleCloseEditModal}
-                >
-                  <div className="profile__modal-content">
-                    <EditForm
-                      username={usernameEdit}
-                      changeField={handleChangeEditCredentials}
-                      handleEdit={handleEditUser}
-                    />
-                  </div>
-                </Modal>
-
+                <ProfileEditModal
+                  showEditModal={showEditModal}
+                  setShowEditModal={setShowEditModal}
+                  setShowSettings={setShowSettings}
+                />
               </div>
             </div>
             <div className="profile-divider" />

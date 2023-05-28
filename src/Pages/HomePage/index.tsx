@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './styles.scss';
-import Footer from '../../components/Footer/Footer';
 import { checkTokenValidity } from '../../store/reducers/user';
 import { useAppDispatch } from '../../hooks/redux';
 import LatestBuild from '../../components/LatestBuilds';
+import Footer from '../../components/Footer/Footer';
+import './styles.scss';
 
 function HomePage() {
   const dispatch = useAppDispatch();

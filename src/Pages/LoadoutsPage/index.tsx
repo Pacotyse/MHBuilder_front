@@ -1,12 +1,11 @@
-import React, {
+import {
   ChangeEvent, FormEvent, useEffect, useState,
 } from 'react';
-import './styles.scss';
-
 import { BiLoaderCircle } from 'react-icons/bi';
-import Loadout from '../../components/Loadout';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchAllLoadouts, fetchOneLoadoutById, setLoadoutCodeField } from '../../store/reducers/loadout';
+import Loadout from '../../components/Loadout';
+import './styles.scss';
 
 function Loadouts() {
   const dispatch = useAppDispatch();
@@ -18,10 +17,7 @@ function Loadouts() {
   const loadoutCode = useAppSelector((state) => state.loadout.loadoutCode);
   // const loadoutItemsids = useAppSelector((state) => state.builder.editLoadoutIds);
 
-  useEffect(() => {
-    dispatch(fetchAllLoadouts());
-  }, [dispatch]);
-
+  // filter loadout with a code
   function handleGetOneLoadout(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (loadoutCode) {
@@ -35,6 +31,10 @@ function Loadouts() {
     setBackButtonShown(false);
     dispatch(fetchAllLoadouts());
   }
+
+  useEffect(() => {
+    dispatch(fetchAllLoadouts());
+  }, [dispatch]);
 
   return (
     <main className="main-loadout">
@@ -55,8 +55,9 @@ function Loadouts() {
             onChange={(event: ChangeEvent<HTMLInputElement>) => {
               dispatch(setLoadoutCodeField(event.target.value));
             }}
+            className="loadouts-search__form__input"
           />
-          <button type="submit" className="loadouts-search__submit-button">Go</button>
+          <button type="submit" className="loadouts-search__form__submit-button">GO</button>
         </form>
       </div>
       {/* //? SECTION all loadouts and filter */}
