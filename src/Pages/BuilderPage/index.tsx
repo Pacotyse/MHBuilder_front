@@ -1,5 +1,5 @@
 import { ChangeEvent, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
   clearArmorList,
@@ -17,9 +17,10 @@ import SkillStats from '../../components/SkillStats';
 import { IArmorType } from '../../@types/armor';
 import Modal from '../../components/Modal';
 import {
-  changeLoadoutCredentialsField, closeLoadoutPopUp, editLoadout, saveLoadout, setEditMode,
+  changeLoadoutCredentialsField, closeLoadoutPopUp, editLoadout, setEditMode,
 } from '../../store/reducers/loadout';
 import PopUpMessage from '../../components/PopUpMessage';
+import BuilderSaveLoadoutModal from './BuilderSaveLoadoutModal';
 
 function BuilderPage() {
   const dispatch = useAppDispatch();
@@ -76,35 +77,12 @@ function BuilderPage() {
     setShowSaveLoadoutModal(true);
   };
 
-  const handleSaveLoadout = () => {
-    if (
-      weapon
-      && loadoutTitle
-      && userIsLogged
-    ) {
-      dispatch(saveLoadout());
-      dispatch(setEditMode({
-        isEditMode: false,
-        editLoadoutId: '',
-        title: '',
-        description: '',
-      }));
-      setShowSaveLoadoutModal(false);
-    } else {
-      setErrorLoadout('Make sure to set at least a weapon, set a title and be authentified to save a loadout.');
-    }
-  };
-
   const handleChangeField = (name: 'title' | 'description') => (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(changeLoadoutCredentialsField({
       value: event.target.value,
       field: name,
     }));
   };
-
-  function handleCloseSaveLoadoutModal() {
-    setShowSaveLoadoutModal(false);
-  }
 
   function handleShowEditLoadoutModal(): void {
     setEditLoadoutModalShown(true);
@@ -202,56 +180,12 @@ function BuilderPage() {
           )}
       </section>
 
-      <Modal
-        modalXl={false}
+      <BuilderSaveLoadoutModal
         shown={showSaveLoadoutModal}
-        close={() => setShowSaveLoadoutModal(false)}
-      >
-        {Boolean(errorLoadout)
-          && (
-          <div>
-            <p>{errorLoadout}</p>
-            {!userIsLogged
-              && (
-              <Link
-                to="/login"
-                style={{
-                  padding: '3px 6px',
-                  backgroundColor: 'white',
-                  color: 'black',
-                  borderRadius: '10px',
-                }}
-              >
-                Login
-              </Link>
-              )}
-            <button type="button" onClick={() => setErrorLoadout('')}>Ok</button>
-          </div>
-          )}
-        {Boolean(!errorLoadout)
-          && (
-          <div>
-
-            <form>
-              <input
-                type="text"
-                placeholder="Loadout title"
-                required
-                value={loadoutTitle}
-                onChange={handleChangeField('title')}
-              />
-              <input
-                type="text"
-                placeholder="Description"
-                value={loadoutDescription}
-                onChange={handleChangeField('description')}
-              />
-            </form>
-            <button type="button" onClick={handleSaveLoadout}>Save</button>
-            <button type="button" onClick={handleCloseSaveLoadoutModal}>Cancel</button>
-          </div>
-          )}
-      </Modal>
+        setShowSaveLoadoutModal={setShowSaveLoadoutModal}
+        errorLoadout={errorLoadout}
+        setErrorLoadout={setErrorLoadout}
+      />
       <Modal
         modalXl={false}
         shown={editLoadoutModalShown}

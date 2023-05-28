@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import felyne_cook from '../../../public/felyne_cook.gif';
+import felyne_cook from '../../assets/icons/felyne_cook.gif';
 import './styles.scss';
 import catSound from '../../assets/sounds/felyne_sound.mp3';
 import { useSound } from '../../hooks/sound';
