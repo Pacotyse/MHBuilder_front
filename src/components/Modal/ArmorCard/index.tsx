@@ -84,7 +84,7 @@ function ArmorCard({ armor, showModal, isSelected }: ArmorCardProps) {
                 <div
                   key={skill?.id}
                   className={cn('item-card__footer__skill-tag')}
-                  style={{ backgroundColor: `${skill.color}`, color: '#ffffff' }}
+                  style={{ backgroundColor: `${skill.color}` }}
                 >
                   {`${skill?.name} ${skill?.level}`}
                 </div>

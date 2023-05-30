@@ -105,7 +105,7 @@ function Loadout({ loadout, isOnProfilePage }: LoadoutProps) {
               <li
                 key={skill?.id}
                 className="loadout__footer__skill-tag"
-                style={{ backgroundColor: `${skill.color}`, color: '#ffffff' }}
+                style={{ backgroundColor: `${skill.color}` }}
               >
                 {`${skill?.name} ${skill?.level}`}
               </li>

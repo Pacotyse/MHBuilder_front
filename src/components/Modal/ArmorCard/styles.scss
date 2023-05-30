@@ -15,7 +15,8 @@
       border: none;
       border-radius: vars.$radius-m;
       padding: vars.$gap-xs vars.$gap-s;
-
+      color: #fff;
+      text-shadow: #000000 0 0 8px;
     }
   }
 }
