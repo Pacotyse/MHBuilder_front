@@ -117,9 +117,10 @@ export const editLoadout = createAppAsyncThunk(
 
 export const deleteLoadout = createAppAsyncThunk(
   'loadout/DELETE_LOADOUT',
-  async (id: string) => {
+  async (id: string, thunkAPI) => {
     const { data } = await axiosInstance.delete(`/loadouts/${id}`, {
     });
+    thunkAPI.dispatch(fetchUserLoadouts());
     return data;
   },
 );
