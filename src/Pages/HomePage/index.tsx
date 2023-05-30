@@ -80,7 +80,7 @@ function HomePage() {
         <div className="community-container-right">
           <div className="community-container-right-content">
             <h2 className="community-container-right-content-h2 h2">
-              Lastest Build
+              Latest Build
             </h2>
             <div className="community-container-right-content-list-container">
               <LatestBuild />
