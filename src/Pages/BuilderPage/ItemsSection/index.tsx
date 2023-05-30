@@ -35,8 +35,8 @@ function ItemsSection({
       <AddItem itemType="weapon" icon={getIconByKey('great_sword_1')} openModal={handleShowModal} />
       <AddItem itemType="head" icon={getIconByKey('head_1')} openModal={handleShowModal} />
       <AddItem itemType="chest" icon={getIconByKey('chest_1')} openModal={handleShowModal} />
-      <AddItem itemType="waist" icon={getIconByKey('waist_1')} openModal={handleShowModal} />
       <AddItem itemType="arms" icon={getIconByKey('arms_1')} openModal={handleShowModal} />
+      <AddItem itemType="waist" icon={getIconByKey('waist_1')} openModal={handleShowModal} />
       <AddItem itemType="legs" icon={getIconByKey('legs_1')} openModal={handleShowModal} />
     </section>
   );
