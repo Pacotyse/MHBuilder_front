@@ -52,6 +52,14 @@ export const fetchAllLoadouts = createAppAsyncThunk(
   },
 );
 
+export const fetchLatestLoadouts = createAppAsyncThunk(
+  'loadout/FETCH_LATEST_LOADOUTS',
+  async () => {
+    const { data: loadouts } = await axiosInstance.get('/loadouts/filter/latest');
+    return loadouts as ILoadout[];
+  },
+);
+
 export const fetchOneLoadoutById = createAppAsyncThunk(
   'loadout/FETCH_ONE_LOADOUT',
   async (id: string | undefined, thunkAPI) => {
@@ -111,6 +119,7 @@ export const editLoadout = createAppAsyncThunk(
       waist_id: waist?.id,
       legs_id: legs?.id,
     });
+
     return data;
   },
 );
@@ -178,6 +187,15 @@ const loadoutReducer = createReducer(initialState, (builder) => {
     .addCase(fetchAllLoadouts.rejected, (state) => {
       state.isLoading = false;
       state.errorMessage = 'Server error, Failed to get data';
+    })
+    .addCase(fetchLatestLoadouts.pending, (state) => {
+      state.errorMessage = '';
+    })
+    .addCase(fetchLatestLoadouts.fulfilled, (state, action) => {
+      state.loadouts = action.payload;
+    })
+    .addCase(fetchLatestLoadouts.rejected, (state) => {
+      state.errorMessage = 'Error on fetching latest loadouts';
     })
     .addCase(fetchOneLoadoutById.fulfilled, (state, action) => {
       if (action.payload) {

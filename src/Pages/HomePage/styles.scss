@@ -176,6 +176,8 @@
                         height: 90%;
                         width: 100%;
                         overflow-y: scroll;
+                        display: flex;
+                        flex-direction: column;
                     }
 
                     & .loadout-container {
@@ -186,6 +188,22 @@
                         & .sharpness {
                             background-color: vars.$light-grey;
                         }
+                    }
+
+                    &-error {
+                        margin: auto;
+                        padding: vars.$gap-s vars.$gap-m;
+                        background-color: vars.$error;
+                        color: #fff;
+                        border-radius: vars.$radius-m;
+                    }
+
+                    &-button {
+                        background-color: vars.$purple;
+                        color: #fff;
+                        padding: vars.$gap-s vars.$gap-m;
+                        border-radius: vars.$radius-m;
+                        margin-top: 1rem;
                     }
                 }
             }
