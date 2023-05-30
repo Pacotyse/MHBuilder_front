@@ -42,10 +42,12 @@
     border-radius: vars.$radius-l;
     display: block;
     margin-top: 1rem;
+    color: #fff;
 
     &:hover {
-      background-color: vars.$white;
+      background-color: #fff;
       color: rgb(216, 110, 18);
+      border: solid 2px rgb(216, 110, 18);
     }
   }
 }

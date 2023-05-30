@@ -41,29 +41,31 @@ function Loadouts() {
       {/* //? SECTION Search by code */}
 
       <div className="loadouts-search">
-        <h2 className="loadouts-search_title">FIND BY CODE</h2>
-        <p className="loadouts-search__description">Got friend&apos;s loadout code? Paste it below !</p>
+        <div className="loadouts-search-container">
+          <h2 className="loadouts-search__title">FIND BY CODE</h2>
+          <p className="loadouts-search__description">Enter your friend&apos;s Loadout code in the search bar below to access their Loadout. Discover their customized setup, including armor, weapons, and skills. Explore new strategies and gear combinations from your friends in the game.</p>
 
-        <form
-          className="loadouts-search__form"
-          onSubmit={handleGetOneLoadout}
-        >
-          <input
-            type="text"
-            placeholder="e.g. : AB1X9Z2"
-            value={loadoutCode}
-            onChange={(event: ChangeEvent<HTMLInputElement>) => {
-              dispatch(setLoadoutCodeField(event.target.value));
-            }}
-            className="loadouts-search__form__input"
-          />
-          <button type="submit" className="loadouts-search__form__submit-button">GO</button>
-        </form>
+          <form
+            className="loadouts-search__form"
+            onSubmit={handleGetOneLoadout}
+          >
+            <input
+              type="text"
+              placeholder="e.g. : AB1X9Z2"
+              value={loadoutCode}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                dispatch(setLoadoutCodeField(event.target.value));
+              }}
+              className="loadouts-search__form__input"
+            />
+            <button type="submit" className="loadouts-search__form__submit-button">GO</button>
+          </form>
+        </div>
       </div>
       {/* //? SECTION all loadouts and filter */}
       <div className="loadouts-list__container">
 
-        <div className="loadouts-list__filters">
+        {/* <div className="loadouts-list__filters">
           <button type="button" className="loadouts-list__name">Name</button>
           <button type="button" className="loadouts-list__latest">Latest</button>
           <div className="loadouts-searchbar">
@@ -73,12 +75,12 @@ function Loadouts() {
             />
             <button type="submit">Ok</button>
           </div>
-        </div>
+        </div> */}
 
         <ul className="loadouts-list">
           {isLoading && <BiLoaderCircle className="loadouts-list__loader" />}
           {errorMessage && <span className="loadouts-list__error">{errorMessage}</span>}
-          {backButtonShown && <button type="button" onClick={handleBackToAllLoadouts}>Back</button>}
+          {backButtonShown && <button type="button" onClick={handleBackToAllLoadouts} className="loadouts-list__button-back">Back</button>}
           {loadouts?.map((loadout) => (
             <Loadout key={loadout.id} loadout={loadout} isOnProfilePage={false} />
           ))}

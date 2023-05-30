@@ -1,14 +1,8 @@
-@use '../../styles/vars';
+.main-login {
+  height: 100%;
+  margin: auto 0;
 
-
-.loginForm-container {
-
-
-}
-
-
-
-.signInForm-container{
-
-
+  & .modal {
+    
+  }
 }

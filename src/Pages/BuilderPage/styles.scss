@@ -13,6 +13,14 @@
     &__description {
       text-align: center;
     }
+
+    &__item .item-card {
+      color: #000;
+      
+      &:hover {
+        color: #fff;
+      }
+    }
   }
   
   &-modal__description {
@@ -35,13 +43,16 @@
     border-radius: vars.$radius-m;
 
     &:hover {
-      background-color: vars.$white;
-      color: vars.$dark-grey;
+      background-color: vars.$purple;
+      color: #fff;
+
     }
 
     &-edit__code {
-      color: vars.$error;
+      color: #de7111;
+
     }
+
   }
   }
 }
@@ -153,8 +164,8 @@
           }
 
           &__button-add:hover {
-            background-color: vars.$white;
-            color: vars.$primary;
+            background-color: #fff;
+            color: vars.$purple;
           }
         }
       }

@@ -1,13 +1,18 @@
 @use 'src/styles/vars';
 
 .login-form {
-  
+
+  &-container {
+    height: 100%;
+    margin: auto;
+  }
+
   &-element {
     display: flex;
     align-items: center;
     flex-direction: column;
     padding-top: 5rem;
-    background-color: #D7CCC8;
+    
     
   }
 
@@ -26,7 +31,7 @@
     display: flex;
     font-size: 1em;
     color: white;
-    background-color: #FF5722;
+    background-color: vars.$purple;
     margin-top: .4em;
     margin-bottom: 3em;
     border-radius: .3em;
@@ -48,10 +53,7 @@
 }
 
 .divider{
-  background-color: #A06F8A;
-  display: flex;
-  font-size: 5px; 
-  text-align: center; 
-  width: 75%;
-  margin: 1px auto;
+  height: 3px;
+  width: 100%;
+  background-color: #fff;
 }

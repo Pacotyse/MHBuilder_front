@@ -46,7 +46,7 @@ function LoginPage() {
   };
 
   return (
-    <main className="main">
+    <main className="main-login">
       <div className="loginForm-container">
         {isLogged && <Navigate to="/profile" />}
         <LoginForm

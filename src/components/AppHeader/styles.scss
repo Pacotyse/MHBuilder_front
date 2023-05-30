@@ -40,6 +40,7 @@
 
       & li:hover {
         background-color: vars.$primary;
+        color:  #fff;
       }
       
       &__link {
@@ -67,7 +68,7 @@
       &-active {
         color: vars.$primary;
         &:hover {
-          color: vars.$white;
+          color: #fff;
         }
       }
     }

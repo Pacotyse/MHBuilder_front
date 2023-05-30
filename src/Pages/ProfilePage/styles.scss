@@ -30,7 +30,8 @@
       width: 4rem;
       height: 4rem;
       border-radius: 25%;
-      border: #fff solid;
+      border: #948e8e solid;
+      padding: 5px;
     }
 
     &__actions {
@@ -43,8 +44,8 @@
     }
 
     &__logout, &__settings {
-      background-color: vars.$white;
-      border: none;
+      background-color: #fff;
+      border: solid 2px vars.$white;
       border-radius: vars.$radius-s;
       padding: vars.$gap-s;
       display: flex;
@@ -116,9 +117,11 @@
     }
     &__button-delete {
       background-color: vars.$error;
-      color: vars.$white;
+      color: #fff;
       padding: vars.$gap-s;
       border-radius: vars.$radius-s;
+      border: #fff solid 2px;
+      
     }
   }
 
