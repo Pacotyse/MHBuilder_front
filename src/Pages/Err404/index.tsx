@@ -16,7 +16,7 @@ function Err404() {
     <main className="main_404">
       <h2 className="err404__status">404</h2>
       <h3 className="err404__title">
-        Wait... You&apos;ve reached the
+        Wait... You&apos;ve reach the
         {' '}
         <span className="err404__title-campfire">campfire</span>
         !
