@@ -6,7 +6,8 @@ import { getUserDataFromLocalStorage } from './user';
 
 // eslint-disable-next-line import/prefer-default-export
 export const axiosInstance = axios.create({
-  baseURL: 'https://mhsb-api.up.railway.app',
+  // baseURL: 'https://mhsb-api.up.railway.app',
+  baseURL: 'http://localhost:3000',
 });
 // Add an action BEFORE a request
 axiosInstance.interceptors.request.use((config) => {
